@@ -111,9 +111,9 @@ setPrompt() {
 			fi		
 			[[ ! $(git remote) ]] && git_string="$git_string"'\[\033[0m\]✗' 
 			declare -i added_index=0; declare -i modified_index=0; declare -i deleted_index=0
-			declare -i unmerged_index=0; declare -i untracked_index=0; declare -i ignored_index=0				
+			declare -i unmerged_updated_index=0; declare -i untracked_index=0; declare -i ignored_index=0				
 			declare -i added_work_tree=0; declare -i modified_work_tree=0; declare -i deleted_work_tree=0
-			declare -i unmerged_work_tree=0; declare -i untracked_work_tree=0; declare -i ignored_work_tree=0
+			declare -i unmerged_updated_work_tree=0; declare -i untracked_work_tree=0; declare -i ignored_work_tree=0
 			while IFS= read -r line; do
 				status_index="${line::1}"
 				case $status_index in
@@ -127,7 +127,7 @@ setPrompt() {
 						deleted_index=$((deleted_index + 1))
 						;;
 					"U")
-						unmerged_index=$((unmerged_index + 1))
+						unmerged_updated_index=$((unmerged_updated_index + 1))
 						;;
 					"?")
 						untracked_index=$((untracked_index + 1))
@@ -148,7 +148,7 @@ setPrompt() {
 						deleted_work_tree=$((deleted_work_tree + 1))
 						;;
 					"U")
-						unmerged_work_tree=$((unmerged_work_tree + 1))
+						unmerged_updated_work_tree=$((unmerged_updated_work_tree + 1))
 						;;
 					"?")
 					untracked_work_tree=$((untracked_work_tree + 1))
@@ -164,7 +164,7 @@ setPrompt() {
 			((added_index > 0)) && index="$index"'+'"$added_index"
 			((modified_index > 0)) && index="$index"'~'"$modified_index"
 			((deleted_index > 0)) && index="$index"'-'"$deleted_index"
-			((unmerged_index > 0)) && index="$git_string"'Ψ'"$unmerged_index"
+			((unmerged_updated_index > 0)) && index="$git_string"'Ψ'"$unmerged_updated_index"
 			((untracked_index > 0)) && index="$index"'?'"$untracked_index"
 			((ignored_index > 0)) && index="$index"'!'"$ignored_index"
 			index="$index"']'
@@ -172,7 +172,7 @@ setPrompt() {
 			((added_work_tree > 0)) && worktree="$worktree"'+'"$added_work_tree"
 			((modified_work_tree > 0)) && worktree="$worktree"'~'"$modified_work_tree"
 			((deleted_work_tree > 0)) && worktree="$worktree"'-'"$deleted_work_tree"
-			((unmerged_work_tree > 0)) && worktree="$worktree"'Ψ'"$unmerged_work_tree"
+			((unmerged_updated_work_tree > 0)) && worktree="$worktree"'Ψ'"$unmerged_updated_work_tree"
 			((untracked_work_tree > 0)) && worktree="$worktree"'?'"$untracked_work_tree"
 			((ignored_work_tree > 0)) && worktree="$worktree"'!'"$ignored_work_tree"
 			worktree="$worktree]"
