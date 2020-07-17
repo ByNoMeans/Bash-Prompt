@@ -4,7 +4,7 @@ alias gb='git branch'
 alias gblm='git blame'
 alias gcfg='git config'
 alias gch='git checkout'
-alias gc='git commit'
+alias gcm='git commit'
 alias gcl='git clone'
 alias gcp='git cherry-pick'
 alias gd='git diff'
@@ -20,18 +20,18 @@ alias grm='git rm'
 alias gs='git status'
 alias gt='git tag'
 
-alias promptaliases="echo $'
+alias gitaliases="echo $'
 These are the aliases contained within your custom prompt bash.bashrc file:
 
 Git aliases:
-   detach         git checkout <HEAD SHA>
+   detach         git checkout <SHA of HEAD>
    g              git
    ga             git add
    gb             git branch
    gblm           git blame
    gcfg           git config
    gch            git checkout
-   gc             git commit
+   gcm            git commit
    gcl            git clone
    gcp            git cherry-pick
    gd             git diff
@@ -45,8 +45,9 @@ Git aliases:
    grm            git rm
    grem           git remote
    gs             git status
-   gt             git tag
-
+   gt             git tag'"
+   
+alias venvaliases="echo $'
 Virtual Environment aliases:
    delvenv        deactivate venv && rm -rf venv
    setvenv        virtualenv venv && source '\''venv/Scripts/activate'\'$'
@@ -55,8 +56,8 @@ Virtual Environment aliases:
 alias promptsymbols="echo $'
 These are the symbols within the git prompt:
    
-   First "[]"          Index status
-   Second "[]"         Working tree status
+   First \"[]\"          Index status
+   Second \"[]\"         Working tree status
    {}                  Empty repository
    ✗                   No remote
    ≠                   No  upstream
@@ -65,6 +66,6 @@ These are the symbols within the git prompt:
    ?                   Untracked files
    Ψ                   Unmerged files
    
-   A grey color indicates the index status.
-   An orange color indicates the working tree status.
+   A orange color indicates the index status.
+   An grey color indicates the working tree status.
    A red color indicates a problem.'"

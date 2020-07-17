@@ -158,23 +158,27 @@ setPrompt() {
 						;;
 				esac
 			done < <(gs -s --ignored)
-			git_string="$git_string"'\033[38;5;214m\]['
-			((added_index > 0)) && git_string="$git_string+$added_index"
-			((modified_index > 0)) && git_string="$git_string~$modified_index"
-			((deleted_index > 0)) && git_string="$git_string-$deleted_index"
-			((unmerged_index > 0)) && git_string="$git_stringΨ$unmerged_index"
-			((untracked_index > 0)) && git_string="$git_string?$untracked_index"
-			((ignored_index > 0)) && git_string="$git_string!$ignored_index"
-			git_string="$git_string"']\[\033[0;37m\]['
-			((added_work_tree > 0)) && git_string="$git_string"'+'"$added_work_tree"
-			((modified_work_tree > 0)) && git_string="$git_string"'~'"$modified_work_tree"
-			((deleted_work_tree > 0)) && git_string="$git_string"'-'"$deleted_work_tree"
-			((unmerged_work_tree > 0)) && git_string="$git_string"'Ψ'"$unmerged_work_tree"
-			((untracked_work_tree > 0)) && git_string="$git_string"'?'"$untracked_work_tree"
-			((ignored_work_tree > 0)) && git_string="$git_string"'!'"$ignored_work_tree"
-			git_string="$git_string]"
-			[ "${git_string: -34}" == "\[\033[0;37m\][]\033[38;5;214m\][]" ] && git_string="${git_string::-34}"	
-			git_string=' \[\033[1;36m\]('"$git_string"'\[\033[1;36m\])'
+			local index=""
+			local worktree=""
+			index='\033[38;5;214m\]['
+			((added_index > 0)) && index="$index"'+'"$added_index"
+			((modified_index > 0)) && index="$index"'~'"$modified_index"
+			((deleted_index > 0)) && index="$index"'-'"$deleted_index"
+			((unmerged_index > 0)) && index="$git_string"'Ψ'"$unmerged_index"
+			((untracked_index > 0)) && index="$index"'?'"$untracked_index"
+			((ignored_index > 0)) && index="$index"'!'"$ignored_index"
+			index="$index"']'
+			worktree='\[\033[0;37m\]['
+			((added_work_tree > 0)) && worktree="$worktree"'+'"$added_work_tree"
+			((modified_work_tree > 0)) && worktree="$worktree"'~'"$modified_work_tree"
+			((deleted_work_tree > 0)) && worktree="$worktree"'-'"$deleted_work_tree"
+			((unmerged_work_tree > 0)) && worktree="$worktree"'Ψ'"$unmerged_work_tree"
+			((untracked_work_tree > 0)) && worktree="$worktree"'?'"$untracked_work_tree"
+			((ignored_work_tree > 0)) && worktree="$worktree"'!'"$ignored_work_tree"
+			worktree="$worktree]"
+			[ "${index: -18}" == "\033[38;5;214m\][]" ] && index=""
+			[ "${worktree: -16}" == "\[\033[0;37m\][]" ] && worktree=""
+			git_string=' \[\033[1;36m\]('"$git_string$index$worktree"'\[\033[1;36m\])'
 		fi
 	}
 	\virtualenv-format
