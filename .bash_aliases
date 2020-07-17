@@ -35,6 +35,7 @@ Git aliases:
    gcl            git clone
    gcp            git cherry-pick
    gd             git diff
+   gf             git fetch
    glog           git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset\" --abbrev-commit --date=relative --all
    gmv            git mv
    gpll           git pull
