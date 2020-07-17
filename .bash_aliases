@@ -58,7 +58,7 @@ These are the symbols within the git prompt:
    First "[]"          Index status
    Second "[]"         Working tree status
    {}                  Empty repository
-   ✕                   No remote
+   ✗                   No remote
    ≠                   No  upstream
    ↑                   # Commits ahead
    ↓                   # Commits behind

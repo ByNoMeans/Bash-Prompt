@@ -109,7 +109,7 @@ setPrompt() {
 			else 
 				git_string="$git_string"'\[\033[0;35m\]'"$(git rev-parse --short HEAD)"
 			fi		
-			[[ ! $(git remote) ]] && git_string="$git_string"'\[\033[0m\]✕' 
+			[[ ! $(git remote) ]] && git_string="$git_string"'\[\033[0m\]✗' 
 			declare -i added_index=0; declare -i modified_index=0; declare -i deleted_index=0
 			declare -i unmerged_index=0; declare -i untracked_index=0; declare -i ignored_index=0				
 			declare -i added_work_tree=0; declare -i modified_work_tree=0; declare -i deleted_work_tree=0
