@@ -158,14 +158,14 @@ setPrompt() {
 						;;
 				esac
 			done < <(gs -s --ignored)
-			git_string="$git_string"'\[\033[0;37m\]['
+			git_string="$git_string"'\033[38;5;214m\]['
 			((added_index > 0)) && git_string="$git_string+$added_index"
 			((modified_index > 0)) && git_string="$git_string~$modified_index"
 			((deleted_index > 0)) && git_string="$git_string-$deleted_index"
 			((unmerged_index > 0)) && git_string="$git_stringΨ$unmerged_index"
 			((untracked_index > 0)) && git_string="$git_string?$untracked_index"
 			((ignored_index > 0)) && git_string="$git_string!$ignored_index"
-			git_string="$git_string"']\033[38;5;214m\]['
+			git_string="$git_string"']\[\033[0;37m\]['
 			((added_work_tree > 0)) && git_string="$git_string"'+'"$added_work_tree"
 			((modified_work_tree > 0)) && git_string="$git_string"'~'"$modified_work_tree"
 			((deleted_work_tree > 0)) && git_string="$git_string"'-'"$deleted_work_tree"
