@@ -101,7 +101,7 @@ setPrompt() {
 					numCommitsAhead=$(git rev-list --count @{u}..HEAD)
 					numCommitsBehind=$(git rev-list --count HEAD..@{u})
 					((numCommitsAhead > 0)) && git_string="$git_string"'\[\033[0m\]↑'"$numCommitsAhead"
-					((numCommitsBehind > 0)) && git_string="$git_string"'\\[\033[0m\]↓'"$numCommitsBehind"			
+					((numCommitsBehind > 0)) && git_string="$git_string"'\[\033[0m\]↓'"$numCommitsBehind"			
 				else
 					git_string="$git_string"'\[\033[0m\]\[\033[0m\]≠'
 				fi
