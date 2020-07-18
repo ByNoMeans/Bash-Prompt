@@ -63,10 +63,9 @@ These are the symbols within the git prompt:
    Second \"[]\"         Working tree status
    {}                  Empty repository
    ✗                   No remote
-   ≠                   No  upstream
+   ≠                   No upstream
    ↑                   # Commits ahead
    ↓                   # Commits behind
-   ?                   Untracked files
    Ψ                   Unmerged files
    
    A orange color indicates the index status.
