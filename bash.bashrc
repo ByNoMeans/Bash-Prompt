@@ -152,7 +152,7 @@ setPrompt() {
 					untracked_work_tree=$((untracked_work_tree + 1))
 						;;
 				esac
-			done < <(gs -s --ignored)
+			done < <(gs -s)
 			local index=""
 			local worktree=""
 			index='\033[38;5;214m\]['
