@@ -12,7 +12,7 @@ alias gf='git fetch'
 alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
 alias gmv='git mv'
 alias gpll='git pull'
-alias gpsh='git push'
+alias gpu='git push'
 alias grbs='git rebase'
 alias grem='git remote'
 alias gres='git reset'
@@ -24,7 +24,6 @@ alias gitaliases="echo $'
 These are the aliases contained within your custom prompt bash.bashrc file:
 
 Git aliases:
-   detach         git checkout <SHA of HEAD>
    g              git
    ga             git add
    gb             git branch
@@ -39,7 +38,7 @@ Git aliases:
    glog           git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset\" --abbrev-commit --date=relative --all
    gmv            git mv
    gpll           git pull
-   gpsh           git push
+   gpu            gut push
    grbs           git rebase
    grem           git remote
    gres           git reset  
