@@ -47,6 +47,9 @@ Git aliases:
    gs             git status
    gt             git tag'"
    
+alias delvenv='deactivate venv && rm -rf venv'
+alias setvenv='virtualenv venv && source venv/Scripts/activate'
+alias sourcevenv='source venv/Scripts/activate'
 alias venvaliases="echo $'
 Virtual Environment aliases:
    delvenv        deactivate venv && rm -rf venv

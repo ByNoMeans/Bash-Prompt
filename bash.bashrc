@@ -112,9 +112,9 @@ setPrompt() {
 			fi		
 			[[ ! $(git remote) ]] && git_string="$git_string"'\[\033[0m\]✗' 
 			declare -i added_index=0; declare -i modified_index=0; declare -i deleted_index=0
-			declare -i unmerged_updated_index=0; declare -i untracked_index=0; declare -i ignored_index=0				
+			declare -i unmerged_updated_index=0; declare -i untracked_index=0;				
 			declare -i added_work_tree=0; declare -i modified_work_tree=0; declare -i deleted_work_tree=0
-			declare -i unmerged_updated_work_tree=0; declare -i untracked_work_tree=0; declare -i ignored_work_tree=0
+			declare -i unmerged_updated_work_tree=0; declare -i untracked_work_tree=0;
 			while IFS= read -r line; do
 				status_index="${line::1}"
 				case $status_index in
@@ -132,9 +132,6 @@ setPrompt() {
 						;;
 					"?")
 						untracked_index=$((untracked_index + 1))
-						;;
-					"!")
-						ignored_index=$((ignored_index + 1))
 						;;
 				esac
 				status_work_tree="${line:1:1}"
@@ -154,9 +151,6 @@ setPrompt() {
 					"?")
 					untracked_work_tree=$((untracked_work_tree + 1))
 						;;
-					"!")
-						ignored_work_tree=$((ignored_work_tree + 1))
-						;;
 				esac
 			done < <(gs -s --ignored)
 			local index=""
@@ -167,7 +161,6 @@ setPrompt() {
 			((deleted_index > 0)) && index="$index"'-'"$deleted_index"
 			((unmerged_updated_index > 0)) && index="$git_string"'Ψ'"$unmerged_updated_index"
 			((untracked_index > 0)) && index="$index"'?'"$untracked_index"
-			((ignored_index > 0)) && index="$index"'!'"$ignored_index"
 			index="$index"']'
 			worktree='\[\033[0;37m\]['
 			((added_work_tree > 0)) && worktree="$worktree"'+'"$added_work_tree"
@@ -175,7 +168,6 @@ setPrompt() {
 			((deleted_work_tree > 0)) && worktree="$worktree"'-'"$deleted_work_tree"
 			((unmerged_updated_work_tree > 0)) && worktree="$worktree"'Ψ'"$unmerged_updated_work_tree"
 			((untracked_work_tree > 0)) && worktree="$worktree"'?'"$untracked_work_tree"
-			((ignored_work_tree > 0)) && worktree="$worktree"'!'"$ignored_work_tree"
 			worktree="$worktree]"
 			[ "${index: -18}" == "\033[38;5;214m\][]" ] && index=""
 			[ "${worktree: -16}" == "\[\033[0;37m\][]" ] && worktree=""
