@@ -1,4 +1,5 @@
 alias tree='cmd //c tree //f'
+alias setreq='pip3 freeze > requirements.txt' 
 
 alias g='git'
 alias ga='git add'
