@@ -14,8 +14,8 @@ alias gd='git diff'
 alias gf='git fetch'
 alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
 alias gmv='git mv'
-alias gpll='git pull'
-alias gpu='git push'
+alias gpsh='git push'
+alias gpu='git pull'
 alias grbs='git rebase'
 alias grem='git remote'
 alias gres='git reset'
@@ -40,8 +40,8 @@ Git aliases:
    gf             git fetch
    glog           git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset\" --abbrev-commit --date=relative --all
    gmv            git mv
-   gpll           git pull
-   gpu            gut push
+   gpsh           gut push
+   gpu            git pull
    grbs           git rebase
    grem           git remote
    gres           git reset  
@@ -49,7 +49,7 @@ Git aliases:
    grem           git remote
    gs             git status
    gt             git tag'"
-   
+
 alias delvenv='deactivate venv && rm -rf venv'
 alias setvenv='virtualenv venv && source venv/Scripts/activate'
 alias sourcevenv='source venv/Scripts/activate'
