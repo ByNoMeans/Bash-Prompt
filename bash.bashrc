@@ -94,8 +94,8 @@ setPrompt() {
 				(( $(git rev-list --all --count) == 0 )) && git_string="$git_string"'\[\033[0m\]{}'
 				upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1) #$(g for-each-ref --format='%(upstream:short)' $(g symbolic-ref -q HEAD))
 				if [ "$upstream" ]; then
-					
 					git_string="$git_string"'\[\033[1;36m\]->\[\033[0;35m\]'"${upstream%/*}"'\[\033[1;36m\]/\[\033[0;35m\]'"${upstream##*/}"				
+					# git fetch to automatically update commit number; but slows program
 					declare -i numCommitsAhead=0
 					declare -i numCommitsBehind=0
 					numCommitsAhead=$(git rev-list --count @{u}..HEAD)
@@ -149,7 +149,7 @@ setPrompt() {
 						unmerged_updated_work_tree=$((unmerged_updated_work_tree + 1))
 						;;
 					"?")
-					untracked_work_tree=$((untracked_work_tree + 1))
+						untracked_work_tree=$((untracked_work_tree + 1))
 						;;
 				esac
 			done < <(gs -s)
