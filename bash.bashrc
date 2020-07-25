@@ -54,11 +54,11 @@ unset _warning
 # otherwise set a default prompt
 # of user@host, MSYSTEM variable, and current_directory
 [[ -n "${MSYS2_PS1}" ]] && export PS1="${MSYS2_PS1}"
-# if we have the "High Mandatory Level" group, it means we're elevated
-#if [[ -n "$(command -v getent)" ]] && id -G | grep -q "$(getent -w group 'S-1-16-12288' | cut -d: -f2)"
-#  then _ps1_symbol='\[\e[1m\]#\[\e[0m\]'
-#  else _ps1_symbol='\$'
-#fi
+ #if we have the "High Mandatory Level" group, it means we're elevated
+if [[ -n "$(command -v getent)" ]] && id -G | grep -q "$(getent -w group 'S-1-16-12288' | cut -d: -f2)"
+  then _ps1_symbol='\[\e[1m\]#\[\e[0m\]'
+  else _ps1_symbol='\$'
+fi
 
 #Colors
 #https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt
@@ -95,7 +95,7 @@ setPrompt() {
 				upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1) #$(g for-each-ref --format='%(upstream:short)' $(g symbolic-ref -q HEAD))
 				if [ "$upstream" ]; then
 					git_string="$git_string"'\[\033[1;36m\]->\[\033[0;35m\]'"${upstream%/*}"'\[\033[1;36m\]/\[\033[0;35m\]'"${upstream##*/}"				
-					# git fetch to automatically update commit number; but slows program
+					# git fetch to automatically update commit number here; but slows program
 					declare -i numCommitsAhead=0
 					declare -i numCommitsBehind=0
 					numCommitsAhead=$(git rev-list --count @{u}..HEAD)

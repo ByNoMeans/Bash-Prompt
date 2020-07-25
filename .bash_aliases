@@ -1,5 +1,10 @@
-alias tree='cmd //c tree //f'
+function cd_up() {
+  cd $(printf "%0.s../" $(seq 1 $1 ));
+}
+alias cd..='cd_up'
+alias installreq='sourcevenv && pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt' 
+alias tree='cmd //c tree //f'
 
 alias g='git'
 alias ga='git add'
