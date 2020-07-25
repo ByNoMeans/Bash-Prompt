@@ -90,6 +90,8 @@ setPrompt() {
 			if [[ $(git status) != *"HEAD detached"* ]]; then
 				local branch=""			
 				branch=$(git symbolic-ref --short HEAD)
+				local on_flow_branch=""
+				[[ "$branch" == "release"  || "$branch" == "feature" || "$branch" == "hotfix" || "$branch" == "support" ]] && on_flow_branch="true"
 				git_string='\[\033[0;35m\]'"$branch"			
 				(( $(git rev-list --all --count) == 0 )) && git_string="$git_string"'\[\033[0m\]{}'
 				upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1) #$(g for-each-ref --format='%(upstream:short)' $(g symbolic-ref -q HEAD))
@@ -102,7 +104,7 @@ setPrompt() {
 					numCommitsBehind=$(git rev-list --count HEAD..@{u})
 					((numCommitsAhead > 0)) && git_string="$git_string"'\[\033[0m\]↑'"$numCommitsAhead"
 					((numCommitsBehind > 0)) && git_string="$git_string"'\[\033[0m\]↓'"$numCommitsBehind"			
-				else
+				elif [ "$on_flow_branch" != "true" ]; then
 					git_string="$git_string"'\[\033[0m\]\[\033[0m\]≠'
 				fi
 			elif [ ! "$upstream" ]; then
