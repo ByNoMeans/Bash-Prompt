@@ -2,9 +2,14 @@ function cd_up() {
   cd $(printf "%0.s../" $(seq 1 $1 ));
 }
 alias cd..='cd_up'
-alias installreq='sourcevenv && pip3 install -r requirements.txt'
+alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt' 
 alias tree='cmd //c tree //f'
+alias convenience="echo $'
+   cd.. <integer>     Moves current directory <integer> levels up
+   installreq         Installs requirements (only run in a virtualenv)
+   setreq             Sets installation requirements to requirements.txt
+   tree               Prints directory structure (delete /f to remove files)'"
 
 alias g='git'
 alias ga='git add'
@@ -29,7 +34,6 @@ alias gs='git status'
 alias gt='git tag'
 
 alias gitaliases="echo $'
-These are the aliases contained within your custom prompt bash.bashrc file:
 
 Git aliases:
    g              git
@@ -64,11 +68,10 @@ Virtual Environment aliases:
    setvenv        virtualenv venv && source '\''venv/Scripts/activate'\'$'
    sourcevenv     source '\''venv/Scripts/activate'\'"
    
-alias promptsymbols="echo $'
-These are the symbols within the git prompt:
+alias prompthelp="echo $'
    
-   First \"[]\"          Index status
-   Second \"[]\"         Working tree status
+   First \"[]\"        Index status
+   Second \"[]\"       Working tree status
    {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
