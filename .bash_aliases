@@ -21,7 +21,8 @@ alias gcm='git commit'
 alias gcl='git clone'
 alias gcp='git cherry-pick'
 alias gd='git diff'
-alias gf='git fetch'
+alias gf='git flow'
+alias gfch='git fetch'
 alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
 alias gmv='git mv'
 alias gpsh='git push'
@@ -34,8 +35,6 @@ alias gs='git status'
 alias gt='git tag'
 
 alias gitaliases="echo $'
-
-Git aliases:
    g              git
    ga             git add
    gb             git branch
@@ -46,7 +45,8 @@ Git aliases:
    gcl            git clone
    gcp            git cherry-pick
    gd             git diff
-   gf             git fetch
+   gf             git flow
+   gfch           git fetch
    glog           git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset\" --abbrev-commit --date=relative --all
    gmv            git mv
    gpsh           gut push
