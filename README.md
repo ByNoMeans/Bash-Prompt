@@ -37,6 +37,6 @@ For example, running `symbols` on an active Git-Bash terminal shows you the prom
 ## Example
 
 An example session would look as follows. The background is only revealed through transparency set to "Low," which I recommend you do as well.
-![Git-Bash Prompt](Git-Bash Prompt.PNG)
+![Git-Bash Prompt]("Git-Bash Prompt".PNG)
 
 
