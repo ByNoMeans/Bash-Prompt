@@ -31,9 +31,9 @@ For example, running `prompthelp` on an active Git-Bash terminal shows you the p
    ?                   Untracked files
    Ψ                   Unmerged files
    
-   A orange color indicates the index status.
-   An grey color indicates the working tree status.
-   A white color indicates a problem or something you should update.
+   Orange indicates index status.
+   Grey indicates working tree status.
+   White indicates a problem or something you should update.
 ```
 
 
