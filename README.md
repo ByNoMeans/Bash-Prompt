@@ -12,14 +12,14 @@ Bash-Prompt offers simple, easy-to-remember aliases for:
 1. Git
 2. Git Flow
 3. Virtual Environments
-4. Convenience methods
+4. Miscellaneous (General Convenience)
 
 Confused? Run `gitaliases`, `venvaliases`, `convenience`, or `prompthelp` to display more information about the aliases and prompt structure. Feel free to change the alias names.
 
 For example, running `prompthelp` on an active Git-Bash terminal shows you the prompt structure of:
 ```bash
-   First \"[]\"        Index status
-   Second \"[]\"       Working tree status
+   First []        Index status
+   Second []       Working tree status
    {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
