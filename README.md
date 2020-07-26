@@ -18,8 +18,8 @@ Confused? Run `gitaliases`, `venvaliases`, `convenience`, or `prompthelp` to dis
 
 For example, running `prompthelp` on an active Git-Bash terminal shows you the prompt structure of:
 ```bash
-   First []        Index status
-   Second []       Working tree status
+   First "[]"          Index status
+   Second "[]"         Working tree status
    {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
