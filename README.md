@@ -17,7 +17,7 @@ Bash-Prompt offers simple, easy-to-remember aliases for:
 Confused? Run `gitaliases`, `venvaliases`, `convenience`, or `symbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
 
 For example, running `symbols` on an active Git-Bash terminal shows you the prompt structure of:
-```bash
+```
    First "[]"          Index status
    Second "[]"         Working tree status
    {}                  Empty repository
