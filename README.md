@@ -12,9 +12,11 @@ Bash-Prompt offers simple, easy-to-remember aliases for:
 3. Virtual Environments
 4. Miscellaneous (general convenience)
 
-Confused? Run `gitaliases`, `venvaliases`, `convenience`, or `symbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
+ ## Confused? 
 
-For example, running `symbols` on an active Git-Bash terminal shows you the prompt structure of:
+Run `bpgit`, `bpvenv`, `bpfast`, or `bpsymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
+
+For example, running `bpsypmblso` on an active Git-Bash terminal shows you the prompt structure of:
 ```
    {}                  Empty repository
    ✗                   No remote
