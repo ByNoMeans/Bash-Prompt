@@ -16,7 +16,7 @@ Bash-Prompt offers simple, easy-to-remember aliases for:
 
 Run `bpgit`, `bpvenv`, `bpfast`, or `bpsymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
 
-For example, running `bpsypmblso` on an active Git-Bash terminal shows you the prompt structure of:
+For example, running `bpsypmbls` on an active Git-Bash terminal shows you the prompt structure of:
 ```
    {}                  Empty repository
    ✗                   No remote
