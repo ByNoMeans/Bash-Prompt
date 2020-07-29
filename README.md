@@ -38,6 +38,6 @@ For example, running `symbols` on an active Git-Bash terminal shows you the prom
 
 An example session would look as follows, using both original git commands and aliases. As a result, both `git add <fileName>` and `ga <fileName>` would perform the same task per this session. The background is only revealed through transparency set to "Low," which I once again recommend.
 
-![Git-Bash Prompt](https://github.com/ByNoMeans/Bash-Prompt/blob/master/Git-Bash%20Prompt.PNG)
+![Git-Bash Prompt](https://github.com/ByNoMeans/bash-prompt/blob/master/Git-Bash%20Prompt.png)
 
 
