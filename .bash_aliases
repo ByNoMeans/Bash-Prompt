@@ -6,10 +6,10 @@ alias cls='clear'
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt' 
 alias tree='cmd //c tree //f'
-alias convenience="echo $'
+alias bpfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
    installreq         Installs requirements (only run in a virtualenv)
-   setreq             Sets installation requirements
+   setreq             Sets installation requirements to file
    tree               Prints directory structure (delete /f to remove files)'"
 
 alias g='git'
@@ -35,7 +35,7 @@ alias grm='git rm'
 alias gs='git status'
 alias gt='git tag'
 
-alias gitaliases="echo $'
+alias bpgit="echo $'
    g              git
    ga             git add
    gb             git branch
@@ -63,13 +63,13 @@ alias gitaliases="echo $'
 alias delvenv='deactivate venv && rm -rf venv'
 alias setvenv='virtualenv venv && source venv/Scripts/activate'
 alias sourcevenv='source venv/Scripts/activate'
-alias venvaliases="echo $'
+alias bpvenv="echo $'
 Virtual Environment aliases:
    delvenv        deactivate venv && rm -rf venv
    setvenv        virtualenv venv && source '\''venv/Scripts/activate'\'$'
    sourcevenv     source '\''venv/Scripts/activate'\'"
    
-alias symbols="echo $'
+alias bpsymbols="echo $'
    
    First \"[]\"        Index status
    Second \"[]\"       Working tree status
