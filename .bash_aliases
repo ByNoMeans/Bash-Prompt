@@ -71,8 +71,6 @@ Virtual Environment aliases:
    
 alias bpsymbols="echo $'
    
-   First \"[]\"        Index status
-   Second \"[]\"       Working tree status
    {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
