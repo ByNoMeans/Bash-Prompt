@@ -16,8 +16,6 @@ Confused? Run `gitaliases`, `venvaliases`, `convenience`, or `symbols` to displa
 
 For example, running `symbols` on an active Git-Bash terminal shows you the prompt structure of:
 ```
-   First "[]"          Index status
-   Second "[]"         Working tree status
    {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
