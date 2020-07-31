@@ -157,20 +157,18 @@ setPrompt() {
 			done < <(gs -s)
 			local index=""
 			local worktree=""
-			index='\033[38;5;214m\]['
+			index='\033[38;5;214m\]'
 			((added_index > 0)) && index="$index"'+'"$added_index"
 			((modified_index > 0)) && index="$index"'~'"$modified_index"
 			((deleted_index > 0)) && index="$index"'-'"$deleted_index"
 			((unmerged_updated_index > 0)) && index="$git_string"'Ψ'"$unmerged_updated_index"
 			((untracked_index > 0)) && index="$index"'?'"$untracked_index"
-			index="$index"']'
-			worktree='\[\033[0;37m\]['
+			worktree='\[\033[0;37m\]'
 			((added_work_tree > 0)) && worktree="$worktree"'+'"$added_work_tree"
 			((modified_work_tree > 0)) && worktree="$worktree"'~'"$modified_work_tree"
 			((deleted_work_tree > 0)) && worktree="$worktree"'-'"$deleted_work_tree"
 			((unmerged_updated_work_tree > 0)) && worktree="$worktree"'Ψ'"$unmerged_updated_work_tree"
 			((untracked_work_tree > 0)) && worktree="$worktree"'?'"$untracked_work_tree"
-			worktree="$worktree]"
 			[ "${index: -18}" == "\033[38;5;214m\][]" ] && index=""
 			[ "${worktree: -16}" == "\[\033[0;37m\][]" ] && worktree=""
 			git_string=' \[\033[1;36m\]('"$git_string$index$worktree"'\[\033[1;36m\])'
@@ -178,7 +176,9 @@ setPrompt() {
 	}
 	\virtualenv-format
 	\git-format
-	PS1='\[\033]0;'"$TITLEPREFIX\007\]"'\n\[\033[33m\]\w\n\[\033[38;5;202m\]\u\[\033[32m\] in \[\033[1;34m\]\h\[\033[32m\] at \[\033[0;31m\][\A]'"$git_string\n$venv\[\033[0m\]$ "
+	PS1='\[\033]0;'"$TITLEPREFIX\007\]"'\n\[\033[33m\]\w\n\[\033[32m\]\u\[\033[0;31m\] ' #in \033[38;5;202m\]\h
+	PS1="$PS1" #'\[\033[0;31m\]' at \[\033[0;31m\][\A]'"$git_string\n$venv\[\033[0m\]$ "
+	PS1="$PS1"'\[\[\033[1;34m\][\A]'"$git_string\n$venv\[\033[0m\]$ "
 }
 
 
