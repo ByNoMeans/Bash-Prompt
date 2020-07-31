@@ -98,6 +98,9 @@ setPrompt() {
 				if [ "$upstream" ]; then
 					git_string="$git_string"'\[\033[1;36m\]->\[\033[0;35m\]'"${upstream%/*}"'\[\033[1;36m\]/\[\033[0;35m\]'"${upstream##*/}"				
 					# git fetch to automatically update commit number here; but slows program
+					#if [ $(git merge-base --is-ancestor "$branch" "$upstream") ]; then
+					
+					#fi
 					declare -i numCommitsAhead=0
 					declare -i numCommitsBehind=0
 					numCommitsAhead=$(git rev-list --count @{u}..HEAD)
