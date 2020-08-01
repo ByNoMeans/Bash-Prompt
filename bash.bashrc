@@ -98,15 +98,16 @@ setPrompt() {
 				if [ "$upstream" ]; then
 					git_string="$git_string"'\[\033[1;36m\]->\[\033[0;35m\]'"${upstream%/*}"'\[\033[1;36m\]/\[\033[0;35m\]'"${upstream##*/}"				
 					# git fetch to automatically update commit number here; but slows program
-					#if [ $(git merge-base --is-ancestor "$branch" "$upstream") ]; then
-					
-					#fi
-					declare -i numCommitsAhead=0
-					declare -i numCommitsBehind=0
-					numCommitsAhead=$(git rev-list --count @{u}..HEAD)
-					numCommitsBehind=$(git rev-list --count HEAD..@{u})
-					((numCommitsAhead > 0)) && git_string="$git_string"'\[\033[0m\]↑'"$numCommitsAhead"
-					((numCommitsBehind > 0)) && git_string="$git_string"'\[\033[0m\]↓'"$numCommitsBehind"			
+					declare -a commits
+					commits=( $(git rev-list --left-right --count master...origin/master) )
+					#declare -i numCommitsAhead=0
+					#declare -i numCommitsBehind=0
+					#numCommitsAhead=$(git rev-list --count @{u}..HEAD)
+					#numCommitsBehind=$(git rev-list --count HEAD..@{u})
+					#((numCommitsAhead > 0)) && git_string="$git_string"'\[\033[0m\]↑'"$numCommitsAhead"
+					#((numCommitsBehind > 0)) && git_string="$git_string"'\[\033[0m\]↓'"$numCommitsBehind"			
+					(("${commits[0]}" > 0)) && git_string="$git_string"'\[\033[0m\]↑'
+					(("${commits[1]}" > 0)) && git_string="$git_string"'\[\033[0m\]↓'
 				elif [ "$on_flow_branch" != "true" ]; then
 					git_string="$git_string"'\[\033[0m\]\[\033[0m\]≠'
 				fi
@@ -120,60 +121,113 @@ setPrompt() {
 			declare -i unmerged_updated_index=0; declare -i untracked_index=0;				
 			declare -i added_work_tree=0; declare -i modified_work_tree=0; declare -i deleted_work_tree=0
 			declare -i unmerged_updated_work_tree=0; declare -i untracked_work_tree=0;
+			
+			declare -a index=()
+			declare -a working=()
+			
 			while IFS= read -r line; do
-				status_index="${line::1}"
-				case $status_index in
-					"A")
-						added_index=$((added_index + 1))
-						;;
-					"M")
-						modified_index=$((modified_index + 1))
-						;;
-					"D")
-						deleted_index=$((deleted_index + 1))
-						;;
-					"U")
-						unmerged_updated_index=$((unmerged_updated_index + 1))
-						;;
-					"?")
-						untracked_index=$((untracked_index + 1))
-						;;
-				esac
-				status_work_tree="${line:1:1}"
-				case $status_work_tree in
-					"A")
-						added_work_tree=$((added_work_tree + 1))
-						;;
-					"M")
-						modified_work_tree=$((modified_work_tree + 1))
-						;;
-					"D")
-						deleted_work_tree=$((deleted_work_tree + 1))
-						;;
-					"U")
-						unmerged_updated_work_tree=$((unmerged_updated_work_tree + 1))
-						;;
-					"?")
-						untracked_work_tree=$((untracked_work_tree + 1))
-						;;
-				esac
+				local index_status=""
+				index_status="${line::1}"
+				if [[ ! " ${index[@]} " =~ " ${index_status} " ]] && (("$index_status" > 0)); then
+					index+=("$index_status")
+					git_string="$git-string"'\033[38;5;214m\]'
+					case $index_status in
+						"A")
+							git_string="$git_string"'+'
+							;;
+						"M")
+							git_string="$git_string"'~'
+							;;
+						"D")
+							git_string="$git_string"'-'
+							;;
+						"U")
+							git_string="$git_string"'Ψ'
+							;;
+						"?")
+							git_string="$git_string"'-'
+							;;
+					esac
+					
+				fi
+				
+				local working_status=""
+				working_status="${line:1:1}"
+				if [[ ! " ${working[@]} " =~ " ${working_status} " ]] &&  (("$working_status" > 0)); then 
+					working+=("$working_status")
+					git_string="$git-string"'\[\033[0;37m\]'
+					case $working_status in
+						"A")
+							git_string="$git_string"'+'
+							;;
+						"M")
+							git_string="$git_string"'~'
+							;;
+						"D")
+							git_string="$git_string"'-'
+							;;
+						"U")
+							git_string="$git_string"'Ψ'
+							;;
+						"?")
+							git_string="$git_string"'-'
+							;;
+					esac
+				fi
+				
+				#status_index="${line::1}"
+				#case $status_index in
+				#	"A")
+				#		added_index=$((added_index + 1))
+				#		;;
+				#	"M")
+				#		modified_index=$((modified_index + 1))
+				#		;;
+				#	"D")
+				#		deleted_index=$((deleted_index + 1))
+				#		;;
+				#	"U")
+				#		unmerged_updated_index=$((unmerged_updated_index + 1))
+				#		;;
+				#	"?")
+				#		untracked_index=$((untracked_index + 1))
+				#		;;
+				#esac
+				#status_work_tree="${line:1:1}"
+				#case $status_work_tree in
+				#	"A")
+				#		added_work_tree=$((added_work_tree + 1))
+				#		;;
+				#	"M")
+				#		modified_work_tree=$((modified_work_tree + 1))
+				#		;;
+				#	"D")
+				#		deleted_work_tree=$((deleted_work_tree + 1))
+				#		;;
+				#	"U")
+				#		unmerged_updated_work_tree=$((unmerged_updated_work_tree + 1))
+				#		;;
+				#	"?")
+				#		untracked_work_tree=$((untracked_work_tree + 1))
+				#		;;
+				#esac
 			done < <(gs -s)
-			local index=""
-			local worktree=""
-			index='\033[38;5;214m\]'
-			((added_index > 0)) && index="$index"'+'"$added_index"
-			((modified_index > 0)) && index="$index"'~'"$modified_index"
-			((deleted_index > 0)) && index="$index"'-'"$deleted_index"
-			((unmerged_updated_index > 0)) && index="$git_string"'Ψ'"$unmerged_updated_index"
-			((untracked_index > 0)) && index="$index"'?'"$untracked_index"
-			worktree='\[\033[0;37m\]'
-			((added_work_tree > 0)) && worktree="$worktree"'+'"$added_work_tree"
-			((modified_work_tree > 0)) && worktree="$worktree"'~'"$modified_work_tree"
-			((deleted_work_tree > 0)) && worktree="$worktree"'-'"$deleted_work_tree"
-			((unmerged_updated_work_tree > 0)) && worktree="$worktree"'Ψ'"$unmerged_updated_work_tree"
-			((untracked_work_tree > 0)) && worktree="$worktree"'?'"$untracked_work_tree"
-			[ "${index: -18}" == "\033[38;5;214m\][]" ] && index=""
-			[ "${worktree: -16}" == "\[\033[0;37m\][]" ] && worktree=""
+			#local index=""
+			#local worktree=""
+			#index='\033[38;5;214m\]'
+			#((added_index > 0)) && index="$index"'+'"$added_index"
+			#((modified_index > 0)) && index="$index"'~'"$modified_index"
+			#((deleted_index > 0)) && index="$index"'-'"$deleted_index"
+			#((unmerged_updated_index > 0)) && index="$git_string"'Ψ'"$unmerged_updated_index"
+			#((untracked_index > 0)) && index="$index"'?'"$untracked_index"
+			#worktree='\[\033[0;37m\]'
+			#((added_work_tree > 0)) && worktree="$worktree"'+'"$added_work_tree"
+			#((modified_work_tree > 0)) && worktree="$worktree"'~'"$modified_work_tree"
+			#((deleted_work_tree > 0)) && worktree="$worktree"'-'"$deleted_work_tree"
+			#((unmerged_updated_work_tree > 0)) && worktree="$worktree"'Ψ'"$unmerged_updated_work_tree"
+			#((untracked_work_tree > 0)) && worktree="$worktree"'?'"$untracked_work_tree"
+			#[ "${index: -18}" == "\033[38;5;214m\][]" ] && index=""
+			#[ "${worktree: -16}" == "\[\033[0;37m\][]" ] && worktree=""
 			git_string=' \[\033[1;36m\]('"$git_string$index$worktree"'\[\033[1;36m\])'
 		fi
 	}
