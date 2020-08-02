@@ -93,14 +93,18 @@ setPrompt() {
         # shellcheck disable=SC1083
         upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
         if [ "$upstream" ]; then
+          local stashes=""
+          # Remvoe stashes variabvle
           stashes=$(git stash list)
+#          if [[ $(git stash list) ]]; then
+#          fi
           [ "$stashes" ] && stashes='\[\033[1;36m\]*'
           git_string="$stashes$git_string"' \[\033[1;36m\]→ \[\033[0;35m\]'"${upstream%/*}"'\[\033[1;36m\]/\[\033[0;35m\]'"${upstream##*/}"
           # shellcheck disable=SC2207
           commits=($(git rev-list --left-right --count "$branch"..."$upstream"))
           # shellcheck disable=SC2086
-          [ "${commits[0]}" != "0" ] && git_string="$git_string"'\[\033[0m\]↑'
-          [ "${commits[1]}" != "0" ] && git_string="$git_string"'\[\033[0m\]↓'
+          [ "${commits[0]}" != "0" ] && git_string+='\[\033[0m\]↑'
+          [ "${commits[1]}" != "0" ] && git_string+='\[\033[0m\]↓'
         fi
       else
         git_string="$git_string"'\[\033[0;35m\]'"$(git rev-parse --short HEAD)"
@@ -122,16 +126,16 @@ setPrompt() {
           index_array+=("$index_status")
           case $index_status in
           "A")
-            index="$index"'+'
+            index=+='+'
             ;;
           "M")
-            index="$index"'~'
+            index=+='~'
             ;;
           "D")
-            index="$index"'-'
+            index=+='-'
             ;;
           "U")
-            index="$index"'Ψ'
+            index+='Ψ'
             ;;
           esac
         fi
@@ -143,32 +147,33 @@ setPrompt() {
           working_array+=("$working_status")
           case $working_status in
           "A")
-            working="$working"'+'
+            working=+='+'
             ;;
           "M")
-            working="$working"'~'
+            working+='~'
             ;;
           "D")
-            working="$working"'-'
+            working+='-'
             ;;
           "U")
-            working="$working"'Ψ'
+            working+='Ψ'
             ;;
           esac
         fi
       done < <(git status -s)
-      [ "$(git status --porcelain 2>/dev/null | grep -c "^??")" != "0" ] && working="$working"'\[\033[0m\]?'
+      [ "$(git status --porcelain 2>/dev/null | grep -c "^??")" != "0" ] && working+='\[\033[0m\]?'
       git_string=" $git_string$index$working"
     fi
   }
   \virtualenv-format
   \git-format
-  # 90 for grey
-  PS1='\[\033]0;'"$TITLEPREFIX\007\]"'\n\[\033[33m\]\w'
-  [ "$in_ssh_client" == "true" ] && PS1="$PS1"'\[\033[32m\]\uin \[033\[38;5;202m\]\h'
-  PS1="$PS1$git_string\n$venv"
-  second_line="\`if [ \$? = 0 ]; then echo good; else echo bad; fi\`\$white "
-  PS1="$PS1""$second_line"
+  TITLEPREFIX=""
+  PS1='\[\033]0;'"\007\]"'\n\[\033[33m\]\w'
+  [ "$in_ssh_client" == "true" ] && PS1+='\[\033[32m\]\uin \[033\[38;5;202m\]\h'
+  PS1+="$git_string\n$venv"
+  local prompt=""
+  prompt="\$(if [ \$? = 0 ]; then echo \[\033[32m\]❯; else echo \[\033[31m\]❯; fi) "
+  PS1+="$prompt"'\[\033[0m\]'
 }
 
 export PROMPT_COMMAND=setPrompt
