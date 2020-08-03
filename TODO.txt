@@ -1,0 +1,34 @@
+Alter Colors
+    Window: 282A36
+    Sand: E4C3AD
+    Path: 52B6EA
+    Pink: FE6AC0
+    Orange: F26B36
+    SSH User: \[\033[33m\]
+    SSH Host: DC9596
+Git docs for SHOWDIRTYSTATE
+    Example: https://git-scm.com/book/cs/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash
+    Variables: https://blog.backslasher.net/git-prompt-variables.html
+Integrate gitstatus prompt
+    Link: https://github.com/romkatv/gitstatus
+Configure prompt for ssh
+Documentation
+Inspiration
+    Seafly: https://github.com/bluz71/bash-seafly-prompt/blob/master/command_prompt.bash
+    Pure: https://github.com/sindresorhus/pure
+    Posh-Git: https://github.com/dahlbyk/posh-git/
+Transfer to ZSH
+    Link: https://dev.to/jasmin/a-brief-difference-between-zsh-and-bash-5ebp
+    Note array, escape, and other differences; READ IT ALL!
+Update README.md
+    Fonts (Menlo, Menlo LG)
+    Font size
+    Window Color
+More Prompt Elements
+    Remote, empty repo, etc symbols (view inspiration)
+Update PNG
+Improve .bash_aliases
+    Diversity
+Remove PS1 Subshell (SO)
+Fix Completion
+    Ignore case
