@@ -73,8 +73,6 @@ Virtual Environment aliases:
    sourcevenv     source '\''venv/Scripts/activate'\'"
    
 alias bpsymbols="echo $'
-   
-   {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
    ↑                   Commits ahead
