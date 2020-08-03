@@ -34,6 +34,7 @@ alias grem='git remote'
 alias gres='git reset'
 alias grm='git rm'
 alias gs='git status'
+alias gstsh='git stash'
 alias gt='git tag'
 
 alias bpgit="echo $'
@@ -49,16 +50,17 @@ alias bpgit="echo $'
    gd             git diff
    gf             git flow
    gfch           git fetch
-   glog           git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset\" --abbrev-commit --date=relative --all
+   glog           git log --graph --abbrev-commit --date=relative --all
    gmv            git mv
-   gpsh           gut push
+   gpsh           git push
    gpu            git pull
    grbs           git rebase
    grem           git remote
-   gres           git reset
+   gres           git reset  
    grm            git rm
    grem           git remote
    gs             git status
+   gstsh          git stash
    gt             git tag'"
 
 alias delvenv='deactivate venv && rm -rf venv'
@@ -69,9 +71,9 @@ Virtual Environment aliases:
    delvenv        deactivate venv && rm -rf venv
    setvenv        virtualenv venv && source '\''venv/Scripts/activate'\'$'
    sourcevenv     source '\''venv/Scripts/activate'\'"
-
+   
 alias bpsymbols="echo $'
-
+   
    {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
