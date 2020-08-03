@@ -30,5 +30,3 @@ Update PNG
 Improve .bash_aliases
     Diversity
 Remove PS1 Subshell (SO)
-Fix Completion
-    Ignore case

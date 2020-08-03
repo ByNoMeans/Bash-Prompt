@@ -61,6 +61,7 @@ unset _warning
 #else _ps1_symbol='\$'
 #fi
 
+
 #Colors
 #https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt
 # Simple: https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux

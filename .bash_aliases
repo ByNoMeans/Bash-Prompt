@@ -12,7 +12,6 @@ alias bpfast="echo $'
    setreq             Sets installation requirements to file
    tree               Prints directory structure (delete /f to remove files)'"
 
-alias g='git'
 alias ga='git add'
 alias gb='git branch'
 alias gblm='git blame'
