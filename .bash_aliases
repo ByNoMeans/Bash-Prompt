@@ -10,8 +10,7 @@ alias bpfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
    installreq         Installs requirements (only run in a virtualenv)
    setreq             Sets installation requirements to file
-   tree               Prints directory structure (delete /f to remove files)\
-   cls                Clear'"
+   tree               Prints directory structure (delete /f to remove files)'"
 
 alias g='git'
 alias ga='git add'
@@ -20,12 +19,13 @@ alias gblm='git blame'
 alias gcfg='git config'
 alias gch='git checkout'
 alias gcm='git commit'
+alias gcmm='git commit -m'
 alias gcl='git clone'
 alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gf='git flow'
 alias gfch='git fetch'
-alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
+alias glog='git log --graph --abbrev-commit --date=relative --all'
 alias gmv='git mv'
 alias gpsh='git push'
 alias gpu='git pull'
@@ -55,7 +55,7 @@ alias bpgit="echo $'
    gpu            git pull
    grbs           git rebase
    grem           git remote
-   gres           git reset  
+   gres           git reset
    grm            git rm
    grem           git remote
    gs             git status
@@ -69,10 +69,10 @@ Virtual Environment aliases:
    delvenv        deactivate venv && rm -rf venv
    setvenv        virtualenv venv && source '\''venv/Scripts/activate'\'$'
    sourcevenv     source '\''venv/Scripts/activate'\'"
-   
+
 alias bpsymbols="echo $'
-   
-   #, *, $             Git branch status (view SHOWDIRTYSTATE docs)
+
+   {}                  Empty repository
    ✗                   No remote
    ≠                   No upstream
    ↑                   Commits ahead
