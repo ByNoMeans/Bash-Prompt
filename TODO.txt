@@ -30,3 +30,5 @@ Update PNG
 Improve .bash_aliases
     Diversity
 Remove PS1 Subshell (SO)
+Fix Laptop Startup Symbol
+    Red by default; echo $? is still 0?
