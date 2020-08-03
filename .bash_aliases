@@ -10,7 +10,8 @@ alias bpfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
    installreq         Installs requirements (only run in a virtualenv)
    setreq             Sets installation requirements to file
-   tree               Prints directory structure (delete /f to remove files)'"
+   tree               Prints directory structure (delete /f to remove files)\
+   cls                Clear'"
 
 alias g='git'
 alias ga='git add'
@@ -71,7 +72,7 @@ Virtual Environment aliases:
    
 alias bpsymbols="echo $'
    
-   {}                  Empty repository
+   #, *, $             Git branch status (view SHOWDIRTYSTATE docs)
    ✗                   No remote
    ≠                   No upstream
    ↑                   Commits ahead
