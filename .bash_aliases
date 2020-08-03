@@ -5,6 +5,7 @@ alias cd..='cd_up'
 alias cls='clear'
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt' 
+alias sourcerc='source /c/Program\ Files/Git/etc/bash.bashrc'
 alias tree='cmd //c tree //f'
 alias bpfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
