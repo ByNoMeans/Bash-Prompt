@@ -110,6 +110,7 @@ setPrompt() {
       else
         git_string="$git_string"'\[\033[0;35m\]'"$(git rev-parse --short HEAD)"
       fi
+      #change
       # REMOTE SHIT GOING
       # FUNCTIONING? doesn't look correctly highlighted
       # Double check this and order, and adding spaces so separate
