@@ -2,17 +2,7 @@
 test -f ~/.profile && . ~/.profile
 test -f ~/.bashrc && . ~/.bashrc
 
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+[[ -f ~/.git-completion.bash ]] && source ~/.git-completion.bash
 
-#echo "gitstatus_start" >> ~/gitstatus/gitstatus.prompt.sh
-#source ~/gitstatus/gitstatus.prompt.sh
-#sed -i '$d' ~/gitstatus/gitstatus.prompt.sh
-
-[ -f ~/.git-completion.bash ] && . ~/.git-completion.bash
-
-function gch-completion() {
-	branches=$(git branch -l | cut -c3-)
-	COMPREPLY=($(compgen -W "$branches" -- "$2"))
-}
-
-complete -F gch-completion gch
+export HISTCONTROL=ignoreboth:erasedups

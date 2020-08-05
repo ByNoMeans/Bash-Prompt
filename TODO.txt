@@ -1,15 +1,3 @@
-Alter Colors
-    Window: 282A36
-    Sand: E4C3AD
-    Path: 52B6EA
-    Pink: FE6AC0
-    Orange: F26B36
-    SSH User: \[\033[33m\]
-    SSH Host: DC9596
-Git docs for SHOWDIRTYSTATE
-    Example: https://git-scm.com/book/cs/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash
-    Variables: https://blog.backslasher.net/git-prompt-variables.html
-Documentation
 Inspiration
     Seafly: https://github.com/bluz71/bash-seafly-prompt/blob/master/command_prompt.bash
     Pure: https://github.com/sindresorhus/pure
@@ -24,8 +12,5 @@ Update README.md
 More Prompt Elements
     etc symbols (view inspiration)
 Update PNG
-Improve .bash_aliases
-    Diversity
-Remove PS1 Subshell (SO)
 Fix Laptop Startup Symbol
     Red by default; echo $? is still 0?

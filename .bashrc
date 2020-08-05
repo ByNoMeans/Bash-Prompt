@@ -27,4 +27,4 @@ else
   start_ssh_agent;
 fi 
 
-source ~/gitstatus/gitstatus.prompt.sh
+. ~/gitstatus/gitstatus.prompt.sh
