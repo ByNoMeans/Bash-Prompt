@@ -69,8 +69,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 function parse-git-info() {
   git_info=""
   if [[ $(git status) != *"HEAD detached"* ]]; then
-    local branch=""
-    branch=$(git symbolic-ref --short HEAD)
+    local branch=$(git symbolic-ref --short HEAD)
     git_info='\[\033[0;35m\]'"$branch"
     [[ $(git stash list) ]] && git_info='\[\033[1;36m\]*'"git_info"
     # shellcheck disable=SC1083
@@ -93,12 +92,9 @@ function parse-git-info() {
 }
 
 function parse-git-bad() {
-  git_bad=""
   git_bad='\[\033[0;31m\]'
-  if [ "$(git status --porcelain 2>/dev/null | grep -c "^??")" != "0" ]; then
-    [[ ! $(git remote) ]] && git_bad+='✗'
-    git_bad+='?'
-  fi
+  [[ ! $(git remote) ]] && git_bad+='✗'
+  [ "$(git status --porcelain 2>/dev/null | grep -c "^??")" != "0" ] && git_bad+='?'
   [ "$git_bad" != '\[\033[0;31m\]' ] && git_bad+=' '
 }
 
@@ -106,13 +102,10 @@ function parse-git-status() {
   declare -a index_array=()
   declare -a working_array=()
   git_status=""
-  local index=""
-  index='\033[38;5;214m\]'
-  local working=""
-  working='\[\033[0;37m\]'
+  local index='\033[38;5;214m\]'
+  local working='\[\033[0;37m\]'
   while IFS= read -r line; do
-    local index_status=""
-    index_status="${line::1}"
+    local index_status="${line::1}"
     # shellcheck disable=SC2076
     # shellcheck disable=SC2199
     if [[ ! " ${index_array[@]} " =~ " ${index_status} " ]] && [ "$index_status" != "0" ]; then
@@ -132,8 +125,7 @@ function parse-git-status() {
         ;;
       esac
     fi
-    local working_status=""
-    working_status="${line:1:1}"
+    local working_status="${line:1:1}"
     # shellcheck disable=SC2199
     # shellcheck disable=SC2076
     if [[ ! " ${working_array[@]} " =~ " ${working_status} " ]] && [ "$working_status" != "0" ]; then
@@ -158,18 +150,6 @@ function parse-git-status() {
   git_status="$index$working"
 }
 
-function start-gitstatus() {
-  echo "gitstatus_start" >> ~/gitstatus/gitstatus.prompt.sh
-  source ~/gitstatus/gitstatus.prompt.sh
-  sed -i '$d' ~/gitstatus/gitstatus.prompt.sh
-}
-
-function stop-gitstatus() {
-  echo "gitstatus_stop" >>~/gitstatus/gitstatus.prompt.sh
-  source ~/gitstatus/gitstatus.prompt.sh
-  sed -i '$d' ~/gitstatus/gitstatus.prompt.sh
-}
-
 function git-format() {
   git_string=""
   if [ -d .git ]; then
@@ -190,17 +170,12 @@ function set-venv() {
   elif [ "$(basename \""$VIRTUAL_ENV"\")" = "__" ]; then
     VIRT_ENV_TXT=[$(basename \`dirname \""$VIRTUAL_ENV"\"\`)]
   fi
-  if [ "${VIRT_ENV_TXT}" != "" ]; then
-    venv='\[\033[1;36m\](\[\033[0;35m\]'"${VIRT_ENV_TXT}"'\[\033[1;36m\]) '
-  fi
+  [ "${VIRT_ENV_TXT}" != "" ] && venv='\[\033[1;36m\](\[\033[0;35m\]'"${VIRT_ENV_TXT}"'\[\033[1;36m\]) '
 }
 
 function set-ssh() {
   ssh_prompt=""
-  in_ssh_client="true"
-  if [ "$in_ssh_client" == "true" ]; then
-    ssh_prompt+='\033\[95;38;5;180m\]barre\033\[95;38;5;203\]m@\033\[95;38;5;228m\]barrett-pc'
-  fi
+  [ "$in_ssh_client" == "true" ] && ssh_prompt='\033\[95;38;5;180m\]barre\033\[95;38;5;203\]m@\033\[95;38;5;228m\]barrett-pc '
 }
 
 function setPrompt() {

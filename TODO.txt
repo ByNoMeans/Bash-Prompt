@@ -9,9 +9,6 @@ Alter Colors
 Git docs for SHOWDIRTYSTATE
     Example: https://git-scm.com/book/cs/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash
     Variables: https://blog.backslasher.net/git-prompt-variables.html
-Integrate gitstatus prompt
-    Link: https://github.com/romkatv/gitstatus
-Configure prompt for ssh
 Documentation
 Inspiration
     Seafly: https://github.com/bluz71/bash-seafly-prompt/blob/master/command_prompt.bash
@@ -25,7 +22,7 @@ Update README.md
     Font size
     Window Color
 More Prompt Elements
-    Remote, empty repo, etc symbols (view inspiration)
+    etc symbols (view inspiration)
 Update PNG
 Improve .bash_aliases
     Diversity
