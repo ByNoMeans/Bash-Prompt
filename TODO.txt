@@ -9,6 +9,7 @@ Update README.md
     Fonts (Menlo, Menlo LG)
     Font size
     Window Color
+    Window Size
 More Prompt Elements
     etc symbols (view inspiration)
 Update PNG
