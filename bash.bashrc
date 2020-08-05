@@ -13,17 +13,12 @@
 ([[ -z ${CYG_SYS_BASHRC} ]] && CYG_SYS_BASHRC="1") || return
 
 # If not running interactively, don't do anything
-
 [[ "$-" != *i* ]] && return
 
 # If started from sshd, make sure profile is sourced
 if [[ -n "$SSH_CONNECTION" ]] && [[ "$PATH" != *:/usr/bin* ]]; then
   in_ssh_client="true"
   source /etc/profile
-fi
-
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
 fi
 
 # Warnings
@@ -62,7 +57,6 @@ unset _warning
 #else _ps1_symbol='\$'
 #fi
 
-
 #Colors
 #https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt
 # Simple: https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
@@ -72,118 +66,154 @@ unset _warning
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-setPrompt() {
-  function virtualenv-format() {
-    venv=""
-    VIRT_ENV_TXT=""
-    if [ "$VIRTUAL_ENV" != "" ]; then
-      VIRT_ENV_TXT=$(basename \""$VIRTUAL_ENV")
-    elif [ "$(basename \""$VIRTUAL_ENV"\")" = "__" ]; then
-      VIRT_ENV_TXT=[$(basename \`dirname \""$VIRTUAL_ENV"\"\`)]
+function parse-git-info() {
+  git_info=""
+  if [[ $(git status) != *"HEAD detached"* ]]; then
+    local branch=""
+    branch=$(git symbolic-ref --short HEAD)
+    git_info='\[\033[0;35m\]'"$branch"
+    [[ $(git stash list) ]] && git_info='\[\033[1;36m\]*'"git_info"
+    # shellcheck disable=SC1083
+    upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
+    if [ "$upstream" ]; then
+      git_info+='\[\033[1;36m\] → \[\033[0;35m\]'"${upstream%/*}"'\[\033[1;36m\]/\[\033[0;35m\]'"${upstream##*/}"
+      # shellcheck disable=SC2207
+      commits=($(git rev-list --left-right --count "$branch"..."$upstream"))
+      # shellcheck disable=SC2086
+      local up_down='\[\033[0;31m\]'
+      [ "${commits[0]}" != "0" ] && up_down+='↑'
+      [ "${commits[1]}" != "0" ] && up_down+='↓'
+      [ "$up_down" != '\[\033[0;31m\]' ] && up_down=' '"$up_down"
+      git_info+="$up_down"
     fi
-    if [ "${VIRT_ENV_TXT}" != "" ]; then
-      venv='\[\033[1;36m\](\[\033[0;35m\]'"${VIRT_ENV_TXT}"'\[\033[1;36m\]) '
-    fi
-  }
-  function git-format() {
-    git_string=""
-    if [ -d .git ]; then
-      if [[ $(git status) != *"HEAD detached"* ]]; then
-        local branch=""
-        branch=$(git symbolic-ref --short HEAD)
-        git_string='\[\033[0;35m\]'"$branch"
-        [[ $(git stash list) ]] && git_string='\[\033[1;36m\]*'"$git_string"
-        # shellcheck disable=SC1083
-        upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
-        if [ "$upstream" ]; then
-          git_string+='\[\033[1;36m\] → \[\033[0;35m\]'"${upstream%/*}"'\[\033[1;36m\]/\[\033[0;35m\]'"${upstream##*/}"
-          # shellcheck disable=SC2207
-          commits=($(git rev-list --left-right --count "$branch"..."$upstream"))
-          # shellcheck disable=SC2086
-          [ "${commits[0]}" != "0" ] && git_string+='\[\033[0m\] ↑'
-          if [ "${commits[1]}" != "0" ]; then
-            if [ "${commits[0]}" == "0" ]; then
-              git_string+='\[\033[0m\] ↓'
-            else
-              git_string+='\[\033[0m\]↓'
-            fi
-          fi
-        fi
-      else
-        git_string="$git_string"'\[\033[0;35m\]'"$(git rev-parse --short HEAD)"
-      fi
-      #change
-      # REMOTE SHIT GOING
-      # FUNCTIONING? doesn't look correctly highlighted
-      # Double check this and order, and adding spaces so separate
-      [[ ! $(git remote) ]] && git_string="$git_string"'\[\033[0m\] ✗'
-      declare -a index_array=()
-      declare -a working_array=()
-      local index=""
-      index='\033[38;5;214m\]'
-      local working=""
-      working='\[\033[0;37m\]'
+  else
+    git_info+='\[\033[0;35m\]'"$(git rev-parse --short HEAD)"
+  fi
+  git_info+=' '
+}
 
-      while IFS= read -r line; do
-        local index_status=""
-        index_status="${line::1}"
-        # shellcheck disable=SC2076
-        # shellcheck disable=SC2199
-        if [[ ! " ${index_array[@]} " =~ " ${index_status} " ]] && [ "$index_status" != "0" ]; then
-          index_array+=("$index_status")
-          case $index_status in
-          "A")
-            index+='+'
-            ;;
-          "M")
-            index+='~'
-            ;;
-          "D")
-            index+='-'
-            ;;
-          "U")
-            index+='Ψ'
-            ;;
-          esac
-        fi
-        [ "$index" != "\033[38;5;214m\]" ] && index=" $index"
-        local working_status=""
-        working_status="${line:1:1}"
-        # shellcheck disable=SC2199
-        # shellcheck disable=SC2076
-        if [[ ! " ${working_array[@]} " =~ " ${working_status} " ]] && [ "$working_status" != "0" ]; then
-          working_array+=("$working_status")
-          case $working_status in
-          "A")
-            working=+='+'
-            ;;
-          "M")
-            working+='~'
-            ;;
-          "D")
-            working+='-'
-            ;;
-          "U")
-            working+='Ψ'
-            ;;
-          esac
-        fi
-      done < <(git status -s)
-      [ "$(git status --porcelain 2>/dev/null | grep -c "^??")" != "0" ] && working+='\[\033[0m\]?'
-      [ "$working" != "\[\033[0;37m\]" ] && working=" $working"
-      git_string=" $git_string$index$working"
+function parse-git-bad() {
+  git_bad=""
+  git_bad='\[\033[0;31m\]'
+  if [ "$(git status --porcelain 2>/dev/null | grep -c "^??")" != "0" ]; then
+    [[ ! $(git remote) ]] && git_bad+='✗'
+    git_bad+='?'
+  fi
+  [ "$git_bad" != '\[\033[0;31m\]' ] && git_bad+=' '
+}
+
+function parse-git-status() {
+  declare -a index_array=()
+  declare -a working_array=()
+  git_status=""
+  local index=""
+  index='\033[38;5;214m\]'
+  local working=""
+  working='\[\033[0;37m\]'
+  while IFS= read -r line; do
+    local index_status=""
+    index_status="${line::1}"
+    # shellcheck disable=SC2076
+    # shellcheck disable=SC2199
+    if [[ ! " ${index_array[@]} " =~ " ${index_status} " ]] && [ "$index_status" != "0" ]; then
+      index_array+=("$index_status")
+      case $index_status in
+      "A")
+        index+='+'
+        ;;
+      "M")
+        index+='~'
+        ;;
+      "D")
+        index+='-'
+        ;;
+      "U")
+        index+='Ψ'
+        ;;
+      esac
     fi
-  }
-  \virtualenv-format
+    local working_status=""
+    working_status="${line:1:1}"
+    # shellcheck disable=SC2199
+    # shellcheck disable=SC2076
+    if [[ ! " ${working_array[@]} " =~ " ${working_status} " ]] && [ "$working_status" != "0" ]; then
+      working_array+=("$working_status")
+      case $working_status in
+      "A")
+        working=+='+'
+        ;;
+      "M")
+        working+='~'
+        ;;
+      "D")
+        working+='-'
+        ;;
+      "U")
+        working+='Ψ'
+        ;;
+      esac
+    fi
+  done < <(git status -s)
+  [ "$index" != '\033[38;5;214m\]' ] && index+=' '
+  git_status="$index$working"
+}
+
+function start-gitstatus() {
+  echo "gitstatus_start" >> ~/gitstatus/gitstatus.prompt.sh
+  source ~/gitstatus/gitstatus.prompt.sh
+  sed -i '$d' ~/gitstatus/gitstatus.prompt.sh
+}
+
+function stop-gitstatus() {
+  echo "gitstatus_stop" >>~/gitstatus/gitstatus.prompt.sh
+  source ~/gitstatus/gitstatus.prompt.sh
+  sed -i '$d' ~/gitstatus/gitstatus.prompt.sh
+}
+
+function git-format() {
+  git_string=""
+  if [ -d .git ]; then
+    \parse-git-info
+    git_string+="$git_info"
+    \parse-git-bad
+    git_string+="$git_bad"
+    \parse-git-status
+    git_string+="$git_status"
+  fi
+}
+
+function set-venv() {
+  venv=""
+  VIRT_ENV_TXT=""
+  if [ "$VIRTUAL_ENV" != "" ]; then
+    VIRT_ENV_TXT=$(basename \""$VIRTUAL_ENV")
+  elif [ "$(basename \""$VIRTUAL_ENV"\")" = "__" ]; then
+    VIRT_ENV_TXT=[$(basename \`dirname \""$VIRTUAL_ENV"\"\`)]
+  fi
+  if [ "${VIRT_ENV_TXT}" != "" ]; then
+    venv='\[\033[1;36m\](\[\033[0;35m\]'"${VIRT_ENV_TXT}"'\[\033[1;36m\]) '
+  fi
+}
+
+function set-ssh() {
+  ssh_prompt=""
+  in_ssh_client="true"
+  if [ "$in_ssh_client" == "true" ]; then
+    ssh_prompt+='\033\[95;38;5;180m\]barre\033\[95;38;5;203\]m@\033\[95;38;5;228m\]barrett-pc'
+  fi
+}
+
+function setPrompt() {
+  PS1=""
+  PS1+='\[\033]0;'"\007\]"'\n\[\033[33m\]\w '
+  git_string=""
   \git-format
-  TITLEPREFIX=""
-  PS1='\[\033]0;'"\007\]"'\n\[\033[33m\]\w'
-  # fix up
-  [ "$in_ssh_client" == "true" ] && PS1+='\[\033[32m\]\uin \[033\[38;5;202m\]\h'
-  PS1+="$git_string\n$venv"
-  local prompt=""
-  prompt="\$(if [ \$? = 0 ]; then echo \[\033[32m\]❯; else echo \[\033[31m\]❯; fi) "
-  PS1+="$prompt"'\[\033[0m\]'
+  PS1+="$git_string"
+  \set-venv
+  PS1+="\n$venv"
+  # fix up, add-ssh function
+  # \\033[95;38;5;214m
+  PS1+="\$(if [ \$? = 0 ]; then echo \[\033[32m\]❯; else echo \[\033[31m\]❯; fi) "'\[\033[0m\]'
 }
 
 export PROMPT_COMMAND=setPrompt
