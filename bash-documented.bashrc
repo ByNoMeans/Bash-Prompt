@@ -66,15 +66,15 @@ function _parse_git_info() {
   git_info='\[\033[95;38;5;209m\]'"$branch"
 
   # Add "*" for dirty branch, "^" for existing stashes
-  [ "$is_dirty" == "true" ] && git_info='\[\033[95;38;5;218m\]*'"$git_info"
-  [[ $(git stash list) ]] && git_info='\[\033[95;38;5;218m\]^'"$git_info"
+  [ "$is_dirty" == "true" ] && git_info='\[\033[95;38;5;247m\]*'"$git_info"
+  [[ $(git stash list) ]] && git_info='\[\033[95;38;5;247m\]^'"$git_info"
 
   upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
 
   if [ "$upstream" ]; then
 
     # Format: branch → upstream
-    git_info+='\[\033[95;38;5;218m\] → \[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;218m\]/\[\033[95;38;5;209m\]'"${upstream##*/}"
+    git_info+='\[\033[95;38;5;247m\] → \[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;247m\]/\[\033[95;38;5;209m\]'"${upstream##*/}"
 
     # Array parsing "<commitsAhead>           <commitsBehind>"
     commits=($(git rev-list --left-right --count "$branch"..."$upstream"))
@@ -121,7 +121,7 @@ function _parse_git_status() {
   # index is reassigned later; don't include color
   # for cleaner if statement on line 184
   local index
-  local working='\033[38;5;188m\]'
+  local working='\033[38;5;255m\]'
 
   # Parse output of git status -s:
   # <indexStatus><workingTreeStatus> <fileName>
@@ -180,7 +180,7 @@ function _parse_git_status() {
 
   # Space if existing; "working" is the end of the
   # first prompt line, thus a space is unecessary
-  [ "$index" ] && index='\033[38;5;228m\]'"$index"' '
+  [ "$index" ] && index='\033[38;5;218m\]'"$index"' '
 
   # Branch is dirty if ANY changes exist
   [ "${#working_array[@]}" -ne 0 ] || [ "${#index_array[@]}" -ne 0 ] && is_dirty="true"
