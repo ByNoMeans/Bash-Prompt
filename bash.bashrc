@@ -13,6 +13,7 @@
 ([[ -z ${CYG_SYS_BASHRC} ]] && CYG_SYS_BASHRC="1") || return
 
 # If not running interactively, don't do anything
+
 [[ "$-" != *i* ]] && return
 
 # If started from sshd, make sure profile is sourced
