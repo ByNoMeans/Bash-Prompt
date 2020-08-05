@@ -4,14 +4,16 @@ function cd_up() {
 alias cd..='cd_up'
 alias cls='clear'
 alias installreq='pip3 install -r requirements.txt'
-alias setreq='pip3 freeze > requirements.txt' 
-alias sourcerc='source /c/Program\ Files/Git/etc/bash.bashrc'
-alias sourcealias='source ~/.bash_aliases'
+alias setreq='pip3 freeze > requirements.txt'
+alias srcalias='. $HOME/.bash_aliases'
+alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
 alias tree='cmd //c tree //f'
 alias bpfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
    installreq         Installs requirements (only run in a virtualenv)
    setreq             Sets installation requirements to file
+   srcrc              Source the /etc bashrc file to reload prompt changes
+   srcalias           Source the ~/.bash_aliases file to reload alias changes
    tree               Prints directory structure (delete /f to remove files)'"
 
 alias ga='git add'
@@ -26,7 +28,8 @@ alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gf='git flow'
 alias gfch='git fetch'
-alias glog='git log --graph --abbrev-commit --date=relative --all'
+alias ggraph='git log --graph --abbrev-commit --date=relative --all'
+alias glog='git log -'
 alias gmv='git mv'
 alias gpsh='git push'
 alias gpu='git pull'
@@ -51,13 +54,14 @@ alias bpgit="echo $'
    gd             git diff
    gf             git flow
    gfch           git fetch
-   glog           git log --graph --abbrev-commit --date=relative --all
+   ggraph         git log --graph --abbrev-commit --date=relative --all
+   glog           git log -<integer>
    gmv            git mv
    gpsh           git push
    gpu            git pull
    grbs           git rebase
    grem           git remote
-   gres           git reset  
+   gres           git reset
    grm            git rm
    grem           git remote
    gs             git status
@@ -66,13 +70,15 @@ alias bpgit="echo $'
 
 alias delvenv='deactivate venv && rm -rf venv'
 alias setvenv='virtualenv venv && source venv/Scripts/activate'
+alias rmvenv='rm -rf venv'
 alias sourcevenv='source venv/Scripts/activate'
 alias bpvenv="echo $'
 Virtual Environment aliases:
    delvenv        deactivate venv && rm -rf venv
+   rm venv        remove virtualenv
    setvenv        virtualenv venv && source '\''venv/Scripts/activate'\'$'
    sourcevenv     source '\''venv/Scripts/activate'\'"
-   
+
 alias bpsymbols="echo $'
    ✗                   No remote
    ≠                   No upstream
@@ -83,7 +89,7 @@ alias bpsymbols="echo $'
    ~                   Modified files
    ?                   Untracked files
    Ψ                   Unmerged files
-   
+
    Orange indicates index status.
    Grey indicates working tree status.
-   White indicates a problem or something you should update.'"
+   Red indicates a problem or something you should update.'"
