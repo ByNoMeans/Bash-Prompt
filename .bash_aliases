@@ -112,3 +112,4 @@ Prompt Symbols:
    Pink: index status.
    Grey: working tree status.
    Blue: a problem or something you should update.'"
+
