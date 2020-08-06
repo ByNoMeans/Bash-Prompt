@@ -52,7 +52,7 @@ Prompt Symbols:
 
 ## Example
 
-An example session would look as follows. 
+An example session would look as follows. It displays the usage of aliases, prompt colors, git status suymbols, and its clean color scheme.
 
 ![GitBash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
 
