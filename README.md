@@ -50,6 +50,19 @@ git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_p
 ~/.pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
+In an ELEVATED WINDOWS command prompt:
+
+
+1. Backup your files
+2. Clone the repository
+```
+git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt %HomeDrive%%HomePath%/.pure_bash_prompt
+```
+3. Run the installation script
+```
+%HomeDrive%%HomePath%/.pure_bash_prompt/install_pure_bash_prompt.sh
+```
+
 ## Configuration
 
 The `~/.minttyrc` config file is set using the above commands to enhance the theme. The only steps left are to:
