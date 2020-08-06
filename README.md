@@ -34,8 +34,6 @@ ClicksPlaceCursor=yes
 BackgroundColour=40,42,54
 ForegroundColour=40,42,54
 Font=Consolas
-FontHeight=18
-Scrollbar=none
 ```
 
 Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
