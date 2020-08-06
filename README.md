@@ -34,7 +34,22 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 ## Installation
 
-There is always a gigantic variation in the location of people's files with respect to terminals. No installation script is provided 
+There is always a gigantic variation in the location of people's files with respect to terminals. No installation script is provided, as I would prefer you to be given the maximum control. 
+
+If you are one of those people, execute the following commands but with respect to your proper file locations.
+
+1. Clone the repository
+```
+git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_prompt
+```
+2. Copy `bash.bashrc` or `bash-documented.bashrc` to /Git/etc/. If you prefer documentation and chose the latter, make sure to rename it to `bash.bashrc`
+```
+mv ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
+```
+3. Copy `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to ~
+```
+mv ~/.pure_bash_prompt/.bash_profile ~ && mv ~/.pure_bash_prompt/.git-completion.bash ~ && mv ~/.pure_bash_prompt/.bash_aliases ~ && ~/.pure_bash_prompt/.bashrc ~
+```
 
 Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used.
 
