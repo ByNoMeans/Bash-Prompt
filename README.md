@@ -4,7 +4,7 @@ An informative, non-overwhelming, clean, easy-to-change and fast alternative to 
 
 ## Screenshot
 
-An example session would look as follows (click for better resolution). It displays the usage of aliases, prompt colors, git status suymbols, and its color scheme.
+An example session would look as follows (click for better resolution). It displays the usage of aliases, prompt colors, git status symbols, and its color scheme.
 
 ![GitBash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
 
