@@ -46,11 +46,11 @@ In an ELEVATED terminal:
 1. Backup your files
 2. Clone the repository
 ```
-git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_prompt
+git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/pure_bash_prompt
 ```
 3. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
-sh ~/.pure_bash_prompt/install_pure_bash_prompt.sh
+sh ~/pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
 ### Windows
@@ -64,7 +64,7 @@ git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt %HomeDrive%%Ho
 ```
 3. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
-%HomeDrive%%HomePath%/.pure_bash_prompt/install_pure_bash_prompt.sh
+%HomeDrive%%HomePath%/pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
 ## Aliases
