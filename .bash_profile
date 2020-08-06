@@ -1,7 +1,8 @@
 test -f ~/.profile && . ~/.profile
 test -f ~/.bashrc && . ~/.bashrc
 
-[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
-[[ -f ~/.git-completion.bash ]] && source ~/.git-completion.bash
+test -f ~/.bash_aliases && . ~/.bash_aliases
+test -f ~/.git-completion.bash && . ~/.git-completion.bash
+test -f ~/.git-completion.bash && . ~/gitstatus/gitstatus.prompt.sh
 
 export HISTCONTROL=ignoreboth:erasedups

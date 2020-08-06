@@ -23,8 +23,6 @@ alias pfast="echo $'
    srcalias           Source the ~/.bash_aliases file to reload alias changes
    tree               Prints directory structure (delete /f to remove files)'"
 
-. ~/.git-completion.bash
-
 alias ga='git add'
 alias gb='git branch'
 __git_complete gb _git_branch

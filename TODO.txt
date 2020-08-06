@@ -1,13 +1,5 @@
 Transfer to ZSH
     Link: https://dev.to/jasmin/a-brief-difference-between-zsh-and-bash-5ebp
     Note array, escape, and other differences; READ IT ALL!
-Update README.md
-    Fonts (Menlo, Menlo LG)
-    Font size
-    Window Color
-    Window Size
 More Prompt Elements
     etc symbols (view inspiration)
-Update PNG
-Fix Laptop Startup Symbol
-    Red by default; echo $? is still 0?

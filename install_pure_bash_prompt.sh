@@ -4,12 +4,11 @@ if [ -e ~/.pure_bash_prompt ]; then
       # Copy bash.bashrc or bash-documented.bashrc to /Git/etc/. If you prefer documentation and chose the latter, make sure to rename it to bash.bashrc
       cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 
-      # Copy .minttyrc, .bash_profile, .git-completion.bash, .bash_aliases, and .bashrc to ~
+      # Copy .minttyrc, .bash_profile, .git-completion.bash and .bash_aliases to ~
       cp -i ~/.pure_bash_prompt/.minttyrc ~
       cp -i ~/.pure_bash_prompt/.bash_profile ~
       cp -i ~/.pure_bash_prompt/.git-completion.bash ~
       cp -i ~/.pure_bash_prompt/.bash_aliases ~
-      cp -i ~/.pure_bash_prompt/.bashrc ~
 
       # Install gistatus to immensely speed up the rate the prompt appears.
       git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
