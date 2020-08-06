@@ -40,25 +40,14 @@ There is always a gigantic variation in the location of people's files with resp
 
 In an ELEVATED BASH command prompt:
 
-1. Clone the repository
+1. Backup your files
+2. Clone the repository
 ```
 git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_prompt
 ```
-2. Copy `bash.bashrc` or `bash-documented.bashrc` to `/Git/etc/`. If you prefer documentation and chose the latter, make sure to rename it to `bash.bashrc`
+3. Run the installation script
 ```
-cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
-```
-3. Copy `.minttyrc`, `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to `~`
-```
-cp -i ~/.pure_bash_prompt/.minttyrc ~ && cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-completion.bash ~ && cp -i ~/.pure_bash_prompt/.bash_aliases ~ && cp -i ~/.pure_bash_prompt/.bashrc ~
-```
-4. Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used, so you don't need to run the second command of the repo's instructions. Just run
-```
-git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
-```
-5. Don't let gitstatus be the default prompt
-```
-sed -i "$(($(wc -l < ~/gitstatus/gitstatus.prompt.sh)-20)),\$d" ~/gitstatus/gitstatus.prompt.sh
+~/.pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
 ## Configuration
