@@ -50,8 +50,11 @@ mv ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 ```
 mv ~/.pure_bash_prompt/.bash_profile ~ && mv ~/.pure_bash_prompt/.git-completion.bash ~ && mv ~/.pure_bash_prompt/.bash_aliases ~ && ~/.pure_bash_prompt/.bashrc ~
 ```
+4. Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used, so you don't need to run the second command of the repo's instructions. Just run
+```
+git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
 
-Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used.
+```
 
 ## Configuration
 
