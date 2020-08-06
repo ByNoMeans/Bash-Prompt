@@ -12,31 +12,38 @@ Bash-Prompt offers simple, easy-to-remember aliases for:
 3. Virtual Environments
 4. Miscellaneous (general convenience)
 
- ## Confused? 
+## Tips
+ 
+### Colors
+
+View [here](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt) to get a complete description and explanation of ANSI colors, along with a complete graphic depicting all colors and their corresponding ANSI codes.
+
+View [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) to see all backslash-escaped characters. For example, `\W` provides the absolute current working directory, and `\A` provides the time (to the minute) expressed in military time.
 
 Run `bpgit`, `bpvenv`, `bpfast`, or `bpsymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
 
-For example, running `bpsypmbls` on an active Git-Bash terminal shows you the prompt structure of:
+For example, running `psypmbols` on an active Git-Bash terminal shows you the prompt structure of:
 ```
-   {}                  Empty repository
-   ✗                   No remote
+Prompt Symbols:
+
    ≠                   No upstream
+   ✗                   No remote
    ↑                   Commits ahead
    ↓                   Commits behind
-   +                   Added files
-   -                   Deleted files
-   ~                   Modified files
-   ?                   Untracked files
-   Ψ                   Unmerged files
-   
-   Orange indicates index status.
-   Grey indicates working tree status.
-   White indicates a problem or something you should update.
+   +                   Added
+   -                   Deleted
+   ~                   Modified
+   %                   Untracked
+   Ψ                   Unmerged
+
+   Yellow: index status.
+   Grey: working tree status.
+   Blue indicates a problem or something you should update.
 ```
 
 ## Example
 
-An example session would look as follows, using both original git commands and aliases. As a result, both `git add <fileName>` and `ga <fileName>` would perform the same task per this session. The background is only revealed through transparency set to "Low," which I once again recommend.
+An example session would look as follows. 
 
 ![Git-Bash Prompt](https://github.com/ByNoMeans/bash-prompt/blob/master/Git-Bash%20Prompt.png)
 
