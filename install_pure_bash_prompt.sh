@@ -1,6 +1,3 @@
-# Clone the repository
-git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_prompt
-
 # Copy bash.bashrc or bash-documented.bashrc to /Git/etc/. If you prefer documentation and chose the latter, make sure to rename it to bash.bashrc
 cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 
