@@ -38,27 +38,30 @@ There is always a gigantic variation in the location of people's files with resp
 
 > :warning: **The mentioned files will be overwritten with the following commands. Your prompt will still ask you individually if you want to overwrite the files, but be cautious!**
 
-In an ELEVATED BASH command prompt:
+### Bash
+
+In an ELEVATED terminal:
 
 1. Backup your files
 2. Clone the repository
 ```
 git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_prompt
 ```
-3. Run the installation script
+3. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
 ~/.pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
-In an ELEVATED WINDOWS command prompt:
+### Windows
 
+In an ELEVATED terminal:
 
 1. Backup your files
 2. Clone the repository
 ```
 git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt %HomeDrive%%HomePath%/.pure_bash_prompt
 ```
-3. Run the installation script
+3. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
 %HomeDrive%%HomePath%/.pure_bash_prompt/install_pure_bash_prompt.sh
 ```
