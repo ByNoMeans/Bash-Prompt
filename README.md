@@ -10,7 +10,7 @@ An example session would look as follows. It displays the usage of aliases, prom
 
 ## Layout
 
-`pure-bash-prompt` takes the following form in each terminal session: 
+The terminal prompt takes the following form in each terminal: 
 
 ````
 <nonAbsoluteDirectory> <gitInfo>
@@ -40,7 +40,7 @@ Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up t
 
 ## Configuration
 
-Set the Git-Bash configuration file (`~/.mintyrc`) to:
+Set the Git-Bash configuration file (`~/.minttyrc`) to:
 
 ```
 ThemeFile=dracula
