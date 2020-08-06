@@ -8,9 +8,25 @@ An example session would look as follows. It displays the usage of aliases, prom
 
 ![GitBash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
 
+## Layout
+
+`pure-bash-prompt` takes the following form in each terminal session: 
+
+````
+<nonAbsoluteDirectory> <gitInfo>
+<SSH-info> <virtualenvInfo> <promptSymbol>
+```
+
+Within a git repository, not ssh-ed in, and without a virtualenv, the terminal format would be as follows: 
+
+````
+<nonAbsoluteDirectory> <ifBranchDirty><branchName> <upstream> <symbols>
+<promptSymbol>
+```
+   
 ## Inspiration
 
-No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `pure-bash-prompt`'s themeing, symbols, and general format.
+No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `bash-prompt`'s themeing, symbols, and general format.
 
 1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
 2. [Pure](https://github.com/sindresorhus/pure)
@@ -18,7 +34,9 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 ## Installation
 
-Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` every open session to be used.
+There is always a gigantic variation in the location of people's files with respect to terminals. No installation script is provided 
+
+Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used.
 
 ## Configuration
 
