@@ -30,7 +30,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
 2. [Pure](https://github.com/sindresorhus/pure)
-3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/blob/master/command_prompt.bash)
+3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/)
 
 ## Installation
 
