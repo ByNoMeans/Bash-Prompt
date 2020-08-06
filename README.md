@@ -67,12 +67,6 @@ git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt %HomeDrive%%Ho
 %HomeDrive%%HomePath%/.pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
-## Configuration
-
-The `~/.minttyrc` config file is set using the above commands to enhance the theme. The only steps left are to:
-
-1. Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
-
 ## Aliases
 
 Bash-Prompt offers simple, easy-to-remember aliases for:
@@ -87,6 +81,8 @@ all of which are stored in the `.bash_aliases` file.
 Additionally, the git aliases use git-completion; tabs works like always.
 
 ## Tips
+
+Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
 
 View [here](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt) to get a complete description and explanation of ANSI colors, along with a complete graphic depicting all colors and their corresponding ANSI codes (very handy if you wish to customize).
 
