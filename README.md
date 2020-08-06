@@ -20,7 +20,7 @@ View [here](https://unix.stackexchange.com/questions/124407/what-color-codes-can
 
 View [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) to see all backslash-escaped characters. For example, `\W` provides the absolute current working directory, and `\A` provides the time (to the minute) expressed in military time.
 
-Run `bpgit`, `bpvenv`, `bpfast`, or `bpsymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
+Run `pgit`, `pvenv`, `phelp`, or `psymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
 
 For example, running `psypmbols` on an active Git-Bash terminal shows you the prompt structure of:
 ```
