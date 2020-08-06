@@ -7,9 +7,9 @@
 [[ "$-" != *i* ]] && return
 
 # If started from sshd, make sure profile is sourced
-if [[ -n "$SSH_CONNECTION" ]] && [[ "$PATH" != *:/usr/bin* ]]; then
+if [[ -n "$SSH_CONNECTION" ]]; then #&& [[ "$PATH" != *:/usr/bin* ]]; then
   in_ssh_client="true"
-  . /etc/profile
+  #. /etc/profile
 fi
 
 unset _warning_found
@@ -44,8 +44,6 @@ unset _warning
 #then _ps1_symbol='\[\e[1m\]#\[\e[0m\]'
 #else _ps1_symbol='\$'
 #fi
-
-export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 function _parse_git_status() {
   git_status=""
@@ -152,6 +150,7 @@ function _set_ssh() {
 }
 
 function _set_venv() {
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
   venv=""
   VIRT_ENV_TXT=""
   if [ "$VIRTUAL_ENV" != "" ]; then
