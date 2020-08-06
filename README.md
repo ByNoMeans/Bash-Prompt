@@ -20,6 +20,28 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` every open session to be used.
 
+## Configuration
+
+Set the Git-Bash configuration file (`~/.mintyrc`) to:
+
+```
+ThemeFile=dracula
+FontSmoothing=default
+CtrlShiftShortcuts=yes
+Locale=C
+Charset=UTF-8
+ClicksPlaceCursor=yes
+BackgroundColour=40,42,54
+ForegroundColour=40,42,54
+Font=Consolas
+FontHeight=18
+Scrollbar=none
+```
+
+Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
+
+Set scrollbar to "none" in "Window" for that extra minimal look.
+
 ## Aliases
 
 Bash-Prompt offers simple, easy-to-remember aliases for:
