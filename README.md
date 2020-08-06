@@ -54,6 +54,6 @@ Prompt Symbols:
 
 An example session would look as follows. 
 
-![GitBash.PNG](https://github.com/ByNoMeans/bash-prompt/blob/master/Git-Bash%20Prompt.png)
+![GitBash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
 
 
