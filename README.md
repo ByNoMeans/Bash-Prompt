@@ -75,6 +75,7 @@ ClicksPlaceCursor=yes
 BackgroundColour=40,42,54
 ForegroundColour=40,42,54
 Font=Consolas
+Term=xterm-256color
 ```
 
 Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
