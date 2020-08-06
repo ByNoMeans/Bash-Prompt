@@ -1,7 +1,3 @@
-Inspiration
-    Seafly: https://github.com/bluz71/bash-seafly-prompt/blob/master/command_prompt.bash
-    Pure: https://github.com/sindresorhus/pure
-    Posh-Git: https://github.com/dahlbyk/posh-git/
 Transfer to ZSH
     Link: https://dev.to/jasmin/a-brief-difference-between-zsh-and-bash-5ebp
     Note array, escape, and other differences; READ IT ALL!

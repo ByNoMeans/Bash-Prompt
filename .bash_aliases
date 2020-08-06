@@ -1,6 +1,6 @@
 function cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 
-alias bphelp="echo $'
+alias phelp="echo $'
 Run the following commands to help understand the prompt:
    bpfast             Convenience methods
    bpgit              Git aliases
@@ -15,7 +15,7 @@ alias setreq='pip3 freeze > requirements.txt'
 alias srcalias='. ~/.bash_aliases'
 alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
 alias tree='cmd //c tree //f'
-alias bpfast="echo $'
+alias pfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
    installreq         Installs requirements (only run in a virtualenv)
    setreq             Sets installation requirements to file
@@ -64,7 +64,7 @@ __git_complete gst _git_stash
 alias gt='git tag'
 __git_complete gt _git_tag
 
-alias bpgit="echo $'
+alias pgit="echo $'
    ga             add
    gb             branch
    gch            checkout
@@ -90,16 +90,17 @@ alias bpgit="echo $'
 alias rmvenv='deactivate venv && rm -rf venv'
 alias setvenv='virtualenv venv >/dev/null 2>&1 && source venv/Scripts/activate'
 alias srcvenv='source venv/Scripts/activate'
-alias bpvenv="echo $'
+alias pvenv="echo $'
 Virtual Environment aliases:
    rmvenv         Silently remove venv
    setvenv        Silently create venv
    srcvenv        Silently source venv'"
 
-alias bpsymbols="echo $'
+alias psymbols="echo $'
 Prompt Symbols:
+
    ≠                   No upstream
-   ✗                  No remote
+   ✗                   No remote
    ↑                   Commits ahead
    ↓                   Commits behind
    +                   Added
@@ -110,4 +111,4 @@ Prompt Symbols:
 
    Yellow: index status.
    Grey: working tree status.
-   Blue indicates a problem or something you should update.'"
+   Blue: a problem or something you should update.'"
