@@ -66,7 +66,6 @@ sed -i "$(($(wc -l < ~/gitstatus/gitstatus.prompt.sh)-20)),\$d" ~/gitstatus/gits
 The `~/.minttyrc` config file is set using the above commands to enhance the theme. The only steps left are to:
 
 1. Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
-2. Set scrollbar to "none" in "Window" for that extra minimal look.
 
 ## Aliases
 
