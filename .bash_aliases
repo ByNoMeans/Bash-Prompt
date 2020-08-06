@@ -8,6 +8,8 @@ Run the following commands to help understand the prompt:
    bpsymbols          Prompt symbols
 '"
 
+. ~/.git-completion.bash
+
 alias cd..='cd_up'
 alias cls='clear'
 alias installreq='pip3 install -r requirements.txt'
