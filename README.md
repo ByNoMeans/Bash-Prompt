@@ -6,6 +6,9 @@ An informative, non-overwhelming, clean, and simple alternative to the tradition
 
 No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `pure-bash-prompt`'s themeing, symbols, and general format.
 
+1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
+2. [Pure](https://github.com/sindresorhus/pure)
+3. 
 
 ## Installation
 Copy the contents of `bash.bashrc` and `~.bash_aliases` (create if not yet existing) to your `/Program Files/Git/etc/bash.bashrc` and `~/.bash_aliases` files. The prompt looks the best in "dracula" theme, set by "Terminal Title Bar" >> "Options" >> "Theme." Change the terminal transparency to Low/Medium for optimum aesthetic in this tab as well.
@@ -51,6 +54,6 @@ Prompt Symbols:
 
 An example session would look as follows. 
 
-![GitBash](https://github.com/ByNoMeans/bash-prompt/blob/master/Git-Bash%20Prompt.png)
+![GitBash.PNG](https://github.com/ByNoMeans/bash-prompt/blob/master/Git-Bash%20Prompt.png)
 
 
