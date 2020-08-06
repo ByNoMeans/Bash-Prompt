@@ -40,11 +40,11 @@ There is always a gigantic variation in the location of people's files with resp
 ```
 git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_prompt
 ```
-2. Copy `bash.bashrc` or `bash-documented.bashrc` to /Git/etc/. If you prefer documentation and chose the latter, make sure to rename it to `bash.bashrc`
+2. Copy `bash.bashrc` or `bash-documented.bashrc` to `/Git/etc/`. If you prefer documentation and chose the latter, make sure to rename it to `bash.bashrc`
 ```
 cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 ```
-3. Copy `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to ~
+3. Copy `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to `~`
 ```
 cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-completion.bash ~ && cp -i ~/.pure_bash_prompt/.bash_aliases ~ && cp -i ~/.pure_bash_prompt/.bashrc ~
 ```
