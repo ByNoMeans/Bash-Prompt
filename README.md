@@ -48,9 +48,9 @@ git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_p
 ```
 cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 ```
-3. Copy `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to `~`
+3. Copy `.minttyrc``.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to `~`
 ```
-cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-completion.bash ~ && cp -i ~/.pure_bash_prompt/.bash_aliases ~ && cp -i ~/.pure_bash_prompt/.bashrc ~
+cp -i ~/.pure_bash_prompt/.minttyrc ~ && -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-completion.bash ~ && cp -i ~/.pure_bash_prompt/.bash_aliases ~ && cp -i ~/.pure_bash_prompt/.bashrc ~
 ```
 4. Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used, so you don't need to run the second command of the repo's instructions. Just run
 ```
