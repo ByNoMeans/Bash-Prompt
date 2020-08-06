@@ -51,7 +51,7 @@ Bash-Prompt offers simple, easy-to-remember aliases for:
 
 all of which are stored in the `.bash_aliases` file.
 
-Additionally, the git aliases use git-completion, so their usage would parallel exactly that of not using the alias in the first place.
+Additionally, the git aliases use git-completion, tab works like always.
 
 ## Tips
 
