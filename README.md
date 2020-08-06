@@ -51,7 +51,6 @@ cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-comp
 4. Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used, so you don't need to run the second command of the repo's instructions. Just run
 ```
 git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
-
 ```
 
 ## Configuration
