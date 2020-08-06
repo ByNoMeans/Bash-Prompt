@@ -34,9 +34,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 ## Installation
 
-There is always a gigantic variation in the location of people's files with respect to terminals. No installation script is provided, as I would prefer you to be given the maximum control. 
-
-If you are one of those people, execute the following commands but with respect to your proper file locations.
+There is always a gigantic variation in the location of people's files with respect to terminals. No installation script is provided, as I would prefer you to be given the maximum control. If you are one of those people, execute the following commands but with respect to your proper file locations.
 
 1. Clone the repository
 ```
@@ -48,7 +46,7 @@ mv ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 ```
 3. Copy `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to ~
 ```
-mv ~/.pure_bash_prompt/.bash_profile ~ && mv ~/.pure_bash_prompt/.git-completion.bash ~ && mv ~/.pure_bash_prompt/.bash_aliases ~ && ~/.pure_bash_prompt/.bashrc ~
+cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-completion.bash ~ && cp -i ~/.pure_bash_prompt/.bash_aliases ~ && cp -i ~/.pure_bash_prompt/.bashrc ~
 ```
 4. Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used, so you don't need to run the second command of the repo's instructions. Just run
 ```
