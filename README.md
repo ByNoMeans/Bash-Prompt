@@ -1,8 +1,14 @@
-# Bash-Prompt
+# pure-bash-prompt
 
-An informative, non-overwhelming, clean, and fast alternative to the traditional Git-Bash for Windows prompt.
+An informative, non-overwhelming, clean, easy-tochange and fast alternative to the traditional Git-Bash for Windows prompt.
 
-## Installation
+## Screenshot
+
+An example session would look as follows. It displays the usage of aliases, prompt colors, git status suymbols, and its color scheme.
+
+![GitBash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
+
+## Inspiration
 
 No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `pure-bash-prompt`'s themeing, symbols, and general format.
 
@@ -11,6 +17,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/blob/master/command_prompt.bash)
 
 ## Installation
+
 Copy the contents of `bash.bashrc` and `~.bash_aliases` (create if not yet existing) to your `/Program Files/Git/etc/bash.bashrc` and `~/.bash_aliases` files. The prompt looks the best in "dracula" theme, set by "Terminal Title Bar" >> "Options" >> "Theme." Change the terminal transparency to Low/Medium for optimum aesthetic in this tab as well.
 
 ## Aliases
@@ -50,11 +57,3 @@ Prompt Symbols:
    Grey: working tree status.
    Blue indicates a problem or something you should update.
 ```
-
-## Example
-
-An example session would look as follows. It displays the usage of aliases, prompt colors, git status suymbols, and its clean color scheme.
-
-![GitBash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
-
-
