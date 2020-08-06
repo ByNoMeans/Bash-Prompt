@@ -18,6 +18,8 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 ## Installation
 
+Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` every open session to be used.
+
 ## Aliases
 
 Bash-Prompt offers simple, easy-to-remember aliases for:
@@ -32,8 +34,6 @@ all of which are stored in the `.bash_aliases` file.
 Additionally, the git aliases use git-completion, so their usage would parallel exactly that of not using the alias in the first place.
 
 ## Tips
- 
-Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears.
 
 View [here](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt) to get a complete description and explanation of ANSI colors, along with a complete graphic depicting all colors and their corresponding ANSI codes.
 
