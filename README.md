@@ -34,11 +34,11 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 ## Installation
 
-There is always a gigantic variation in the location of people's files with respect to terminals. No installation script is provided, as I would prefer you to be given the maximum control. If you are one of those people, execute the following commands but with respect to your proper file locations.
+There is always a gigantic variation in the location of people's files with respect to terminals. If you are one of those people, execute the following commands but with respect to your proper file locations.
 
+> :warning: **The mentioned files will be overwritten with the following commands. Your prompt will still ask you individually if you want to overwrite the files, but be cautious!**
 
-In an ELEVATED command prompt:
-
+In an ELEVATED BASH command prompt:
 
 1. Clone the repository
 ```
@@ -48,9 +48,9 @@ git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_p
 ```
 cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 ```
-3. Copy `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to `~`
+3. Copy `.minttyrc`, `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to `~`
 ```
-cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-completion.bash ~ && cp -i ~/.pure_bash_prompt/.bash_aliases ~ && cp -i ~/.pure_bash_prompt/.bashrc ~
+cp -i ~/.pure_bash_prompt/.minttyrc ~ && cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-completion.bash ~ && cp -i ~/.pure_bash_prompt/.bash_aliases ~ && cp -i ~/.pure_bash_prompt/.bashrc ~
 ```
 4. Install [gistatus](https://github.com/romkatv/gitstatus) to immensley speed up the rate the prompt appears. It is sourced within `.bash_profile` at the beginning of each session to be used, so you don't need to run the second command of the repo's instructions. Just run
 ```
@@ -63,24 +63,9 @@ sed -i "$(($(wc -l < ~/gitstatus/gitstatus.prompt.sh)-20)),\$d" ~/gitstatus/gits
 
 ## Configuration
 
-Set the Git-Bash configuration file (`~/.minttyrc`) to:
+The `~/.minttyrc` config file is set using the above commands to enhance the theme. The only steps left are to:
 
-```
-ThemeFile=dracula
-FontSmoothing=default
-CtrlShiftShortcuts=yes
-Locale=C
-Charset=UTF-8
-ClicksPlaceCursor=yes
-BackgroundColour=40,42,54
-ForegroundColour=40,42,54
-Font=Consolas
-Term=xterm-256color
-```
-
-Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
-
-Set scrollbar to "none" in "Window" for that extra minimal look.
+1. Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
 
 ## Aliases
 
