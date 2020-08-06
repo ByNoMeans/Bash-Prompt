@@ -10,7 +10,7 @@ An example session would look as follows (click for better resolution). It displ
 
 ## Layout
 
-The terminal prompt takes the following form in each terminal: 
+The terminal prompt takes the following form in each session: 
 
 ```
 <nonAbsoluteDirectory> <gitInfo>
@@ -20,9 +20,10 @@ The terminal prompt takes the following form in each terminal:
 Within a git repository, not ssh-ed in, and without a virtualenv, the terminal format would be as follows: 
 
 ```
-<nonAbsoluteDirectory> <ifBranchDirty><branchName> <upstream> <symbols>
+<nonAbsoluteDirectory> <ifBranchDirty><ifStashes><branchName> <upstream> <ifRemote><ifUpstream><untracked> <added><modified><deleted><unmerged>
 <promptSymbol>
 ```
+Run `psymbols` for more info.
    
 ## Inspiration
 
@@ -93,7 +94,7 @@ View [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-pro
 
 Run `pgit`, `pvenv`, `phelp`, or `psymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
 
-For example, running `psypmbols` on an active Git-Bash terminal shows you the prompt structure of:
+For example, running `psymbols` on an active Git-Bash terminal shows you the prompt structure of:
 ```
 Prompt Symbols:
 
