@@ -50,7 +50,7 @@ git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_p
 ```
 3. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
-~/.pure_bash_prompt/install_pure_bash_prompt.sh
+sh ~/.pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
 ### Windows
