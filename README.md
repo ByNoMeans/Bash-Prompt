@@ -12,14 +12,14 @@ An example session would look as follows. It displays the usage of aliases, prom
 
 The terminal prompt takes the following form in each terminal: 
 
-````
+```
 <nonAbsoluteDirectory> <gitInfo>
 <SSH-info> <virtualenvInfo> <promptSymbol>
 ```
 
 Within a git repository, not ssh-ed in, and without a virtualenv, the terminal format would be as follows: 
 
-````
+```
 <nonAbsoluteDirectory> <ifBranchDirty><branchName> <upstream> <symbols>
 <promptSymbol>
 ```
