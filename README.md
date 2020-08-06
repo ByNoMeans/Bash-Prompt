@@ -36,6 +36,10 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 There is always a gigantic variation in the location of people's files with respect to terminals. No installation script is provided, as I would prefer you to be given the maximum control. If you are one of those people, execute the following commands but with respect to your proper file locations.
 
+
+In an ELEVATED command prompt:
+
+
 1. Clone the repository
 ```
 git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_prompt
