@@ -1,6 +1,6 @@
 # Bash-Prompt
 
-An informative, non-overwhelming, clean, and simple alternative to the traditional Git-Bash for Windows prompt.
+An informative, non-overwhelming, clean, and fast alternative to the traditional Git-Bash for Windows prompt.
 
 ## Installation
 
