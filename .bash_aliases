@@ -98,7 +98,6 @@ Virtual Environment aliases:
 
 alias psymbols="echo $'
 Prompt Symbols:
-
    ≠                   No upstream
    ✗                   No remote
    ↑                   Commits ahead
