@@ -8,7 +8,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
 2. [Pure](https://github.com/sindresorhus/pure)
-3. 
+3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/blob/master/command_prompt.bash)
 
 ## Installation
 Copy the contents of `bash.bashrc` and `~.bash_aliases` (create if not yet existing) to your `/Program Files/Git/etc/bash.bashrc` and `~/.bash_aliases` files. The prompt looks the best in "dracula" theme, set by "Terminal Title Bar" >> "Options" >> "Theme." Change the terminal transparency to Low/Medium for optimum aesthetic in this tab as well.
@@ -16,10 +16,13 @@ Copy the contents of `bash.bashrc` and `~.bash_aliases` (create if not yet exist
 ## Aliases
 
 Bash-Prompt offers simple, easy-to-remember aliases for:
+
 1. Git
 2. Git Flow
 3. Virtual Environments
 4. Miscellaneous (general convenience)
+
+Additionally, the git aliases use git-completion, so their usage would parallel exactly that of not using the alias in the first place.
 
 ## Tips
  
