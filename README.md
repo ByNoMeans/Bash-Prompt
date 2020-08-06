@@ -42,7 +42,7 @@ git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure_bash_p
 ```
 2. Copy `bash.bashrc` or `bash-documented.bashrc` to /Git/etc/. If you prefer documentation and chose the latter, make sure to rename it to `bash.bashrc`
 ```
-mv ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
+cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
 ```
 3. Copy `.bash_profile`, `.git-completion.bash`, `.bash_aliases`, and `.bashrc` to ~
 ```
