@@ -32,6 +32,7 @@ alias gch='git checkout'
 __git_complete gch _git_checkout
 alias gcm='git commit'
 __git_complete gcm _git_commit
+alias gcmm='git commit -m'
 alias gcl='git clone'
 __git_complete gcl _git_clone
 alias gcp='git cherry-pick'
