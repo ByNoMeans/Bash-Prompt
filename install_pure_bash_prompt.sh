@@ -1,5 +1,4 @@
 if [ -e ~/.pure_bash_prompt ]; then
-  if [ -e ~/gitstatus ]; then
     if [ -e /c/Program\ Files/Git/ ]; then
       # Copy bash.bashrc or bash-documented.bashrc to /Git/etc/. If you prefer documentation and chose the latter, make sure to rename it to bash.bashrc
       cp -i ~/.pure_bash_prompt/bash.bashrc /c/Program\ Files/Git/etc
@@ -18,9 +17,6 @@ if [ -e ~/.pure_bash_prompt ]; then
     else
       echo "Install git before installing pure-bash-prompt"
     fi
-  else
-    echo "Install gitstatus before installing pure-bash-prompt"
-  fi
 else
   echo "Clone the repository before installing pure-bash-prompt"
 fi
