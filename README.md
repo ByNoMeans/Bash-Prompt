@@ -56,6 +56,10 @@ cp -i ~/.pure_bash_prompt/.bash_profile ~ && cp -i ~/.pure_bash_prompt/.git-comp
 ```
 git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
 ```
+5. Don't let gitstatus be the default prompt
+```
+sed -i "$(($(wc -l < ~/gitstatus/gitstatus.prompt.sh)-20)),\$d" ~/gitstatus/gitstatus.prompt.sh
+```
 
 ## Configuration
 
