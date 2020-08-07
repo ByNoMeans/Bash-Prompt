@@ -24,20 +24,21 @@ There is always a gigantic variation in the location of people's files with resp
 
 > :warning: **The mentioned files will be overwritten with the following commands. Your prompt will still ask you individually if you want to overwrite the files, but be cautious!**
 
-#### In an ELEVATED Windows Command Prompt:
+#### In an ELEVATED BASH Command Prompt:
 
 1. Backup your files
 2. Install gitstatus
 ```
-git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
+git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
+sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
 ```
 3. Clone the repository
 ```
-git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt %HomeDrive%%HomePath%/pure_bash_prompt
+git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt ~/pure_bash_prompt
 ```
 4. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
-%HomeDrive%%HomePath%/pure_bash_prompt/install_pure_bash_prompt.sh
+sh ~/pure_bash_prompt/install_pure_bash_prompt.sh
 ```
 
 ## Layout
