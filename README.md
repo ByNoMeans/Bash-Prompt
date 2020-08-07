@@ -27,7 +27,7 @@ Run `psymbols` for more info.
    
 ## Inspiration
 
-No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `bash-prompt`'s themeing, symbols, and general format.
+No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `pure-bash-prompt`'s themeing, symbols, and general format.
 
 1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
 2. [Pure](https://github.com/sindresorhus/pure)
