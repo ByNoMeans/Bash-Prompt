@@ -1,4 +1,6 @@
-function cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
+function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
+function _compile_cpp() { g++ $1 -o a && ./a; }
+function _ssh_bash() { ssh -t $(whoami)@$1 "bash -l"; }
 
 alias phelp="echo $'
 Run the following commands to help understand the prompt:
@@ -10,8 +12,10 @@ Run the following commands to help understand the prompt:
 
 . ~/.git-completion.bash
 
-alias cd..='cd_up'
+alias cd..='_cd_up'
 alias cls='clear'
+alias crun='_compile_cpp'
+alias sshb='_ssh_bash'
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
 alias srcalias='. ~/.bash_aliases'

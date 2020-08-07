@@ -39,5 +39,5 @@ if [ ! -e ~/.bashrc ]; then
 else 
   echo "A ~/.bashrc exists; will be renamed to ~/.bashrc.backup"
   mv ~/.bashrc ~/.bashrc.backup
-  pause
+  sh ~/pure-bash-prompt/install_pure_bash_prompt.sh
 fi
