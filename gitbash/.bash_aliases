@@ -16,7 +16,6 @@ alias cd..='_cd_up'
 alias cls='clear'
 alias crun='_compile_cpp'
 alias sshb='_ssh_bash'
-alias sshg='ssh git@github.com'
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
 alias srcalias='. ~/.bash_aliases'
@@ -118,4 +117,3 @@ Prompt Symbols:
    Pink: index status.
    Grey: working tree status.
    Blue: a problem or something you should update.'"
-

@@ -50,7 +50,6 @@ function _parse_git_status() {
   is_dirty=""
   is_dirty="false"
   is_untracked=""
-  is_untracked="false"
   declare -a index_array=()
   declare -a working_array=()
   local index
@@ -73,7 +72,7 @@ function _parse_git_status() {
         index+='Ψ'
         ;;
       "?")
-        is_untracked="true"
+        is_untracked="%"
         ;;
       esac
     fi
@@ -94,12 +93,12 @@ function _parse_git_status() {
         working+='Ψ'
         ;;
       "?")
-        is_untracked="true"
+        is_untracked="%"
         ;;
       esac
     fi
   done < <(git status --porcelain)
-  [ "$index" ] && index='\033[38;5;218m\]'"$index"' '
+  [ "$index" ] && index='\033[38;5;212m\]'"$index"' '
   [ "${#working_array[@]}" -ne 0 ] || [ "${#index_array[@]}" -ne 0 ] && is_dirty="true"
   git_status="$index$working"
 }
@@ -129,8 +128,7 @@ function _parse_git_info() {
 function _parse_git_bad() {
   git_bad=""
   [[ ! $(git remote) ]] && git_bad+='✗'
-  [ "$is_upstream" ] && git_bad+="$is_upstream"
-  [ "$is_untracked" == "true" ] && git_bad+='%'
+  git_bad+="$is_upstream$is_untracked"
   [ "$git_bad" ] && git_bad='\[\033[95;38;5;110m\]'"$git_bad"' '
 }
 
@@ -146,7 +144,7 @@ function _git_format() {
 
 function _set_ssh() {
   ssh_prompt=""
-  [ "$in_ssh_client" == "true" ] && ssh_prompt='\[\033[95;38;5;240m\]\u\[\033[95;38;5;245m\]|\[\033[95;38;5;095m\]\h '
+  [ "$in_ssh_client" == "true" ] && ssh_prompt='\[\033[95;38;5;131m\]\u\[\033[95;38;5;240m\]|\[\033[95;38;5;095m\]\h '
 }
 
 function _set_venv() {
