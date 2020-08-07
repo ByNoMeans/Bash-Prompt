@@ -18,28 +18,24 @@ if [ ! -e ~/.bashrc ]; then
             cp -i ~/pure_bash_prompt/cygwin/bash.bashrc '/c/cygwin/etc'
           else
             echo "Make sure cygwin is installed correctly. /c/cygwin/etc/nsswitch.conf does not exist."
-            pause
           fi
         else 
           echo "Install git before installing pure-bash-prompt, or make sure it is located in /c/Program Files; /c/Program\ Files/Git/ does not exist."
-          pause
         fi
       else 
         echo "Install gitstatus before installing pure-bash-prompt, or make sure it is located in ~; ~/gitstatus does not exist"
-        pause
       fi
     else
       echo "Clone the repository before installing pure-bash-prompt, or make sure it is located in ~; ~/pure_bash_prompt does not exist"
-      pause
     fi
   else 
     echo "Install cygwin before installing pure-bash-prompt, or make sure it is located in /c/cygwin; /c/cygwin/etc/bash.bashrc does not exist."
-    pause
   fi
 else 
   echo "A ~/.bashrc exists; will be renamed to ~/.bashrc.backup"
   mv ~/.bashrc ~/.bashrc.backup
-  pause
 fi
+
+[ $? -ne 0 ] && pause
 
  
