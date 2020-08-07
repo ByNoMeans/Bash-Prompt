@@ -5,11 +5,11 @@ function pause(){
 
 if [ ! -e ~/.bashrc ]; then
   if [ -e /c/cygwin/etc/bash.bashrc ]; then
-    echo "db_home: /%H">>/c/cygwin/etc/nsswitch.conf
     if [ -e ~/pure_bash_prompt ]; then
       if [ -e ~/gitstatus ]; then
         if [ -e /c/Program\ Files/Git/ ]; then
           if [ -e /c/cygwin/etc/nsswitch.conf ]; then
+	    echo "db_home: /%H">>/c/cygwin/etc/nsswitch.conf
             cp -i ~/pure_bash_prompt/gitbash/bash.bashrc '/c/Program Files/Git/etc'
             cp -i ~/pure_bash_prompt/gitbash/.minttyrc ~
             cp -i ~/pure_bash_prompt/gitbash/.bash_profile ~
