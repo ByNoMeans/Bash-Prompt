@@ -15,9 +15,11 @@ Run the following commands to help understand the prompt:
 alias cd..='_cd_up'
 alias cls='clear'
 alias crun='_compile_cpp'
+alias jq='/c/Program\ Files/Git/bin/jq'
 alias sshb='_ssh_bash'
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
+alias src='source'
 alias srcalias='. ~/.bash_aliases'
 alias srcprof='. ~/.bash_profile'
 alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
@@ -118,4 +120,3 @@ Prompt Symbols:
    Pink: index status.
    Grey: working tree status.
    Blue: a problem or something you should update.'"
-
