@@ -8,21 +8,6 @@ An example session would look as follows (click for better resolution). It displ
 
 ![GitBash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
 
-## Layout
-
-The terminal prompt takes the following form in each session: 
-
-```
-<nonAbsoluteDirectory> <gitInfo>
-<SSH-info> <virtualenvInfo> <promptSymbol>
-```
-
-Within a git repository, not ssh-ed in, and without a virtualenv, the terminal format would be as follows: 
-
-```
-<nonAbsoluteDirectory> <ifBranchDirty><ifStashes><branchName> <upstream> <ifRemote><ifUpstream><untracked> <added><modified><deleted><unmerged>
-<promptSymbol>
-```
 Run `psymbols` for more info.
    
 ## Inspiration
@@ -41,8 +26,6 @@ There is always a gigantic variation in the location of people's files with resp
 
 #### In an ELEVATED Windows Command Prompt:
 
-In an ELEVATED terminal:
-
 1. Backup your files
 2. Install gitstatus
 ```
@@ -52,9 +35,25 @@ git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed 
 ```
 git clone --depth 1 https://github.com/ByNoMeans/pure-bash-prompt %HomeDrive%%HomePath%/pure_bash_prompt
 ```
-3. Run the installation script (press `y + Enter` for any prompts to override files)
+4. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
 %HomeDrive%%HomePath%/pure_bash_prompt/install_pure_bash_prompt.sh
+```
+
+## Layout
+
+The terminal prompt takes the following form in each session: 
+
+```
+<nonAbsoluteDirectory> <gitInfo>
+<SSH-info> <virtualenvInfo> <promptSymbol>
+```
+
+Within a git repository, not ssh-ed in, and without a virtualenv, the terminal format would be as follows: 
+
+```
+<nonAbsoluteDirectory> <ifBranchDirty><ifStashes><branchName> <upstream> <ifRemote><ifUpstream><untracked> <added><modified><deleted><unmerged>
+<promptSymbol>
 ```
 
 ## Aliases
