@@ -41,5 +41,3 @@ else
   mv ~/.bashrc ~/.bashrc.backup
   pause
 fi
-
- 
