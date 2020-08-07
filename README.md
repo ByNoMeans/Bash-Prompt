@@ -29,8 +29,7 @@ There is always a gigantic variation in the location of people's files with resp
 1. Backup your files
 2. Install gitstatus
 ```
-git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
-sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
+git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
 ```
 3. Clone the repository
 ```
