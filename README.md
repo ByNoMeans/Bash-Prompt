@@ -26,10 +26,6 @@ There is always a gigantic variation in the location of people's files with resp
 
 #### In an ELEVATED BASH Command Prompt:
 
-0. Make sure db_home is set to /%H in /c/cygwin/etc/nsswitch.conf (so the prompt installs to your _actual_ `~`, not /cygwin/home/<user>)
-   ```
-   echo "db_home: /%H">>/c/cygwin/etc/nsswitch.conf
-   ```
 1. Backup your files
 2. Install gitstatus
 ```
