@@ -16,6 +16,7 @@ alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
 alias srcalias='. ~/.bash_aliases'
 alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
+alias open='start'
 alias tree='cmd //c tree //f'
 alias pfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
