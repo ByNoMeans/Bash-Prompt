@@ -26,9 +26,14 @@
 # Exclude *dlls from TAB expansion
 export EXECIGNORE="*.dll"
 
+alias start='cygstart'
+alias open='cygstart'
+
 if [ -f /c/Program\ Files/Git/etc/bash.bashrc ]; then
   . /c/Program\ Files/Git/etc/bash.bashrc
   PROMPT_COMMAND=_set_prompt
+else
+  PROMPT_COMMAND='> '
 fi
 
 
