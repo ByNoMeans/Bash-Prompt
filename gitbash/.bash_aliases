@@ -19,6 +19,7 @@ alias sshb='_ssh_bash'
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
 alias srcalias='. ~/.bash_aliases'
+alias srcprof='. ~/.bash_profile'
 alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
 alias open='start'
 alias tree='cmd //c tree //f'
@@ -117,3 +118,4 @@ Prompt Symbols:
    Pink: index status.
    Grey: working tree status.
    Blue: a problem or something you should update.'"
+
