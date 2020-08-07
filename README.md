@@ -24,7 +24,7 @@ There is always a gigantic variation in the location of people's files with resp
 
 > :warning: **The mentioned files will be overwritten with the following commands. Your prompt will still ask you individually if you want to overwrite the files, but be cautious!**
 
-#### In an ELEVATED BASH Command Prompt:
+#### In an ELEVATED BASH Terminal:
 
 1. Backup your files
 2. Install gitstatus
