@@ -2,4 +2,5 @@ Transfer to ZSH
     Link: https://dev.to/jasmin/a-brief-difference-between-zsh-and-bash-5ebp
     Note array, escape, and other differences; READ IT ALL!
 More Prompt Elements
-    etc symbols (view inspiration)
+    etc symbols (view inspiration, spaceship prompt, other mac prompts)
+Add customizability with prompt options to include
