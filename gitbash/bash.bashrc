@@ -65,15 +65,21 @@ function _parse_git_status() {
       "M")
         index+='~'
         ;;
+	  "?")
+        is_untracked="%"
+        ;;
       "D")
         index+='-'
         ;;
+	  "R")
+	    index+='≌'
+	    ;;
       "U")
         index+='Ψ'
         ;;
-      "?")
-        is_untracked="%"
-        ;;
+	  "C")
+		index+='#'
+		;;
       esac
     fi
     local working_status="${line:1:1}"
@@ -86,15 +92,21 @@ function _parse_git_status() {
       "M")
         working+='~'
         ;;
+	  "?")
+        is_untracked="%"
+        ;;
       "D")
         working+='-'
         ;;
+      "R")
+	    working+='≌'
+	    ;;
       "U")
         working+='Ψ'
         ;;
-      "?")
-        is_untracked="%"
-        ;;
+	  "C")
+		working+='#'
+		;;
       esac
     fi
   done < <(git status --porcelain)
