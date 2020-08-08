@@ -1,1 +1,1 @@
-test -f ~/.bash_profile && . .bash_profile
+test -f ~/.bash_profile && . ~/.bash_profile
