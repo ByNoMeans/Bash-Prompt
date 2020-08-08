@@ -4,7 +4,7 @@ An informative, non-overwhelming, clean, easy-to-change and quick alternative to
 
 ## Note:
 
-I am aware of the lack-luster Windows prompts that are available in comparison to Linux and Mac systems. While it's certain that things like [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) will never be implemented for terminals such as cygwin and GitBash, pure-bash-prompt seeks to emulate the most highly praised terminals in a Windows environment, while maintaining customizability. The latter, along with inspired implementation with respect to the great [SpaceShip Prompt](https://github.com/denysdovhan/spaceship-prompt) are currently being worked on.
+I am aware of the lack-luster Windows prompts that are available in comparison to Linux and Mac systems. While it's certain that things like [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) will never be implemented for terminals such as cygwin and GitBash, pure-bash-prompt seeks to emulate the most highly praised terminals in a Windows environment, while maintaining customizability. The latter, along with inspired implementation with respect to the great [Spaceship Prompt](https://github.com/denysdovhan/spaceship-prompt) are currently being worked on.
 
 ## Screenshot
 
@@ -21,6 +21,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
 2. [Pure](https://github.com/sindresorhus/pure)
 3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/)
+4. [Spaceship Prompt](https://github.com/denysdovhan/spaceship-prompt)
 
 ## Installation
 
