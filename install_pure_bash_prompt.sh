@@ -37,7 +37,8 @@ if [ ! -e ~/.bashrc ]; then
     pause
   fi
 else 
-  echo "A ~/.bashrc exists; will be renamed to ~/.bashrc.backup"
+  echo "A ~/.bashrc exists; will be renamed to ~/.bashrc.backup", and a .bashrc with the correct contents will be made.
   mv ~/.bashrc ~/.bashrc.backup
+  echo "test -f ~/.bash_profile && . ~/.bash_profile">~/.bashrc
   sh ~/pure-bash-prompt/install_pure_bash_prompt.sh
 fi
