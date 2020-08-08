@@ -4,6 +4,7 @@ function pause(){
 }
 
 if [ ! -e ~/.bashrc ]; then
+  echo "test -f ~/.bash_profile && . ~/.bash_profile">~/.bashrc
   if [ -e /c/cygwin/etc/bash.bashrc ]; then
     if [ -e ~/pure_bash_prompt ]; then
       if [ -e ~/gitstatus ]; then
@@ -37,8 +38,7 @@ if [ ! -e ~/.bashrc ]; then
     pause
   fi
 else 
-  echo "A ~/.bashrc exists; will be renamed to ~/.bashrc.backup", and a .bashrc with the correct contents will be made.
+  echo "A ~/.bashrc exists; will be renamed to ~/.bashrc.backup."
   mv ~/.bashrc ~/.bashrc.backup
-  echo "test -f ~/.bash_profile && . ~/.bash_profile">~/.bashrc
   sh ~/pure-bash-prompt/install_pure_bash_prompt.sh
 fi
