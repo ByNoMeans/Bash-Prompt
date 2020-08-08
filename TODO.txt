@@ -4,4 +4,6 @@ Transfer to ZSH
 Prompt Elements
     etc symbols (view inspiration, spaceship prompt, other mac prompts)
 Customizability with prompt options to include
+Update rename and copied symbols in help alias
+    Improve interpretability of all symbols themselves (best fit? view inspiration)
 Scheduled Task tutorial, files 
