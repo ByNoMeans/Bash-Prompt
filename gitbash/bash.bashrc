@@ -36,23 +36,15 @@ unset _warning_prefix
 unset _warning_file
 unset _warning
 
-# Use MYSYS2_PS1 if set if no PS1 already exported.
-# Default "user@host MSYSTEM current_dir" format
 [[ -n "${MSYS2_PS1}" ]] && export PS1="${MSYS2_PS1}"
-#if we have the "High Mandatory Level" group, it means we're elevated
-#if [[ -n "$(command -v getent)" ]] && id -G | grep -q "$(getent -w group 'S-1-16-12288' | cut -d: -f2)"
-#then _ps1_symbol='\[\e[1m\]#\[\e[0m\]'
-#else _ps1_symbol='\$'
-#fi
 
 function _parse_git_status() {
   git_status=""
   is_dirty=""
   is_dirty="false"
-  is_untracked=""
   declare -a index_array=()
   declare -a working_array=()
-  local index
+  local index='\033[38;5;212m\]'
   local working='\033[38;5;255m\]'
   while IFS= read -r line; do
     local index_status="${line::1}"
@@ -66,7 +58,7 @@ function _parse_git_status() {
         index+='~'
         ;;
 	  "?")
-        is_untracked="%"
+        index+='%'
         ;;
       "D")
         index+='-'
@@ -93,7 +85,7 @@ function _parse_git_status() {
         working+='~'
         ;;
 	  "?")
-        is_untracked="%"
+        working+='%'
         ;;
       "D")
         working+='-'
@@ -110,38 +102,40 @@ function _parse_git_status() {
       esac
     fi
   done < <(git status --porcelain)
-  [ "$index" ] && index='\033[38;5;212m\]'"$index"' '
+  if [ "$index" != '\033[38;5;212m\]' ]; then 
+    index='\[\033[1;31m\]['"$index"
+    if [ "$working" != '\033[38;5;255m\]' ]; then
+      working='\[\033[1;31m\]/'"$working"'\[\033[1;31m\]]'
+	else 
+	  index+='\[\033[1;31m\]]'
+	fi
+  else 
+    [ "$working" != '\033[38;5;255m\]' ] && working='\[\033[1;31m\]['"$working"'\[\033[1;31m\]]'
+  fi
   [ "${#working_array[@]}" -ne 0 ] || [ "${#index_array[@]}" -ne 0 ] && is_dirty="true"
-  git_status="$index$working"
+  git_status+="$index$working"
 }
 
 function _parse_git_info() {
   git_info=""
   is_upstream=""
+  up_down=""
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   git_info='\[\033[95;38;5;209m\]'"$branch"
-  [ "$is_dirty" == "true" ] && git_info='\[\033[95;38;5;247m\]*'"$git_info"
+  [ "$is_dirty" ] && git_info='\[\033[95;38;5;247m\]*'"$git_info"
   [[ $(git stash list) ]] && git_info='\[\033[95;38;5;247m\]^'"$git_info"
   upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
   if [ "$upstream" ]; then
-    git_info+='\[\033[95;38;5;247m\] → \[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;247m\]/\[\033[95;38;5;209m\]'"${upstream##*/}"
+    git_info+='\[\033[95;38;5;247m\] → \[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;247m\]/\[\033[95;38;5;209m\]'"${upstream##*/} "
     commits=($(git rev-list --left-right --count "$branch"..."$upstream"))
-    local up_down=""
     [ "${commits[0]}" != "0" ] && up_down+='↑'
     [ "${commits[1]}" != "0" ] && up_down+='↓'
-    [ "$up_down" ] && up_down=' \[\033[95;38;5;110m\]'"$up_down"
-    git_info+="$up_down"
+    [ "$up_down" ] && git_info+='\[\033[95;38;5;110m\]'"$up_down"
   elif [ "$branch" != "support/support" ] && [ "$branch" != "hotfix/hotfix" ] && [ "$branch" != "bugfix/bugfix" ] && [ "$branch" != "release/release" ] && [ "$branch" != "feature/feature" ]; then
-    is_upstream='≠'
+    git_info+='≠'
   fi
-  git_info+=' '
-}
-
-function _parse_git_bad() {
-  git_bad=""
-  [[ ! $(git remote) ]] && git_bad+='✗'
-  git_bad+="$is_upstream$is_untracked"
-  [ "$git_bad" ] && git_bad='\[\033[95;38;5;110m\]'"$git_bad"' '
+  [[ ! $(git remote) ]] && git_info+='✗'
+  [ "${git_info: -1}" == "≠" ] || [ "${git_info: -1}" == "✗" ] || [ "$up_down" ] && git_info+=' '
 }
 
 function _git_format() {
@@ -149,8 +143,7 @@ function _git_format() {
   if [ -d .git ]; then
     _parse_git_status
     _parse_git_info
-    _parse_git_bad
-    git_string+="$git_info$git_bad$git_status"
+    git_string+="$git_info$git_status"
   fi
 }
 
