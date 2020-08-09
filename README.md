@@ -1,6 +1,6 @@
 # pure-bash-prompt
 
-An informative, non-overwhelming, clean, easy-to-change and fast alternative to the traditional Git-Bash for Windows prompt.
+An informative, non-overwhelming, clean, easy-to-change and quick alternative to the traditional Git-Bash for Windows prompt.
 
 ## Note:
 
