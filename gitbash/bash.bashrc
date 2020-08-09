@@ -40,8 +40,6 @@ unset _warning
 
 function _parse_git_status() {
   git_status=""
-  is_dirty=""
-  is_dirty="false"
   declare -a index_array=()
   declare -a working_array=()
   local index='\033[38;5;212m\]'
@@ -63,15 +61,15 @@ function _parse_git_status() {
       "D")
         index+='-'
         ;;
-	  "R")
-	    index+='≌'
-	    ;;
+      "R")
+	index+='≌'
+	;;
       "U")
         index+='Ψ'
         ;;
-	  "C")
-		index+='#'
-		;;
+      "C")
+        index+='#'
+        ;;
       esac
     fi
     local working_status="${line:1:1}"
@@ -84,21 +82,21 @@ function _parse_git_status() {
       "M")
         working+='~'
         ;;
-	  "?")
+      "?")
         working+='%'
         ;;
       "D")
         working+='-'
         ;;
       "R")
-	    working+='≌'
-	    ;;
+	working+='≌'
+	;;
       "U")
         working+='Ψ'
         ;;
-	  "C")
-		working+='#'
-		;;
+      "C")
+	working+='#'
+	;;
       esac
     fi
   done < <(git status --porcelain)
@@ -112,7 +110,6 @@ function _parse_git_status() {
   else 
     [ "$working" != '\033[38;5;255m\]' ] && working='\[\033[1;31m\]['"$working"'\[\033[1;31m\]]'
   fi
-  [ "${#working_array[@]}" -ne 0 ] || [ "${#index_array[@]}" -ne 0 ] && is_dirty="true"
   git_status+="$index$working"
 }
 
