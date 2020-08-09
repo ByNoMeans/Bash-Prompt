@@ -9,3 +9,5 @@ Improve symbols before the branch name (more than if it's dirty and the branch n
 Update rename and copied symbols in help alias
     Improve interpretability of all symbols themselves (best fit? view inspiration)
 Scheduled Task tutorial, files 
+Make sure to check versions, ANYTHING if continue with spaceship installations at .bash_profile if possible
+    Checking node --version, for example, takes .117s each time; you don't want this to happen every terminal session.
