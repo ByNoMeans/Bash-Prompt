@@ -61,9 +61,9 @@ function _parse_git_status() {
       "D")
         index+='-'
         ;;
-	  "R")
-	    index+='$'
-	    ;;
+      "R")
+        index+='$'
+	;;
       "U")
         index+='Ψ'
         ;;
@@ -95,8 +95,8 @@ function _parse_git_status() {
         working+='Ψ'
         ;;
       "C")
-		working+='#'
-		;;
+	working+='#'
+	;;
       esac
     fi
   done < <(git status --porcelain)
