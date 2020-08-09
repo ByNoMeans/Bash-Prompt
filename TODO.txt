@@ -4,6 +4,7 @@ Transfer to ZSH
 Prompt Elements
     etc symbols (view inspiration, spaceship prompt, other mac prompts)
 Customizability with prompt options to include
+Improve symbols before the branch name (more than if it's dirty and the brnach name)
 Update rename and copied symbols in help alias
     Improve interpretability of all symbols themselves (best fit? view inspiration)
 Scheduled Task tutorial, files 
