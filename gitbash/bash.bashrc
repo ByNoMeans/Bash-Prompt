@@ -122,7 +122,6 @@ function _parse_git_info() {
   up_down=""
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   git_info='\[\033[95;38;5;209m\]'"$branch"
-  [ "$is_dirty" ] && git_info='\[\033[95;38;5;247m\]*'"$git_info"
   [[ $(git stash list) ]] && git_info='\[\033[95;38;5;247m\]^'"$git_info"
   upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
   if [ "$upstream" ]; then
