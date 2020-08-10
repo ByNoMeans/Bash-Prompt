@@ -16,3 +16,4 @@ Make sure to check versions, ANYTHING if continue with spaceship installations a
 Fixup venv creation in cygwin
 Add if-else format to help concise code
     [ true ] && success || failure
+Change font?
