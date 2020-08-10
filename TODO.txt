@@ -6,8 +6,6 @@ Prompt Elements
 Customizability with prompt options to include
 Improve symbols before the branch name (more than if it's dirty and the branch name)
     https://blog.backslasher.net/git-prompt-variables.html; not much anymore here
-Update rename and copied symbols in help alias
-    Improve interpretability of all symbols themselves (best fit? view inspiration)
 Scheduled Task tutorial, files
 Updaterc, profile, etc aliases
 Make sure to check versions, ANYTHING if continue with spaceship installations at .bash_profile if possible
@@ -19,4 +17,7 @@ Add if-else format to help concise code
 Change font?
 Check if in cygwin or Gitbash? Indicator? Even necessary?
 Support nodejs version, rust (remember: customizability)
-Font(s); powerline
+Font(s); powerline (JUST SWITCH)
+Update rename and copied symbols in help alias
+    Improve interpretability of all symbols themselves (best fit? view inspiration)
+    View inspo
