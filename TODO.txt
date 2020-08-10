@@ -18,3 +18,5 @@ Add if-else format to help concise code
     [ true ] && success || failure
 Change font?
 Check if in cygwin or Gitbash? Indicator? Even necessary?
+Support nodejs version, rust (remember: customizability)
+Font(s); powerline
