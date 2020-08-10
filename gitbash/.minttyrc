@@ -16,3 +16,4 @@ Term=xterm-256color
 Padding=20
 Columns=70
 Rows=18
+RightClickAction=paste
