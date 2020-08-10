@@ -108,7 +108,7 @@ function _parse_git_status() {
 	  index+='\[\033[1;31m\]]'
 	fi
   else 
-    [ "$working" != '\033[38;5;255m\]' ] && working='\[\033[1;31m\]['"$working"'\[\033[1;31m\]]'
+    [ "$working" != '\033[38;5;255m\]' ] && working='\[\033[1;31m\]['"$working"'\[\033[1;31m\]] '
   fi
   git_status+="$index$working"
 }
@@ -151,13 +151,19 @@ function _set_ssh() {
 function _set_venv() {
   export VIRTUAL_ENV_DISABLE_PROMPT=1
   venv=""
+  python_version=""
+  python_version=""
   VIRT_ENV_TXT=""
   if [ "$VIRTUAL_ENV" != "" ]; then
     VIRT_ENV_TXT=$(basename \""$VIRTUAL_ENV")
   elif [ "$(basename \""$VIRTUAL_ENV"\")" = "__" ]; then
     VIRT_ENV_TXT=[$(basename \`dirname \""$VIRTUAL_ENV"\"\`)]
   fi
-  [ "${VIRT_ENV_TXT}" != "" ] && venv='\[\033[95;38;5;245m\](\[\033[95;38;5;209m\]'"$VIRT_ENV_TXT"'\[\033[95;38;5;245m\]) '
+  if [ "${VIRT_ENV_TXT}" != "" ]; then
+	venv='\[\033[95;38;5;245m\](\[\033[95;38;5;209m\]'"$VIRT_ENV_TXT"'\[\033[95;38;5;245m\]) '
+	python_version="$(python -V 2>/dev/null)"
+	[ "$python_version" ] && python_version='\[\033[95;38;5;226m\]🐍 '"${python_version##* } "
+  fi
 }
 
 function _set_prompt_symbol() {
@@ -169,11 +175,11 @@ function _set_prompt() {
   PS1=""
   PS1+='\[\033]0;'"\007\]"'\n\[\033[95;38;5;121m\]\w '
   git_string=""
+  _set_venv
   _git_format
   _set_ssh
-  _set_venv
   _set_prompt_symbol
-  PS1+="$git_string\n$ssh_prompt$venv$prompt_symbol"
+  PS1+="$git_string$python_version\n$ssh_prompt$venv$prompt_symbol"
 }
 
 export PROMPT_COMMAND=_set_prompt
