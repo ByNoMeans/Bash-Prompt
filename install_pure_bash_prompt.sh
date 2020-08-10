@@ -14,8 +14,9 @@ if [ ! -e ~/.bashrc ]; then
             cp -i ~/pure_bash_prompt/gitbash/bash.bashrc '/c/Program Files/Git/etc'
             cp -i ~/pure_bash_prompt/gitbash/.minttyrc ~
             cp -i ~/pure_bash_prompt/gitbash/.bash_profile ~
-            cp -i ~/pure_bash_prompt/.git-completion.bash ~
+            cp -i ~/pure_bash_prompt/gitbash/.git-completion.bash ~
             cp -i ~/pure_bash_prompt/gitbash/.bash_aliases ~
+	    cp -i ~/pure_bash_prompt/gitbash/gitbash.jpg ~
             cp -i ~/pure_bash_prompt/cygwin/bash.bashrc '/c/cygwin/etc'
           else
 	    echo "Make sure cygwin is installed correctly. /c/cygwin/etc/nsswitch.conf does not exist."
