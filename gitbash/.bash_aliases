@@ -114,6 +114,8 @@ Prompt Symbols:
    +                   Added
    -                   Deleted
    ~                   Modified
+   $                   Renamed
+   #                   Copied
    %                   Untracked
    Ψ                   Unmerged
 
