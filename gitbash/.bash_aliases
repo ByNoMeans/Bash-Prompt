@@ -96,13 +96,17 @@ alias pgit="echo $'
    gst            stash
    gt             tag'"
 
+alias cleanvenv='sed -i 's/\r$//g' ./venv/Scripts/activate'
+alias mkvenv='virtualenv venv >/dev/null 2>&1'
 alias rmvenv='deactivate venv && rm -rf venv'
-alias setvenv='virtualenv venv >/dev/null 2>&1 && source venv/Scripts/activate'
-alias srcvenv='source venv/Scripts/activate'
+alias srcvenv='. venv/Scripts/activate'
+alias setvenv='mkvenv && srcvenv'
 alias pvenv="echo $'
 Virtual Environment aliases:
+   cleanvenv      Silently remove carriage returns
+   mkvenv         Silently create venv
    rmvenv         Silently remove venv
-   setvenv        Silently create venv
+   setvenv        Silent create, source venv
    srcvenv        Silently source venv'"
 
 alias psymbols="echo $'
