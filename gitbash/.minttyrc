@@ -1,5 +1,5 @@
 ClipShortcuts=yes
-Background=~/gitbash.jpg, 95
+Background=~/gitbash.jpg, 40
 ThemeFile=dracula
 CtrlShiftShortcuts=yes
 Locale=C
@@ -8,7 +8,7 @@ Font=Consolas
 FontWeight=400
 FontIsBold=no
 FontHeight=18
-Transparency=low
+Transparency=off
 ClicksPlaceCursor=yes
 Scrollbar=none
 BellType=0
