@@ -1,6 +1,7 @@
 function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 function _compile_cpp() { g++ $1 -o a && ./a; }
 function _ssh_bash() { ssh -t $(whoami)@$1 \"bash -l\"; }
+function _mk_cd() { mkdir $1 && cd &1; }
 
 alias phelp="echo $'
 Run the following commands to help understand the prompt:
@@ -23,6 +24,7 @@ alias src='source'
 alias srcalias='. ~/.bash_aliases'
 alias srcprof='. ~/.bash_profile'
 alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
+alias mkcd='_mk_cd'
 alias open='start'
 alias tree='cmd //c tree //f'
 alias pfast="echo $'
