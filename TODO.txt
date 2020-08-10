@@ -17,3 +17,4 @@ Fixup venv creation in cygwin
 Add if-else format to help concise code
     [ true ] && success || failure
 Change font?
+Check if in cygwin or Gitbash? Indicator? Even necessary?
