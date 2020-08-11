@@ -158,7 +158,7 @@ function _set_venv() {
   if [ "${VIRT_ENV_TXT}" != "" ]; then
 	venv='\[\e[95;38;5;247m\](\[\e[95;38;5;209m\]'"$VIRT_ENV_TXT"'\[\e[95;38;5;247m\]) '
 	python_version="$(python -V 2>/dev/null)"
-	[ "$python_version" ] && python_version='\[\e[95;38;5;227m\]🐍'"${python_version##* } "
+	[ "$python_version" ] && python_version='\[\e[33m\]🐍'"${python_version##* } "
   fi 
 }
 
@@ -172,12 +172,12 @@ function _set_node() {
 
 function _set_prompt_symbol() {
   prompt_symbol=""
-  prompt_symbol="\$(if [ \$? = 0 ]; then echo \[\e[35m\]❯; else echo \[\033[31m\]❯; fi) "'\[\e[0m\]'
+  prompt_symbol="\$(if [ \$? = 0 ]; then echo \[\e[35m\]❯; else echo \[\e[31m\]❯; fi) "'\[\e[0m\]'
 }
 
 function _set_prompt() {
   PS1=""
-  PS1+='\[\e]0;'"\007\]"'\n\[\e[95;38;5;123m\]\w '
+  PS1+='\[\e]0;'"\007\]"'\n\[\e[36m\]\w '
   git_string=""
   _git_format
   _set_venv
