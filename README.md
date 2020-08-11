@@ -8,7 +8,7 @@ I am aware of the lack-luster Windows prompts that are available in comparison t
 
 ## Screenshot
 
-An example session would look as follows (click for better resolution). It displays the usage of aliases, prompt colors, git status symbols, and a color-changing prompt depending on the exit code of the last command. Also note the quick run-time of `time { gs; }`; this is caused by the usage of the gistatus repo.
+Click for better resolution. It displays the usage of aliases, prompt colors, git status symbols, and a color-changing prompt depending on the exit code of the last command. Also note the quick run-time of `time { gs; }`; this is caused by the usage of the gistatus repo.
 
 > :warning: I like to use the "glass" transparency setting within ~/.minttyrc. You change change it to low, medium, high, or off if you don't like being able to see your desktop background. [Here](https://mintty.github.io/mintty.1.html) are all of the options for your ~/.minttyrc.
 
