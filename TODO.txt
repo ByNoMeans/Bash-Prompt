@@ -7,17 +7,3 @@ Customizability with prompt options to include
 Improve symbols before the branch name (more than if it's dirty and the branch name)
     https://blog.backslasher.net/git-prompt-variables.html; not much anymore here
 Scheduled Task tutorial, files
-Updaterc, profile, etc aliases
-Make sure to check versions, ANYTHING if continue with spaceship installations at .bash_profile if possible
-    Checking node --version, for example, takes .117s each time; you don't want this to happen every terminal session.
-    However, checking if the file exists takes .000 seconds, and only in spoecific directories would the .1s be added on. So MOST can be added to bash.bashrc, as it is just verifying location in an instantaneous if statement.
-Fixup venv creation in cygwin
-Add if-else format to help concise code
-    [ true ] && success || failure
-Change font?
-Check if in cygwin or Gitbash? Indicator? Even necessary?
-Support nodejs version, rust (remember: customizability)
-Font(s); powerline (JUST SWITCH)
-Update rename and copied symbols in help alias
-    Improve interpretability of all symbols themselves (best fit? view inspiration)
-    View inspo
