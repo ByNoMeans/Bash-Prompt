@@ -1,6 +1,5 @@
 ClipShortcuts=yes
 Background=~/gitbash.jpg, 40
-ThemeFile=dracula
 CtrlShiftShortcuts=yes
 Locale=C
 Charset=UTF-8
@@ -17,3 +16,4 @@ Padding=20
 Columns=72
 Rows=18
 RightClickAction=paste
+ThemeFile=xterm
