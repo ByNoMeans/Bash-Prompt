@@ -36,7 +36,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 #### In an ELEVATED BASH Terminal:
 
 1. Backup your files
-2. Install [gitstatus](https://github.com/romkatv/gitstatus). Run the below command to clone the repo and maintain pure-bash-prompt prompt as well.
+2. Install [gitstatus](https://github.com/romkatv/gitstatus). Run the below command to clone gitstatus and maintain pure-bash-prompt prompt as well.
 ```
 git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
 ```
