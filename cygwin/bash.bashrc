@@ -29,12 +29,7 @@ export EXECIGNORE="*.dll"
 alias start='cygstart'
 alias open='cygstart'
 
-if [ -f /c/Program\ Files/Git/etc/bash.bashrc ]; then
-  . /c/Program\ Files/Git/etc/bash.bashrc
-  PROMPT_COMMAND=_set_prompt
-else
-  PROMPT_COMMAND='> '
-fi
+test -f /c/Program\ Files/Git/etc/bash.bashrc && . /c/Program\ Files/Git/etc/bash.bashrc
 
 # Set a default prompt of: user@host and current_directory
 # PS1='\[\e]0;Mintty  ~\w\a\]\n\[\033[32m\]\u'"$BIPurple"'@\[\033[0;34m\]ROG-PG279Q'"$BICyan"' >> \[\033[33m\]~\[\e[33m\]\w\[\e[0m\]\n\$ ' # Uncomment to use the terminal colours set in DIR_COLORS
