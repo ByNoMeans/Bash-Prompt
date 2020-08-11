@@ -32,7 +32,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 #### In an ELEVATED BASH Terminal:
 
 1. Backup your files
-2. Install gitstatus
+2. Install [gitstatus](https://github.com/romkatv/gitstatus)
 ```
 git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
 ```
