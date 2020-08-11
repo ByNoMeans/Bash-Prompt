@@ -70,6 +70,8 @@ __git_complete grbs _git_rebase
 alias grem='git remote'
 __git_complete grem _git_remote
 alias gres='git reset'
+alias grm='git rm'
+__git_complete grm _git_rm
 __git_complete gres _git_reset
 alias gs='git status'
 __git_complete gs _git_status
@@ -97,6 +99,7 @@ alias pgit="echo $'
    grbs           rebase
    grem           remote
    gres           reset
+   grm            remove
    gs             status
    gst            stash
    gt             tag'"
