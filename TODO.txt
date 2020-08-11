@@ -7,3 +7,5 @@ Customizability with prompt options to include
 Improve symbols before the branch name (more than if it's dirty and the branch name)
     https://blog.backslasher.net/git-prompt-variables.html; not much anymore here
 Scheduled Task tutorial, files
+Pyvenv vs venv? Spaceship prompt inspo
+Fix ssh
