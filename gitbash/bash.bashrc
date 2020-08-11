@@ -106,10 +106,10 @@ function _parse_git_status() {
     fi
   done < <(git status --porcelain -b)
   if [ "$index" ]; then 
-    index='\[\033[1;31m\][\033[38;5;212m\]'"$index"
-    [ "$working" ] && working='\[\033[1;31m\]/\033[38;5;255m\]'"$working"'\[\033[1;31m\]] ' || index+='\[\033[1;31m\]] '
-  else 
-	[ "$working" ] && working='\[\033[1;31m\][\033[38;5;255m\]'"$working"'\[\033[1;31m\]] '
+    index='\[\e[1;31m\][\e[38;5;212m\]'"$index"
+    [ "$working" ] && working='\[\e[1;31m\]/\e[38;5;255m\]'"$working"'\[\033[1;31m\]] ' || index+='\[\033[1;31m\]] '
+  else
+	[ "$working" ] && working='\[\e[1;31m\][\e[38;5;255m\]'"$working"'\[\033[1;31m\]] '
   fi
   git_status+="$index$working"
 }
@@ -118,16 +118,16 @@ function _parse_git_info() {
   git_info=""
   is_upstream=""
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  git_info='\[\033[95;38;5;209m\]'"$branch "
-  [[ $(git stash list) ]] && git_info='\[\033[95;38;5;247m\]^'"$git_info"
+  git_info='\[\e[95;38;5;209m\]'"$branch "
+  [[ $(git stash list) ]] && git_info='\[\e[95;38;5;247m\]^'"$git_info"
   upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
   if [ "$upstream" ]; then
-    git_info+='\[\033[95;38;5;247m\]→ \[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;247m\]/\[\033[95;38;5;209m\]'"${upstream##*/} "
-    [ "$up_down" ] && git_info+='\[\033[95;38;5;63m\]'"$up_down"
+    git_info+='\[\e[95;38;5;247m\]→ \[\e[95;38;5;215m\]'"${upstream%/*}"'\[\e[95;38;5;247m\]/\[\e[95;38;5;209m\]'"${upstream##*/} "
+    [ "$up_down" ] && git_info+='\[\e[95;38;5;63m\]'"$up_down"
   elif [ "$branch" != "support/support" ] && [ "$branch" != "hotfix/hotfix" ] && [ "$branch" != "bugfix/bugfix" ] && [ "$branch" != "release/release" ] && [ "$branch" != "feature/feature" ]; then
-    git_info+='\[\033[95;38;5;63m\]≠'
+    git_info+='\[\e[95;38;5;63m\]≠'
   fi
-  [[ ! $(git remote) ]] && git_info+='\[\033[95;38;5;63m\]✗'
+  [[ ! $(git remote) ]] && git_info+='\[\e[95;38;5;63m\]✗'
   [ "${git_info: -1}" == "≠" ] || [ "${git_info: -1}" == "✗" ] || [ "$up_down" ] && git_info+=' '
 }
 
@@ -142,7 +142,7 @@ function _git_format() {
 
 function _set_ssh() {
   ssh_prompt=""
-  [ "$in_ssh_client" == "true" ] && ssh_prompt='\[\033[95;38;5;131m\]\u\[\033[95;38;5;237m\]@\[\033[95;38;5;095m\]\h '
+  [ "$in_ssh_client" == "true" ] && ssh_prompt='\[\e[95;38;5;131m\]\u\[\e[95;38;5;237m\]@\[\e[95;38;5;095m\]\h '
 }
 
 function _set_venv() {
@@ -156,9 +156,9 @@ function _set_venv() {
     VIRT_ENV_TXT=[$(basename \`dirname \""$VIRTUAL_ENV"\"\`)]
   fi
   if [ "${VIRT_ENV_TXT}" != "" ]; then
-	venv='\[\033[95;38;5;247m\](\[\033[95;38;5;209m\]'"$VIRT_ENV_TXT"'\[\033[95;38;5;247m\]) '
+	venv='\[\e[95;38;5;247m\](\[\e[95;38;5;209m\]'"$VIRT_ENV_TXT"'\[\e[95;38;5;247m\]) '
 	python_version="$(python -V 2>/dev/null)"
-	[ "$python_version" ] && python_version='\[\033[95;38;5;227m\]🐍'"${python_version##* } "
+	[ "$python_version" ] && python_version='\[\e[95;38;5;227m\]🐍'"${python_version##* } "
   fi 
 }
 
@@ -166,18 +166,18 @@ function _set_node() {
   node_version=""
   if [[ $(type nodist 2>/dev/null) ]] && [ -d node_modules ]; then
 	node_version=$(command node -v 2>/dev/null)
-	[ "$node_version" ] && node_version='\[\033[95;38;5;121m\]⬢'"${node_version/v} "
+	[ "$node_version" ] && node_version='\[\e[95;38;5;121m\]⬢'"${node_version/v} "
   fi
 }
 
 function _set_prompt_symbol() {
   prompt_symbol=""
-  prompt_symbol="\$(if [ \$? = 0 ]; then echo \[\033[35m\]❯; else echo \[\033[31m\]❯; fi) "'\[\033[0m\]'
+  prompt_symbol="\$(if [ \$? = 0 ]; then echo \[\e[35m\]❯; else echo \[\033[31m\]❯; fi) "'\[\e[0m\]'
 }
 
 function _set_prompt() {
   PS1=""
-  PS1+='\[\033]0;'"\007\]"'\n\[\033[95;38;5;123m\]\w '
+  PS1+='\[\e]0;'"\007\]"'\n\[\e[95;38;5;123m\]\w '
   git_string=""
   _git_format
   _set_venv
