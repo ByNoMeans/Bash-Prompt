@@ -107,7 +107,7 @@ alias pgit="echo $'
 function _mkvenv() { virtualenv venv; }
 function _rmvenv() { deactivate venv && rmf venv; }
 function _srcvenv() { . venv/Scripts/activate; }
-function _setvenv() { mkvenv && srcvenv; }
+function _setvenv() { _mkvenv && _srcvenv; }
 
 alias mkvenv='_mkvenv'
 alias rmvenv='_rmvenv'
