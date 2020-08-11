@@ -67,7 +67,7 @@ function _parse_git_status() {
         index+='-'
         ;;
       "R")
-        index+='≇'
+        index+='≉'
 	;;
       "U")
         index+='Ψ'
@@ -94,7 +94,7 @@ function _parse_git_status() {
         working+='-'
         ;;
       "R")
-	    working+='≇'
+	    working+='≉'
 	    ;;
       "U")
         working+='Ψ'
