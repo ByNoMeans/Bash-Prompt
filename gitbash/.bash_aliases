@@ -1,6 +1,8 @@
 function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 function _compile_cpp() { g++ $1 -o a && ./a; }
-function _ssh_bash() { ssh -t $(whoami)@$1 \"bash -l\"; }
+function _ssh_bash() { 
+	[ "$1" == "lh" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"
+}
 function _mk_cd() { mkdir "$1"; cd "$1"; }
 
 alias phelp="echo $'

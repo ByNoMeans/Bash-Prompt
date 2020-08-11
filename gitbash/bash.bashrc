@@ -7,10 +7,7 @@
 [[ "$-" != *i* ]] && return
 
 # If started from sshd, make sure profile is sourced
-if [[ -n "$SSH_CONNECTION" ]]; then #&& [[ "$PATH" != *:/usr/bin* ]]; then
-  in_ssh_client="true"
-  #. /etc/profile
-fi
+[[ -n "$SSH_CONNECTION" ]] && in_ssh_client="true"
 
 unset _warning_found
 for _warning_prefix in '' ${MINGW_PREFIX}; do
@@ -44,8 +41,8 @@ function _parse_git_status() {
   local count="0"
   declare -a index_array=()
   declare -a working_array=()
-  local index='\033[38;5;212m\]'
-  local working='\033[38;5;255m\]'
+  local index=""
+  local working=""
   while IFS= read -r line; do
     if [ "$count" == "0" ]; then
 		count="1"
@@ -70,7 +67,7 @@ function _parse_git_status() {
         index+='-'
         ;;
       "R")
-        index+='$'
+        index+='≇'
 	;;
       "U")
         index+='Ψ'
@@ -97,7 +94,7 @@ function _parse_git_status() {
         working+='-'
         ;;
       "R")
-	    working+='$'
+	    working+='≇'
 	    ;;
       "U")
         working+='Ψ'
@@ -108,15 +105,11 @@ function _parse_git_status() {
       esac
     fi
   done < <(git status --porcelain -b)
-  if [ "$index" != '\033[38;5;212m\]' ]; then 
-    index='\[\033[1;31m\]['"$index"
-    if [ "$working" != '\033[38;5;255m\]' ]; then
-      working='\[\033[1;31m\]/'"$working"'\[\033[1;31m\]] '
-	else 
-	  index+='\[\033[1;31m\]] '
-	fi
+  if [ "$index" ]; then 
+    index='\[\033[1;31m\][\033[38;5;212m\]'"$index"
+    [ "$working" ] && working='\[\033[1;31m\]/\033[38;5;255m\]'"$working"'\[\033[1;31m\]] ' || index+='\[\033[1;31m\]] '
   else 
-    [ "$working" != '\033[38;5;255m\]' ] && working='\[\033[1;31m\]['"$working"'\[\033[1;31m\]] '
+	[ "$working" ] && working='\[\033[1;31m\][\033[38;5;255m\]'"$working"'\[\033[1;31m\]] '
   fi
   git_status+="$index$working"
 }
@@ -184,7 +177,7 @@ function _set_prompt_symbol() {
 
 function _set_prompt() {
   PS1=""
-  PS1+='\[\033]0;'"GitBash:   \w\007\]"'\n\[\033[95;38;5;123m\]\w '
+  PS1+='\[\033]0;'"\007\]"'\n\[\033[95;38;5;123m\]\w '
   git_string=""
   _git_format
   _set_venv
