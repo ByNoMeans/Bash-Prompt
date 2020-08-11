@@ -10,7 +10,7 @@ I am aware of the lack-luster Windows prompts that are available in comparison t
 
 An example session would look as follows (click for better resolution). It displays the usage of aliases, prompt colors, git status symbols, and its color scheme.
 
-![gitbash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/GitBash.PNG)
+![gitbash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/gitbash.PNG)
 
 Run `psymbols` for more info.
    
