@@ -33,8 +33,6 @@ No code was explicitly taken from any of the following repos, but their prompts 
 
 > :warning: **The mentioned files will be overwritten with the following commands. Your prompt will still ask you individually if you want to overwrite the files, but be cautious!**
 
-> To have pure-bash-prompt continuously displaying an updated status with respect to the remote, consider creating a [Windows Task](https://en.wikipedia.org/wiki/Windows_Task_Scheduler) to automatically fetch from the remote every once and a while. View [here](https://bitbucket.org/blog/automate-git-commands-across-repos-using-batch-scripts-and-windows-scheduler) for inspiration, and make sure your repos are all inside one directory for ease of use.
-
 #### In an ELEVATED BASH Terminal:
 
 1. Backup your files
