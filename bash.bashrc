@@ -106,10 +106,10 @@ function _parse_git_status() {
     fi
   done < <(git status --porcelain -b)
   if [ "$index" ]; then 
-    index='\[\033[1;31m\][\[\033[38;5;212m\]'"$index"
-    [ "$working" ] && working='\[\033[1;31m\]/\[\033[38;5;255m\]'"$working"'\[\033[1;31m\]] ' || index+='\[\033[1;31m\]] '
+    index='\[\033[38;5;212m\]'"$index "
+    [ "$working" ] && working='\[\033[95;38;5;57m\]'"$working "
   else
-	[ "$working" ] && working='\[\033[1;31m\][\[\033[38;5;255m\]'"$working"'\[\033[1;31m\]] '
+	[ "$working" ] && working='\[\033[95;38;5;57m\]'"$working "
   fi
   git_status+="$index$working"
 }
@@ -123,11 +123,11 @@ function _parse_git_info() {
   upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
   if [ "$upstream" ]; then
     git_info+='\[\033[95;38;5;247m\]→ \[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;247m\]/\[\033[95;38;5;209m\]'"${upstream##*/} "
-    [ "$up_down" ] && git_info+='\[\033[95;38;5;63m\]'"$up_down"
+    [ "$up_down" ] && git_info+='\[\033[31m\]'"$up_down"
   elif [ "$branch" != "support/support" ] && [ "$branch" != "hotfix/hotfix" ] && [ "$branch" != "bugfix/bugfix" ] && [ "$branch" != "release/release" ] && [ "$branch" != "feature/feature" ]; then
-    git_info+='\[\033[95;38;5;63m\]≠'
+    git_info+='\[\033[31m\]≠'
   fi
-  [[ ! $(git remote) ]] && git_info+='\[\033[95;38;5;63m\]✗'
+  [[ ! $(git remote) ]] && git_info+='\[\033[31m\]✗'
   [ "${git_info: -1}" == "≠" ] || [ "${git_info: -1}" == "✗" ] || [ "$up_down" ] && git_info+=' '
 }
 
@@ -142,7 +142,6 @@ function _git_format() {
 
 function _set_ssh() {
   ssh_prompt=""
-  #[ "$in_ssh_client" == "true" ] && ssh_prompt='\[\033[95;38;5;131m\]\u\[\033[95;38;5;237m\]@\[\033[95;38;5;095m\]\h '
   [ "$in_ssh_client" == "true" ] && ssh_prompt='\[\033[95;38;5;131m\]\u\[\033[95;38;5;247m\]@\[\033[95;38;5;095m\]\h '
 }
 
