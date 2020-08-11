@@ -54,14 +54,14 @@ function _parse_git_status() {
     if [[ ! " ${index_array[@]} " =~ " ${index_status} " ]] && [ "$index_status" != "0" ]; then
       index_array+=("$index_status")
       case $index_status in
-      "A")
+      "?")
+        index+='%'
+        ;;
+	  "A")
         index+='+'
         ;;
       "M")
         index+='~'
-        ;;
-	  "?")
-        index+='%'
         ;;
       "D")
         index+='-'
@@ -81,14 +81,14 @@ function _parse_git_status() {
     if [[ ! " ${working_array[@]} " =~ " ${working_status} " ]] && [ "$working_status" != "0" ]; then
       working_array+=("$working_status")
       case $working_status in
-      "A")
+      "?")
+        working+='%'
+        ;;
+	  "A")
         working=+='+'
         ;;
       "M")
         working+='~'
-        ;;
-	  "?")
-        working+='%'
         ;;
       "D")
         working+='-'
@@ -105,12 +105,8 @@ function _parse_git_status() {
       esac
     fi
   done < <(git status --porcelain -b)
-  if [ "$index" ]; then 
-    index='\[\033[38;5;212m\]'"$index "
-    [ "$working" ] && working='\[\033[95;38;5;57m\]'"$working "
-  else
-	[ "$working" ] && working='\[\033[95;38;5;57m\]'"$working "
-  fi
+  [ "$index" ] && index='\[\033[95;38;5;57m\]'"$index "
+  [ "$working" ] && working='\[\033[38;5;212m\]'"$working "
   git_status+="$index$working"
 }
 
