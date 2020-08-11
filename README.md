@@ -38,11 +38,11 @@ git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed 
 ```
 3. Clone the repository
 ```
-git clone --depth=1 https://github.com/ByNoMeans/pure-bash-prompt ~/pure_bash_prompt
+git clone --depth=1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure-bash-prompt
 ```
 4. Run the installation script (press `y + Enter` for any prompts to override files)
 ```
-sh ~/pure_bash_prompt/install_pure_bash_prompt.sh
+sh ~/.pure-bash-prompt/install_pure_bash_prompt.sh
 ```
 
 ## Layout
