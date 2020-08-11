@@ -1,8 +1,6 @@
 function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 function _compile_cpp() { g++ $1 -o a && ./a; }
-function _ssh_bash() { 
-	[ "$1" == "lh" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"
-}
+function _ssh_bash() { [ -z "$1" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"; }
 function _mk_cd() { mkdir "$1"; cd "$1"; }
 
 alias phelp="echo $'
@@ -104,9 +102,12 @@ alias pgit="echo $'
    gst            stash
    gt             tag'"
 
-function _mkvenv() { virtualenv venv; }
-function _rmvenv() { deactivate venv && rmf venv; }
-function _srcvenv() { . venv/Scripts/activate; }
+function _mkvenv() { [ -z "$1" ] && virtualenv venv || virtualenv "$1"; }
+function _rmvenv() { 
+	[[ $(type deactivate 2>/dev/null) ]] && deactivate
+	[ -z "$1" ] && rmf venv || rmf "$1"
+}
+function _srcvenv() { [ -z "$1" ] && . venv/Scripts/activate || . "$1"/Scripts/activate; }
 function _setvenv() { _mkvenv && _srcvenv; }
 
 alias mkvenv='_mkvenv'
@@ -126,6 +127,7 @@ Prompt Symbols:
    ✗                   No remote
    ↑                   Commits ahead
    ↓                   Commits behind
+   ↕                   Diverged
    +                   Added
    -                   Deleted
    ~                   Modified
