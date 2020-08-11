@@ -165,8 +165,8 @@ function _set_venv() {
 function _set_node() {
   node_version=""
   if [[ $(type nodist 2>/dev/null) ]] && [ -d node_modules ]; then
-	node_version=$(nodist list | grep -o '> .*' | cut -f 2 -d " ")
-	[ "$node_version" ] && node_version='\[\033[95;38;5;121m\]⬢'"$node_version "
+	node_version=$(command node -v 2>/dev/null)
+	[ "$node_version" ] && node_version='\[\033[95;38;5;121m\]⬢'"${node_version/v} "
   fi
 }
 
