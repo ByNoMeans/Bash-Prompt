@@ -11,3 +11,7 @@ Pyvenv vs venv? Spaceship prompt inspo
 Fix ssh WSL error
 Fix continuous ssh asking
     https://stackoverflow.com/questions/10032461/git-keeps-asking-me-for-my-ssh-key-passphrase#comment66972566_10032655
+GCC Colors
+    https://reversed.top/2015-10-25/enable-colorization-of-gcc-output/
+    Reinstall cygwin to see config files that set gcc ouput
+    Colored output with running files through terminal (more examples(?))
