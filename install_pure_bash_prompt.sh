@@ -4,15 +4,15 @@ function _pause(){
 }
 
 function _run() {
-    if [ -e ~/pure_bash_prompt ]; then
+    if [ -e ~/.pure-bash-prompt ]; then
       if [ -e ~/gitstatus ]; then
         if [ -e /c/Program\ Files/Git/ ]; then
-            cp -i ~/pure_bash_prompt/bash.bashrc '/c/Program Files/Git/etc'
-            cp -i ~/pure_bash_prompt/.minttyrc ~
-            cp -i ~/pure_bash_prompt/.bash_profile ~
-            cp -i ~/pure_bash_prompt/.git-completion.bash ~
-            cp -i ~/pure_bash_prompt/.bash_aliases ~
-			cp -i ~/pure_bash_prompt/gitbash.jpg ~
+            cp -i ~/.pure-bash-prompt/bash.bashrc '/c/Program Files/Git/etc'
+            cp -i ~/.pure-bash-prompt/.minttyrc ~
+            cp -i ~/.pure-bash-prompt/.bash_profile ~
+            cp -i ~/pure-bash-prompt/.git-completion.bash ~
+            cp -i ~/pure-bash-prompt/.bash_aliases ~
+	    cp -i ~/.pure-bash-prompt/gitbash.jpg ~
         else 
           echo "Install git before installing pure-bash-prompt, or make sure it is located in /c/Program Files; /c/Program\ Files/Git/ does not exist."
           _pause
