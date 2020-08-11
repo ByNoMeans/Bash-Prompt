@@ -38,7 +38,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 #### In an ELEVATED BASH Terminal:
 
 1. Backup your files
-2. Install [gitstatus](https://github.com/romkatv/gitstatus)
+2. Install [gitstatus](https://github.com/romkatv/gitstatus). Run the below command to clone the repo and maintain pure-bash-prompt prompt as well.
 ```
 git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
 ```
@@ -57,7 +57,7 @@ Bash-Prompt offers simple, easy-to-remember aliases for:
 
 1. Git
 2. Virtual Environments
-3. General Convenience
+3. General Convenience (ssh, quick-run cpp files, quick-sourcing, etc.)
 
 all of which are stored in the `.bash_aliases` file.
 
@@ -86,7 +86,7 @@ Prompt Symbols:
    %                   Untracked
    Ψ                   Unmerged
 
-   Yellow: index status.
-   Grey: working tree status.
+   Pink: index status.
+   White: working tree status.
    Blue indicates a problem or something you should update.
 ```
