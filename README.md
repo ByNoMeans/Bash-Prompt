@@ -4,7 +4,7 @@ An informative, non-overwhelming, clean, easy-to-change and quick alternative to
 
 ## Note:
 
-I am aware of the lack-luster Windows prompts that are available in comparison to Linux and Mac systems. While it's certain that things like [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) will never be implemented for terminals such as cygwin and GitBash, pure-bash-prompt seeks to emulate the most highly praised terminals in a Windows environment, while maintaining customizability. The latter, along with inspired implementation with respect to the great [Spaceship Prompt](https://github.com/denysdovhan/spaceship-prompt) are currently being worked on.
+I am aware of the lack-luster Windows prompts that are available in comparison to Linux and Mac systems. While it's certain that things like [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) will never be implemented for terminals such as Cygwin and GitBash, pure-bash-prompt seeks to emulate the most highly praised terminals in a Windows environment, while maintaining customizability.
 
 ## Screenshot
 
@@ -22,6 +22,12 @@ No code was explicitly taken from any of the following repos, but their prompts 
 2. [Pure](https://github.com/sindresorhus/pure)
 3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/)
 4. [Spaceship Prompt](https://github.com/denysdovhan/spaceship-prompt)
+
+## Setup
+
+1. **DO NOT USE CYGWIN! It contains unavoidable prompt-wrapping issues. Uninstall and remove it from your PATH.** 
+2. Install [MinGW](https://sourceforge.net/projects/mingw/) and add `C:\Program Files\Git\bin` and `C:\MinGW\bin` to your PATH instead.
+3. Install [Nodist](https://github.com/nullivex/nodist) to create NodeJS support. For me, tools like [nvm-for-windows](https://github.com/coreybutler/nvm-windows) couldn't even launch the console. 
 
 ## Installation
 
@@ -45,42 +51,23 @@ git clone --depth=1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure-bash-p
 sh ~/.pure-bash-prompt/install_pure_bash_prompt.sh
 ```
 
-## Layout
-
-The terminal prompt takes the following form in each session: 
-
-```
-<nonAbsoluteDirectory> <gitInfo>
-<SSH-info> <virtualenvInfo> <promptSymbol>
-```
-
-Within a git repository, not ssh-ed in, and without a virtualenv, the terminal format would be as follows: 
-
-```
-<nonAbsoluteDirectory> <ifBranchDirty><ifStashes><branchName> <upstream> <ifRemote><ifUpstream><untracked> <added><modified><deleted><unmerged>
-<promptSymbol>
-```
-
 ## Aliases
 
 Bash-Prompt offers simple, easy-to-remember aliases for:
 
 1. Git
-2. Git Flow
-3. Virtual Environments
-4. General Convenience
+2. Virtual Environments
+3. General Convenience
 
 all of which are stored in the `.bash_aliases` file.
 
-Additionally, the git aliases use git-completion; tabs works like always.
+## Configuration
 
-## Tips
+The "look" of the terminal is set in ~/.minttyrc. Alter font size, padding, and more from there.
 
-Set cursor to "line" and "blinking" if you're not a traditional "block" or  "underscore" type of person.
+256 ANSI Colors: [here](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt). Very handy for customization.
 
-View [here](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt) to get a complete description and explanation of ANSI colors, along with a complete graphic depicting all colors and their corresponding ANSI codes (very handy if you wish to customize).
-
-View [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) to see all backslash-escaped characters. For example, `\W` provides the absolute current working directory, and `\A` provides the time (to the minute) expressed in military time.
+Special characters: [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html). If you're someone who likes to see the time in military format, for example, you could append `\A` to your prompt.
 
 Run `pgit`, `pvenv`, `phelp`, or `psymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
 
@@ -92,6 +79,7 @@ Prompt Symbols:
    ✗                   No remote
    ↑                   Commits ahead
    ↓                   Commits behind
+   ↕                   Diverged
    +                   Added
    -                   Deleted
    ~                   Modified
