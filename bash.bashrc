@@ -68,7 +68,7 @@ function _parse_git_status() {
         ;;
       "R")
         index+='≇'
-	;;
+		;;
       "U")
         index+='Ψ'
         ;;
@@ -160,10 +160,19 @@ function _set_venv() {
 
 function _set_node() {
   node_version=""
-  if [[ $(type nodist 2>/dev/null) ]] && [ -d node_modules ]; then
-	node_version=$(command node -v 2>/dev/null)
-	[ "$node_version" ] && node_version='\[\033[95;38;5;121m\]⬢'"${node_version/v} "
-  fi
+  [ -f package.json ] || [ -d node_modules ] || [ -f *.js ] || return;
+  [[ $(type nodist 2>/dev/null) ]] && node_version=$(command node -v 2>/dev/null)
+  [ "$node_version" ] && node_version='\[\033[95;38;5;121m\]⬢'"${node_version/v} "
+}
+
+function _set_ruby() {
+	ruby_version=""
+	[ -f Gemfile ] || [ -f Rakefile ] || [ -f *.rb ] || return;
+	if [[ $(type uru 2>/dev/null) ]] && [[ $(type ruby 2>/dev/null) ]]; then
+		ruby_version=$(uru ls | grep -m 1 "=>" | tr -s ' ' | cut -d ' ' -f 6)
+		[ -z "$ruby_version" ] && ruby_version=$(ruby --version | cut -d ' ' -f 2)
+	fi
+	[ "$ruby_version" ] && ruby_version='\[\033[95;38;5;197m\]💎'"${ruby_version%p*}"
 }
 
 function _set_prompt_symbol() {
@@ -178,9 +187,10 @@ function _set_prompt() {
   _git_format
   _set_venv
   _set_node
+  _set_ruby
   _set_ssh
   _set_prompt_symbol
-  PS1+="$git_string$python_version$node_version\n$ssh_prompt$venv$prompt_symbol"
+  PS1+="$git_string$python_version$node_version$ruby_version\n$ssh_prompt$venv$prompt_symbol"
 }
 
 export PROMPT_COMMAND=_set_prompt
