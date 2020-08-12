@@ -1,6 +1,7 @@
 Transfer to ZSH
     Link: https://dev.to/jasmin/a-brief-difference-between-zsh-and-bash-5ebp
     Note array, escape, and other differences; READ IT ALL!
+FIX SSH ISSUES
 Prompt Elements
     etc symbols (view inspiration, spaceship prompt, other mac prompts)
 Customizability with prompt options to include
