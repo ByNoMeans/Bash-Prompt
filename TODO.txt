@@ -16,3 +16,4 @@ GCC Colors
     Reinstall cygwin to see config files that set gcc ouput
     Colored output with running files through terminal (more examples(?))
 View minttyrc config options
+Customizability
