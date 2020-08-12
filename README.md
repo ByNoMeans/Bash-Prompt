@@ -30,6 +30,7 @@ No code was explicitly taken from any of the following repos, but their prompts 
 1. **DO NOT USE CYGWIN! It contains unavoidable prompt-wrapping issues. Uninstall and remove it from your PATH.** 
 2. Install [MinGW](https://sourceforge.net/projects/mingw/) and add `C:\Program Files\Git\bin` and `C:\MinGW\bin` to your PATH instead.
 3. Install [Nodist](https://github.com/nullivex/nodist) to create NodeJS version(s) support. For me, tools like [nvm-for-windows](https://github.com/coreybutler/nvm-windows) couldn't even launch the console. 
+4. Install [Uru](https://bitbucket.org/jonforums/uru/) for managing ruby versions, as rvm is not compatible with windows.
 
 ## Installation
 
