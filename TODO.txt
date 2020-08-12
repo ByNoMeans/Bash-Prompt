@@ -17,3 +17,6 @@ GCC Colors
     Colored output with running files through terminal (more examples(?))
 View minttyrc config options
 Customizability
+SO: compress ruby version cuts
+SO: fix ruby errors (--add-opens issue)
+Add vimrc
