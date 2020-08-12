@@ -1,5 +1,5 @@
 function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
-function _compile_cpp() { g++ $1 -o a && ./a; }
+function _compile_cpp() { g++ $1 -o a && ./a && rm a; }
 function _ssh_bash() { [ -z "$1" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"; }
 function _mk_cd() { mkdir "$1"; cd "$1"; }
 
