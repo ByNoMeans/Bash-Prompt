@@ -13,6 +13,7 @@ function _run() {
             cp -i ~/pure-bash-prompt/.git-completion.bash ~
             cp -i ~/pure-bash-prompt/.bash_aliases ~
 	    cp -i ~/.pure-bash-prompt/gitbash.jpg ~
+	    cp -i ~/.pure-bash-prompt/.bashrc ~
         else 
           echo "Install git before installing pure-bash-prompt, or make sure it is located in /c/Program Files; /c/Program\ Files/Git/ does not exist."
           _pause
