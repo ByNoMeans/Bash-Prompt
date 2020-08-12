@@ -67,7 +67,7 @@ function _parse_git_status() {
         index+='-'
         ;;
       "R")
-        index+='≉'
+        index+='≇'
 	;;
       "U")
         index+='Ψ'
@@ -94,7 +94,7 @@ function _parse_git_status() {
         working+='-'
         ;;
       "R")
-	    working+='≉'
+	    working+='≇'
 	    ;;
       "U")
         working+='Ψ'
@@ -105,8 +105,8 @@ function _parse_git_status() {
       esac
     fi
   done < <(git status --porcelain -b)
-  [ "$index" ] && index='\[\033[95;38;5;57m\]'"$index "
-  [ "$working" ] && working='\[\033[38;5;212m\]'"$working "
+  [ "$index" ] && index='\[\033[95;38;5;63m\]'"$index "
+  [ "$working" ] && working='\[\033[38;5;206m\]'"$working "
   git_status+="$index$working"
 }
 
