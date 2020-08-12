@@ -13,6 +13,7 @@ Run the following commands to help understand the prompt:
 
 . ~/.git-completion.bash
 
+alias irb='winpty "$(which irb).cmd"'
 alias cd..='_cd_up'
 alias cls='clear'
 alias crun='_compile_cpp'
