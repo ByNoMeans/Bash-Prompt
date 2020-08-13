@@ -11,6 +11,10 @@ function _compile_cpp() {
     [ -f a.exe ] && ./a && rm a
   fi
 }
+function _set_irb() {
+  test -f "$(which irb).cmd" && winpty "$(which irb).cmd" && return 0;
+  test -f "$(which irb).bat" && winpty "$(which irb).bat" && return 0;
+}
 
 alias phelp="echo $'
 Run the following commands to help understand the prompt:
@@ -22,7 +26,7 @@ Run the following commands to help understand the prompt:
 
 . ~/.git-completion.bash
 
-alias irb='winpty "$(which irb).cmd"'
+alias irb='_set_irb'
 alias cd..='_cd_up'
 alias cls='clear'
 alias crun='_compile_cpp'
@@ -37,7 +41,6 @@ alias rmf='rm -rf'
 alias mkcd='_mk_cd'
 alias open='start'
 alias tree='cmd //c tree //f'
-alias uru='uru_rt'
 alias pfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
    installreq         Installs requirements (only run in a virtualenv)
