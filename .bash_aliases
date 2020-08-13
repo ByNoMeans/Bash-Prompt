@@ -3,11 +3,7 @@ function _mk_cd() { mkdir "$1"; cd "$1"; }
 function _ssh_bash() { [ -z "$1" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"; }
 function _compile_cpp() {
   if [ -n "$1" ]; then 
-    if [ -n "$2" ]; then
-	    g++ -std=c++$1 $2 -o a
-    else 
-	    g++ -std=c++17 $1 -o a
-    fi
+    [ -n "$2" ] && g++ -std=c++$1 $2 -o a || g++ -std=c++17 $1 -o a
     [ -f a.exe ] && ./a && rm a
   fi
 }
