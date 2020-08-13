@@ -1,7 +1,12 @@
 function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
-function _compile_cpp() { g++ $1 -o a && ./a && rm a; }
-function _ssh_bash() { [ -z "$1" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"; }
 function _mk_cd() { mkdir "$1"; cd "$1"; }
+function _ssh_bash() { [ -z "$1" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"; }
+function _compile_cpp() {
+  if [ -n "$1" ]; then 
+    [ -n "$2" ] && g++ -std=c++$1 $2 -o a || g++ $1 -o a
+    ./a && rm a
+  fi
+}
 
 alias phelp="echo $'
 Run the following commands to help understand the prompt:
@@ -28,6 +33,7 @@ alias rmf='rm -rf'
 alias mkcd='_mk_cd'
 alias open='start'
 alias tree='cmd //c tree //f'
+alias uru='uru_rt'
 alias pfast="echo $'
    cd.. <integer>     Moves current directory <integer> levels up
    installreq         Installs requirements (only run in a virtualenv)
@@ -135,7 +141,6 @@ Prompt Symbols:
    #                   Copied
    %                   Untracked
    Ψ                   Unmerged
-
    Pink: index status.
    Grey: working tree status.
    Blue: a problem or something you should update.'"
