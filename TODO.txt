@@ -20,4 +20,4 @@ View minttyrc config options
 Customizability
 SO: compress ruby version cuts
 SO: fix ruby errors (--add-opens issue)
-As you have to compile with g++ -std=c++<versions> new.cpp -o a && ./a in, as crun optional second param to compile with cpp select version
+Fix compile cpp errors, toolchain with different versions
