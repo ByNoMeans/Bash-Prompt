@@ -21,3 +21,4 @@ Customizability
 SO: compress ruby version cuts
 SO: fix ruby errors (--add-opens issue)
 Fix compile cpp errors, toolchain with different versions
+Clang, make or cmake problem? Reinstall cygwin, not only for this but for the colors setting(s)
