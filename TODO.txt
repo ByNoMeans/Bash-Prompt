@@ -4,7 +4,13 @@ Transfer to ZSH
 FIX SSH ISSUES
 Prompt Elements
     etc symbols (view inspiration, spaceship prompt, other mac prompts)
-Customizability with prompt options to include
+Customizability
+    pure-bash-prompt.config file
+    aliases to bash_aliases
+    SHOW_something=[0,1]
+    check for ignore case, and argument 0 or 1; remove these first lines
+    ask to edit in vim
+    source within profile
 Improve symbols before the branch name (more than if it's dirty and the branch name)
     https://blog.backslasher.net/git-prompt-variables.html; not much anymore here
 Scheduled Task tutorial, files
