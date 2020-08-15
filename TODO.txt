@@ -1,18 +1,8 @@
 Transfer to ZSH
     Link: https://dev.to/jasmin/a-brief-difference-between-zsh-and-bash-5ebp
     Note array, escape, and other differences; READ IT ALL!
-FIX SSH ISSUES
 Prompt Elements
     etc symbols (view inspiration, spaceship prompt, other mac prompts)
-Customizability
-    pure-bash-prompt.config file
-    aliases to bash_aliases
-    SHOW_something=[0,1]
-    check for ignore case, and argument 0 or 1; remove these first lines
-    ask to edit in vim
-    source within profile (have to inside of bashrc as well? don't think so, as sourcing is just copy pasting the new code)
-    check with venv, node, ruby; if value is 1, include (will cover if unset as well)
-    create array of values; check if not in it before adding; error
 Improve symbols before the branch name (more than if it's dirty and the branch name)
     https://blog.backslasher.net/git-prompt-variables.html; not much anymore here
 Scheduled Task tutorial, files
@@ -20,14 +10,7 @@ Pyvenv vs venv? Spaceship prompt inspo
 Fix ssh WSL error
 Fix continuous ssh asking
     https://stackoverflow.com/questions/10032461/git-keeps-asking-me-for-my-ssh-key-passphrase#comment66972566_10032655
-GCC Colors
-    https://reversed.top/2015-10-25/enable-colorization-of-gcc-output/
-    Reinstall cygwin to see config files that set gcc ouput
-    Colored output with running files through terminal (more examples(?))
 View minttyrc config options
-Customizability
-SO: compress ruby version cuts
-SO: fix ruby errors (--add-opens issue)
 SO: More efficient way to obtain ruby: using which ruby, else parse uru ls
 Sort, document and update alias file: pfast alias
 Fix venv aliases, make sure all there
