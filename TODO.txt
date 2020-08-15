@@ -31,3 +31,4 @@ SO: fix ruby errors (--add-opens issue)
 SO: More efficient way to obtain ruby: using which ruby, else parse uru ls
 Sort, document and update alias file: pfast alias
 Fix venv aliases, make sure all there
+Fix ruby alias; detect in project to not call uru? SO
