@@ -2,9 +2,15 @@ function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 function _mk_cd() { mkdir "$1"; cd "$1"; }
 function _ssh_bash() { [ -z "$1" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"; }
 function _compile_cpp() {
-  if [ -n "$1" ]; then 
-    [ -n "$2" ] && g++ -std=c++$1 $2 -o a || g++ -std=c++17 $1 -o a
-    [ -f a.exe ] && ./a && rm a
+  out=""
+  out="g++ -fdiagnostics-color "
+  if [ -n "$1" ]; then
+    [ -f a.exe ] && rm -rf a
+    # Add exception to no cpp included; work if file+ cpp works; but only if on condition that you now that the working variable is the file name. Also move gcc colors to here (takes time to evaluate), see if even matters; comment?
+    # Also check if these colors are even th same as withn cygwin/even in clioN? improve?
+    [ -n "$2" ] && out+="-std=c++$1 $2 -o a" || out+="-std=c++17 $1 -o a"
+    eval "$($out)"
+    [ -f a.exe ] && ./a && rm -rf a
   fi
 }
 function _set_irb() {
@@ -46,6 +52,7 @@ alias pfast="echo $'
    tree               Prints directory structure (delete /f to remove files)'"
 
 alias ga='git add'
+__git_complete ga _git_add
 alias gb='git branch'
 __git_complete gb _git_branch
 alias gch='git checkout'
@@ -147,3 +154,4 @@ Prompt Symbols:
    Pink: index status.
    Grey: working tree status.
    Blue: a problem or something you should update.'"
+   
