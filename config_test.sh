@@ -20,7 +20,7 @@ function _set_config_var() {
 		fi
 	elif [[ ! " ${configurations[@]} " =~ " $input_var " ]]; then
 		echo "Variable must be in the list of configurations:"
-		join , "[${configurations[@]}]"
+		join_by ", " "${configurations[@]}"
 	fi
 }
 
@@ -39,9 +39,4 @@ function _prompt_edit_config() {
 	done
 }
 
-function join() {
-  local IFS="$1"
-  IFS+=" "
-  shift
-  echo "$*"
-}
+function join_by { local IFS="$1"; shift; echo "$*"; }
