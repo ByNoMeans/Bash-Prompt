@@ -1,22 +1,4 @@
-function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
-function _mk_cd() { mkdir "$1"; cd "$1"; }
-function _ssh_bash() { [ -z "$1" ] && ssh -t $(whoami)@localhost \"bash -l\" || ssh -t $(whoami)@$1 \"bash -l\"; }
-function _compile_cpp() {
-  out=""
-  out="g++ -fdiagnostics-color "
-  if [ -n "$1" ]; then
-    [ -f a.exe ] && rm -rf a
-    # Add exception to no cpp included; work if file+ cpp works; but only if on condition that you now that the working variable is the file name. Also move gcc colors to here (takes time to evaluate), see if even matters; comment?
-    # Also check if these colors are even th same as withn cygwin/even in clioN? improve?
-    [ -n "$2" ] && out+="-std=c++$1 $2 -o a" || out+="-std=c++17 $1 -o a"
-    eval "$($out)"
-    [ -f a.exe ] && ./a && rm -rf a
-  fi
-}
-function _set_irb() {
-  test -f "$(which irb).cmd" && winpty "$(which irb).cmd" && return 0;
-  test -f "$(which irb).bat" && winpty "$(which irb).bat" && return 0;
-}
+test -f ~/.git-completion.bash && . ~/.git-completion.bash
 
 alias phelp="echo $'
 Run the following commands to help understand the prompt:
@@ -26,30 +8,87 @@ Run the following commands to help understand the prompt:
    bpsymbols          Prompt symbols
 '"
 
-. ~/.git-completion.bash
-
-alias irb='_set_irb'
+function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 alias cd..='_cd_up'
+
 alias cls='clear'
+
+function _compile_cpp() {
+  filename=""
+  version=""
+  [ -f a.exe ] && rm -rf a
+  if [ -n "$1" ]; then
+    if [ -n "$2" ]; then
+		version="$1"
+		filename="$2"
+	else
+		version="17"
+		filename="$1"
+	fi
+	[ "${filename: -4}" != ".cpp" ] && [ -f "$filename.cpp" ] && filename+=".cpp"
+	[ -f "$filename" ] && g++ -fdiagnostics-color -std=c++$version "$filename" -o a || g++ -fdiagnostics-color
+	[ -f a.exe ] && ./a && rm -rf a
+  fi
+}
 alias crun='_compile_cpp'
-alias sshb='_ssh_bash'
+
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
+
 alias src='source'
 alias srcalias='. ~/.bash_aliases'
 alias srcprof='. ~/.bash_profile'
 alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
-alias rmf='rm -rf'
+
+alias valias='vim ~/.bash_aliases'
+alias vprof='vim ~/.bash_profile'
+alias vrc='vim /c/Program\ Files/Git/etc/bash.bashrc'
+
+
+function _set_irb() {
+  test -f "$(which irb).cmd" && winpty "$(which irb).cmd" && return 0;
+  test -f "$(which irb).bat" && winpty "$(which irb).bat" && return 0;
+}
+alias irb='_set_irb'
+
+alias la='ls -la'
+
+function _mk_cd() { mkdir "$1"; cd "$1"; }
 alias mkcd='_mk_cd'
+
 alias open='start'
-alias tree='cmd //c tree //f'
+alias rmf='rm -rf'
+
+function _ssh_bash() {
+	if [ -n "$1" ]; then
+		[ -n "$2" ] && ssh -t "$1"@"$2" \"bash -l\" || ssh -t $(whoami)@"$1" \"bash -l\"
+	else
+		ssh -t $(whoami)@localhost \"bash -l\"
+	fi
+}
+alias sshb='_ssh_bash'
+
+function _tree() { [ -n "$1" ] && [ "$1" == "f" ] && cmd //c tree //f || cmd //c tree; }
+alias tree='_tree'
+
 alias pfast="echo $'
-   cd.. <integer>     Moves current directory <integer> levels up
-   installreq         Installs requirements (only run in a virtualenv)
+   irb                Ruby terminal
+   cd.. <integer>     Moves back <integer> directories
+   cls                Clear screen
+   crun               Compile c++ files: g++ <version> (optional) filename (.cpp optional)
+   installreq         Installs requirements.txt
+   mkcd               Create, cd into directory
+   open               Same as \"start\"
+   rmf                Force remove
    setreq             Sets installation requirements to file
-   srcrc              Source the /etc bashrc file to reload prompt changes
-   srcalias           Source the ~/.bash_aliases file to reload alias changes
-   tree               Prints directory structure (delete /f to remove files)'"
+   srcalias           Source ~/.bash_aliases
+   srcprof            Source ~/.bash_profile
+   srcrc              Source Git/etc/bash.bashrc
+   valias             Vim ~/.bash_aliases
+   vprof              Vim ~/.bash_profile
+   vrc                Vim /Git/etc/bash.bashrc
+   tree               Print directory structure (/f to include files)'"
+
 
 alias ga='git add'
 __git_complete ga _git_add
@@ -118,20 +157,33 @@ alias pgit="echo $'
    gst            stash
    gt             tag'"
 
-function _mkvenv() { [ -z "$1" ] && virtualenv venv || virtualenv "$1"; }
-function _rmvenv() { 
-	[[ $(type deactivate 2>/dev/null) ]] && deactivate
-	[ -z "$1" ] && rmf venv || rmf "$1"
-}
-function _srcvenv() { [ -z "$1" ] && . venv/Scripts/activate || . "$1"/Scripts/activate; }
-function _setvenv() { _mkvenv && _srcvenv; }
-
+function _mkvenv() { [ -n "$1" ] && virtualenv "$1" || virtualenv venv; }
 alias mkvenv='_mkvenv'
+
+function _rmvenv() {
+	[[ $(type deactivate 2>/dev/null) ]] && deactivate
+	if [ -n "$1" ]; then
+	 	rmf "$1"
+	else
+		rmf venv
+	fi
+}
 alias rmvenv='_rmvenv'
+
+function _srcvenv() { [ -n "$1" ] && . "$1"/Scripts/activate || . venv/Scripts/activate; }
 alias srcvenv='_srcvenv'
+
+function _setvenv() {
+	if [ -n "$1" ]; then
+		mkvenv "$1" && srcvenv "$1"
+	else
+		mkvenv && srcvenv
+	fi
+}
 alias setvenv='_setvenv'
+
 alias pvenv="echo $'
-Virtual Environment aliases:
+Virtual Environment aliases (include name if not \"venv\"):
    mkvenv         Create venv
    rmvenv         Remove venv
    setvenv        Create, source venv
@@ -154,4 +206,3 @@ Prompt Symbols:
    Pink: index status.
    Grey: working tree status.
    Blue: a problem or something you should update.'"
-   
