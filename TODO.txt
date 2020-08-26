@@ -1,3 +1,4 @@
+Simplify!!
 Transfer to ZSH
     Link: https://dev.to/jasmin/a-brief-difference-between-zsh-and-bash-5ebp
     Note array, escape, and other differences; READ IT ALL!
@@ -6,7 +7,6 @@ Prompt Elements
 Improve symbols before the branch name (more than if it's dirty and the branch name)
     https://blog.backslasher.net/git-prompt-variables.html; not much anymore here
 Scheduled Task tutorial, files
-Pyvenv vs venv? Spaceship prompt inspo
 Fix ssh WSL error
 Fix continuous ssh asking
     https://stackoverflow.com/questions/10032461/git-keeps-asking-me-for-my-ssh-key-passphrase#comment66972566_10032655
