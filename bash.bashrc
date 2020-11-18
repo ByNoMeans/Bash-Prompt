@@ -1,12 +1,7 @@
-# System-wide bashrc file
-
-# Check that we haven't already been sourced.
 ([[ -z ${CYG_SYS_BASHRC} ]] && CYG_SYS_BASHRC="1") || return
 
-# If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-# If started from sshd, make sure profile is sourced
 [[ -n "$SSH_CONNECTION" ]] && in_ssh_client="true"
 
 unset _warning_found
@@ -168,9 +163,9 @@ function _set_node() {
 function _set_ruby() {
 	ruby_version=""
 	[ -f Gemfile ] || [ -f Rakefile ] || [ -f *.rb ] || return;
-	if [[ $(type uru 2>/dev/null) ]] && [[ $(type ruby 2>/dev/null) ]]; then
+	if [[ $(type uru 2>/dev/null) ]]; then
 		ruby_version=$(uru ls | grep -m 1 "=>" | tr -s ' ' | cut -d ' ' -f 6)
-		[ -z "$ruby_version" ] && ruby_version=$(ruby --version | cut -d ' ' -f 2)
+		[ -z "$ruby_version" ] && [[ $(type ruby 2>/dev/null) ]] && ruby_version=$(ruby --version | cut -d ' ' -f 2)
 	fi
 	[ "$ruby_version" ] && ruby_version='\[\033[95;38;5;197m\]💎'"${ruby_version%p*}"
 }
@@ -182,12 +177,15 @@ function _set_prompt_symbol() {
 
 function _set_prompt() {
   PS1=""
-  PS1+='\[\033]0;'"\007\]"'\n\[\033[36m\]\w '
+  PS1="\[\033]0;$PWD\007\]"
+  PS1+='\n\[\033[36m\]\w '
   git_string=""
   _git_format
   _set_venv
-  _set_node
-  _set_ruby
+  # UNCOMMENT TO SEE NODE VERSION IN DIRECTORES WITH NODE FILES
+  #_set_node
+  # UNCOMMENT TO SEE RUBY VERSION IN DIRECTORES WITH RUBY FILES
+  #_set_ruby
   _set_ssh
   _set_prompt_symbol
   PS1+="$git_string$python_version$node_version$ruby_version\n$ssh_prompt$venv$prompt_symbol"
@@ -199,7 +197,5 @@ export PROMPT_COMMAND=_set_prompt
   export PS1='\[\033]0;\w\a\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM\[\033[0m\] \[\033[33m\]\w\[\033[0m\]\n'"${_ps1_symbol}"' '
 unset _ps1_symbol
 
-# Uncomment to use the terminal colours set in DIR_COLORS
-# eval "$(dircolors -b /etc/DIR_COLORS)"
 
 shopt -q login_shell
