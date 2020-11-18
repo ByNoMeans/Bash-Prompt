@@ -2,16 +2,28 @@ test -f ~/.git-completion.bash && . ~/.git-completion.bash
 
 alias phelp="echo $'
 Run the following commands to help understand the prompt:
-   bpfast             Convenience methods
-   bpgit              Git aliases
-   bpvenv             Virtualenv aliases
-   bpsymbols          Prompt symbols
+   pfast             Convenience methods
+   pgit              Git aliases
+   pvenv             Virtualenv aliases
+   psymbols          Prompt symbols
 '"
 
 function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 alias cd..='_cd_up'
 
 alias cls='clear'
+
+alias jrun='_intellij_run_java'
+function _intellij_run_java() {
+  file_e=""
+  file_n=""
+  if [ -n "$1" ]; then
+    file_e="$1"
+    [ "${file_e: -5}" != ".java" ] && file_e+=".java"
+    file_n="${file_e::-5}"
+    javac "$file_e" && java "$file_n"
+  fi
+}
 
 function _compile_cpp() {
   filename=""
@@ -31,6 +43,79 @@ function _compile_cpp() {
   fi
 }
 alias crun='_compile_cpp'
+#	cmake --build C:\Users\barre\Desktop\Github\advcs-labs\lexical-analyzer\cmake-build-debug --target lexical_analyzer -- -j 9
+
+function _clion_compile_cpp() {
+	top_dir_name=""
+	top_dir_name="${PWD##*/}"
+	top_dir_name="${top_dir_name//-/_}"
+	cmake --build ./cmake-build-debug --target $top_dir_name -- -j 9
+	./cmake-build-debug/$top_dir_name.exe
+}
+alias cprun='_clion_compile_cpp'
+
+function _cdll_export_functions() {
+  local cfile="$1"
+  [ "${cfile: -4}" != ".cpp" ] && cfile+=".cpp"
+  [ "${cfile::6}" != "./src/" ] && cfile="./src/$cfile"
+  g++ -fdiagnostics-color -c -DBUILDING_EXAMPLE_DLL ./src/*.cpp
+  [ ! -d obj ] && mkdir obj
+  mv ./*.o ./obj
+}
+
+function _cdll_generate_dll() {
+  local ouput_dll=""
+  output_dll="$1"
+  [ "${output_dll: -4}" != ".dll" ] && output_dll+=".dll"
+  [ "${output_dll::6}" != "./bin/" ] && output_dll="./bin/$output_dll"
+
+  local output_a=""
+  output_a="./bin/${output_dll:6:-4}.a"
+
+  local ofile=""
+  ofile="./obj/${output_a:6:-2}.o"
+
+  g++ -fdiagnostics-color -shared -o $output_dll $ofile  -Wl,--out-implib,$output_a
+}
+
+function _cdll_build_run_exe() {
+  local testcfile=""
+  testcfile="$1"
+
+  [ "${testcfile: -4}" != ".cpp" ] && testcfile+=".cpp"
+  [ "${testcfile::7}" != "./test/" ] && testcfile="./test/$testcfile"
+
+  g++ -fdiagnostics-color -c $testcfile
+
+  mv ./*.o ./obj
+
+  local ofile=""
+  ofile="./obj/${testcfile:7:-4}.o"
+
+  local dll=""
+  dll="$2"
+  [ "${dll: -4}" != ".dll" ] && dll+=".dll"
+  [ "${dll::6}" != "./bin/" ] && dll="./bin/$dll"
+
+  local exe=""
+  exe="./bin/${ofile:6:-2}.exe"
+
+  g++ -o $exe $ofile $dll && ./$exe
+}
+
+function _gpp_cdll() {
+  if [ -n "$1" ]; then
+    if [ "$1" == "--export" ] || [ "$1" == "-e" ]; then
+      _cdll_export_functions "$2"
+    elif [ "$1" == "--generate" ] || [ "$1" == "-g" ]; then
+      _cdll_generate_dll "$2"
+    elif [ "$1" == "--compile" ] || [ "$1"  == "-c" ]; then
+      _cdll_build_run_exe "$2" "$3"
+    fi
+  fi
+}
+
+alias cdll='_gpp_cdll'
 
 alias installreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
@@ -43,7 +128,6 @@ alias srcrc='. /c/Program\ Files/Git/etc/bash.bashrc'
 alias valias='vim ~/.bash_aliases'
 alias vprof='vim ~/.bash_profile'
 alias vrc='vim /c/Program\ Files/Git/etc/bash.bashrc'
-
 
 function _set_irb() {
   test -f "$(which irb).cmd" && winpty "$(which irb).cmd" && return 0;
