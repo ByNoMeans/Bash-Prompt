@@ -30,6 +30,11 @@ unset _warning
 
 [[ -n "${MSYS2_PS1}" ]] && export PS1="${MSYS2_PS1}"
 
+function _git_if_dirty() {
+  local is_dirty=""
+  test -z "$(git status --porcelain)" || is_dirty="\[\033[31m\]*"
+}
+
 function _parse_git_status() {
   git_status=""
   up_down=""
@@ -109,20 +114,19 @@ function _parse_git_info() {
   git_info=""
   is_upstream=""
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  git_info='\[\033[95;38;5;209m\]'"$branch "
+  git_info='\[\033[95;38;5;209m\]'"$branch"
   [[ $(git stash list) ]] && git_info='\[\033[95;38;5;247m\]^'"$git_info"
+  [[ $(git status --porcelain) ]] && git_info='\[\033[95;38;5;247m\]*'"$git_info"
   upstream=$(git rev-parse --abbrev-ref "$branch"@{upstream} 2>/dev/null | head -n 1)
   if [ "$upstream" ]; then
-    git_info+='\[\033[95;38;5;247m\]→ \[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;247m\]/\[\033[95;38;5;209m\]'"${upstream##*/} "
-    [ "$up_down" ] && git_info+='\[\033[31m\]'"$up_down"
-  elif [ "$branch" != "support/support" ] && [ "$branch" != "hotfix/hotfix" ] && [ "$branch" != "bugfix/bugfix" ] && [ "$branch" != "release/release" ] && [ "$branch" != "feature/feature" ]; then
-    git_info+='\[\033[31m\]≠'
+    git_info+='\[\033[95;38;5;247m\]→\[\033[95;38;5;215m\]'"${upstream%/*}"'\[\033[95;38;5;247m\]/\[\033[95;38;5;209m\]'"${upstream##*/} "
+    [ "$up_down" ] && git_info+='\[\033[31m\]'"$up_down "
+  else 
+    git_info+=' '
   fi
-  [[ ! $(git remote) ]] && git_info+='\[\033[31m\]✗'
-  [ "${git_info: -1}" == "≠" ] || [ "${git_info: -1}" == "✗" ] || [ "$up_down" ] && git_info+=' '
 }
 
-function _git_format() {
+function _set_git() {
   git_string=""
   if [ -d .git ]; then
     _parse_git_status
@@ -131,64 +135,55 @@ function _git_format() {
   fi
 }
 
+
+
 function _set_ssh() {
   ssh_prompt=""
-  [ "$in_ssh_client" == "true" ] && ssh_prompt='\[\033[95;38;5;131m\]\u\[\033[95;38;5;247m\]@\[\033[95;38;5;095m\]\h '
+  # Temp string for when down: "\[\033[95;38;5;131m\]127.0.0.1\[\033[95;38;5;247m\]::\[\033[95;38;5;095m\]22 "
+  [[ "$in_ssh_client" == "true" ]] && ssh_prompt='\[\033[95;38;5;131m\]'"${SSH_CLIENT%% *}"'\[\033[95;38;5;247m\]::\[\033[95;38;5;095m\]'"${SSH_CLIENT##* }"
 }
 
 function _set_venv() {
-  export VIRTUAL_ENV_DISABLE_PROMPT=1
   venv=""
-  python_version=""
   VIRT_ENV_TXT=""
   if [ "$VIRTUAL_ENV" != "" ]; then
     VIRT_ENV_TXT=$(basename \""$VIRTUAL_ENV")
   elif [ "$(basename \""$VIRTUAL_ENV"\")" = "__" ]; then
     VIRT_ENV_TXT=[$(basename \`dirname \""$VIRTUAL_ENV"\"\`)]
   fi
-  if [ "${VIRT_ENV_TXT}" != "" ]; then
-	venv='\[\033[95;38;5;247m\](\[\033[95;38;5;209m\]'"$VIRT_ENV_TXT"'\[\033[95;38;5;247m\]) '
-	python_version="$(python -V 2>/dev/null)"
-	[ "$python_version" ] && python_version='\[\033[33m\]🐍'"${python_version##* } "
-  fi 
+  [[ "${VIRT_ENV_TXT}" != "" ]] && venv='\[\033[95;38;5;247m\](\[\033[95;38;5;209m\]'"$VIRT_ENV_TXT"'\[\033[95;38;5;247m\]) ' 
 }
 
 function _set_node() {
+  local node_symbol="⬢"
   node_version=""
   [ -f package.json ] || [ -d node_modules ] || [ -f *.js ] || return;
-  [[ $(type nodist 2>/dev/null) ]] && node_version=$(command node -v 2>/dev/null)
-  [ "$node_version" ] && node_version='\[\033[95;38;5;121m\]⬢'"${node_version/v} "
-}
-
-function _set_ruby() {
-	ruby_version=""
-	[ -f Gemfile ] || [ -f Rakefile ] || [ -f *.rb ] || return;
-	if [[ $(type uru 2>/dev/null) ]]; then
-		ruby_version=$(uru ls | grep -m 1 "=>" | tr -s ' ' | cut -d ' ' -f 6)
-		[ -z "$ruby_version" ] && [[ $(type ruby 2>/dev/null) ]] && ruby_version=$(ruby --version | cut -d ' ' -f 2)
-	fi
-	[ "$ruby_version" ] && ruby_version='\[\033[95;38;5;197m\]💎'"${ruby_version%p*}"
+  node_version=$(command node -v 2>/dev/null)
+  [ "$node_version" ] && node_version='\[\033[95;38;5;121m\]'"${node_version/v} "
 }
 
 function _set_prompt_symbol() {
   prompt_symbol=""
+  tmp_ss=""
   prompt_symbol="\$(if [ \$? = 0 ]; then echo \[\033[35m\]❯; else echo \[\033[31m\]❯; fi) "'\[\033[0m\]'
 }
 
 function _set_prompt() {
+  local verbose_prompt="false"
   PS1=""
-  PS1="\[\033]0;$PWD\007\]"
-  PS1+='\n\[\033[36m\]\w '
-  git_string=""
-  _git_format
+  PS1="\[\033]0;$PWD\007\]"'\[\033[36m\]'
+  if [ "$verbose_prompt" == "true" ]; then
+	PS1+='\n\w '
+    git_string+="\n"
+  else
+	PS1+='\W '
+  fi
+  _set_git
   _set_venv
-  # UNCOMMENT TO SEE NODE VERSION IN DIRECTORES WITH NODE FILES
-  #_set_node
-  # UNCOMMENT TO SEE RUBY VERSION IN DIRECTORES WITH RUBY FILES
-  #_set_ruby
+  _set_node
   _set_ssh
   _set_prompt_symbol
-  PS1+="$git_string$python_version$node_version$ruby_version\n$ssh_prompt$venv$prompt_symbol"
+  PS1+="$node_version$git_string$ssh_prompt$venv$prompt_symbol"
 }
 
 export PROMPT_COMMAND=_set_prompt
@@ -196,6 +191,5 @@ export PROMPT_COMMAND=_set_prompt
 [[ $(declare -p PS1 2>/dev/null | cut -c 1-11) == 'declare -x ' ]] ||
   export PS1='\[\033]0;\w\a\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM\[\033[0m\] \[\033[33m\]\w\[\033[0m\]\n'"${_ps1_symbol}"' '
 unset _ps1_symbol
-
 
 shopt -q login_shell
