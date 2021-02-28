@@ -12,6 +12,7 @@ function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 alias cd..='_cd_up'
 
 alias cls='clear'
+
 alias jrun='_intellij_run_java'
 function _intellij_run_java() {
   file_e=""
