@@ -1,0 +1,156 @@
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias nrs='npm run start'
+alias nrd='npm run dev'
+
+alias restart='exec zsh -l'
+alias rst='exec zsh -l'
+alias cls='clear'
+
+function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
+alias cd..='_cd_up'
+
+alias sagi='sudo apt-get install'
+alias sagr='sudo apt-get remove'
+alias sai='sudo apt install'
+
+alias dk='_run_docker'
+function _run_docker() {
+  first=""
+  second=""
+  third=""
+  fourth=""
+  final_comm=""
+  final_comm="docker "
+  [[ -n "$1" ]] || return
+  first="$1"
+  case "$1" in
+	cn)
+	  first="container"
+	  ;;
+	b)
+	  first="build"
+      ;;
+	*)
+	  first="$1"
+	  ;;
+   esac
+   if [ -n "$2" ]; then
+	case "$2" in
+	  st)
+		second="start"
+		;;
+	  sp)
+		second="stop"
+		;;
+	  rn)
+		second="run"
+		;;
+	  wt)
+		second="wait"
+		;;
+	  *)
+		second="$2"
+		;;
+	  esac
+	  if [ -n "$3" ]; then
+	    third="$3"
+		[[ -n "$4" ]] && fourth="$4"
+	  fi
+	fi
+  [[ -n "$first" ]] && final_comm+="$first "
+  [[ -n "$second" ]] && final_comm+="$second "
+  [[ -n "$third" ]] && final_comm+="$third "
+  [[ -n "$fourth" ]] && final_comm+="$fourth " 
+  eval "$final_comm"
+}
+
+alias cra='_make_react_app'
+function _make_react_app() {
+  [[ -n "$1" ]] && mkcd "$1" || return
+  npx create-react-app .
+  mv ./src/index.js ./src/App.js ./public/index.html ./
+  rm -rf ./src ./public .git .gitignore
+  mkdir {src,public}
+  sed -i '3d;5d;13,17d' ./index.js
+  sed -i '1,3d;7,20d;' ./App.js
+  sed -i s/' className=\"App\"'//g ./App.js
+  sed -i '5,26d;30d;32,41d;' ./index.html
+  mv ./index.js ./App.js ./src
+  mv ./index.html ./public
+}
+
+alias src='.'
+alias srcalias='. ~/.aliases'
+alias srcprof='. ~/.zprofile'
+alias srcrc='. ~/.zshrc'
+
+alias valias='vim ~/.aliases'
+alias vprof='vim ~/.zprofile'
+alias vrc='vim ~/.zshrc'
+
+alias mkcd='_mk_cd'
+function _mk_cd() { mkdir "$1"; cd "$1"; }
+
+alias start='explorer.exe'
+alias open='explorer.exe'
+alias rmf='rm -rf'
+
+alias ga='git add'
+alias gb='git branch'
+alias gch='git checkout'
+alias gcm='git commit'
+alias gcmm='git commit -m'
+alias gcl='git clone'
+alias gcp='git cherry-pick'
+alias gd='git diff'
+alias gf='git fetch'
+alias ggraph='git log --graph --abbrev-commit --date=relative --all'
+alias glog='git log'
+alias gplog="git log --pretty=format:'%h   %an   %s' -5"
+alias gmrg='git merge'
+alias gp='git pull'
+alias gpu='git push'
+alias grbs='git rebase'
+alias grem='git remote'
+alias gres='git reset'
+alias grest='git restore'
+alias grm='git rm'
+alias gs='git status'
+alias gst='git stash'
+alias gt='git tag'
+
+alias loadreq='pip3 install -r requirements.txt'
+alias setreq='pip3 freeze > requirements.txt'
+
+alias mkvenv='_mkvenv'
+function _mkvenv() { [ -n "$1" ] && python3 -m venv "$1" || python3 -m venv venv; }
+
+alias rmvenv='_rmvenv'
+function _rmvenv() {
+	[[ $(type deactivate 2>/dev/null) ]] && deactivate
+	[[ -n "$1" ]] && rm -rf "$1" || rm -rf venv
+}
+
+alias srcvenv='_srcvenv'
+function _srcvenv() { [ -n "$1" ] && . "$1"/bin/activate || . venv/bin/activate; }
+
+alias setvenv='_setvenv'
+function _setvenv() {
+	if [ -n "$1" ]; then
+		_mkvenv "$1" && _srcvenv "$1"
+	else
+		_mkvenv && _srcvenv
+	fi
+}
+
+alias dvenv='_dvenv'
+function _dvenv() {
+  [[ $(type deactivate 2>/dev/null) ]] && deactivate
+}

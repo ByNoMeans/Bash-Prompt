@@ -528,12 +528,10 @@ __git_index_files ()
 				print pfx p
 				continue
 			}
-
 			# The path is quoted.
 			p = dequote(p)
 			if (p == "")
 				continue
-
 			# Even when a directory name itself does not contain
 			# any special characters, it will still be quoted if
 			# any of its (stripped) trailing path components do.
@@ -550,13 +548,11 @@ __git_index_files ()
 	function dequote(p,    bs_idx, out, esc, esc_idx, dec) {
 		# Skip opening double quote.
 		p = substr(p, 2)
-
 		# Interpret backslash escape sequences.
 		while ((bs_idx = index(p, "\\")) != 0) {
 			out = out substr(p, 1, bs_idx - 1)
 			esc = substr(p, bs_idx + 1, 1)
 			p = substr(p, bs_idx + 2)
-
 			if ((esc_idx = index("abtvfr\"\\", esc)) != 0) {
 				# C-style one-character escape sequence.
 				out = out substr("\a\b\t\v\f\r\"\\",
@@ -584,7 +580,6 @@ __git_index_files ()
 			out = out substr(p, 1, length(p) - 1)
 		else
 			out = out p
-
 		return out
 	}'
 }
