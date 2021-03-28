@@ -1,93 +1,36 @@
 # pure-bash-prompt
 
-An informative, non-overwhelming, clean, easy-to-change and quick alternative to the traditional Git-Bash for Windows prompt.
-
-## Note:
-
-I am aware of the lack-luster Windows prompts that are available in comparison to Linux and Mac systems. While it's certain that things like [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) will never be implemented for terminals such as Cygwin and GitBash, pure-bash-prompt seeks to emulate the most highly praised terminals in a Windows environment, while maintaining customizability.
-
-## Screenshot
-
-Click for better resolution. It displays the usage of aliases, prompt colors, git status symbols, and a color-changing prompt depending on the exit code of the last command. Also note the quick run-time of `time { gs; }`; this is caused by the usage of the gistatus repo.
-
-> :warning: I like to use the "glass" transparency setting within ~/.minttyrc. You change change it to low, medium, high, or off. [Here](https://mintty.github.io/mintty.1.html) are all ~/.minttyrc options.
-
-![gitbash.PNG](https://github.com/ByNoMeans/pure-bash-prompt/blob/master/gitbash.PNG)
-
-Run `psymbols` for more info.
+An informative, non-overwhelming, clean, easy-to-change and quick alternative to many overwhelming ZSH prompts.
    
 ## Inspiration
 
-No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `pure-bash-prompt`'s themeing, symbols, and general format.
+No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `pure-zsh-prompt`'s themeing, symbols, and general format.
 
 1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
 2. [Pure](https://github.com/sindresorhus/pure)
 3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/)
 4. [Spaceship Prompt](https://github.com/denysdovhan/spaceship-prompt)
 
-## Setup
-
-1. **DO NOT USE CYGWIN! It contains unavoidable prompt-wrapping issues. Uninstall and remove it from your PATH.** 
-2. Install [MinGW](https://sourceforge.net/projects/mingw/) and add `C:\Program Files\Git\bin` and `C:\MinGW\bin` to your PATH instead.
-3. Install [Nodist](https://github.com/nullivex/nodist) to create NodeJS version(s) support. For me, tools like [nvm-for-windows](https://github.com/coreybutler/nvm-windows) couldn't even launch the console. 
-4. Install [Uru](https://bitbucket.org/jonforums/uru/) for managing ruby versions, as rvm is not compatible with windows.
-
 ## Installation
 
-> :warning: **The mentioned files will be overwritten with the following commands. Your prompt will still ask you individually if you want to overwrite the files, but be cautious!**
-
-#### In an ELEVATED BASH Terminal:
-
 1. Backup your files
-2. Install [gitstatus](https://github.com/romkatv/gitstatus). Run the below command to clone gitstatus and maintain pure-bash-prompt prompt as well.
+2. Clone the repo to your home directory:
 ```
-git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus && sed -i "$(($(wc -l <~/gitstatus/gitstatus.prompt.sh) - 20)),\$d" ~/gitstatus/gitstatus.prompt.sh
+git clone --depth=1 https://github.com/ByNoMeans/pure-zsh-prompt.git ~/
 ```
-3. Clone the repository
-```
-git clone --depth=1 https://github.com/ByNoMeans/pure-bash-prompt ~/.pure-bash-prompt
-```
-4. Run the installation script (press `y + Enter` for any prompts to override files)
-```
-sh ~/.pure-bash-prompt/install_pure_bash_prompt.sh
-```
+3. Drag and drop whichever files you like to your home directory
+4. `rm -rf ~/pure-zsh-prompt`
 
 ## Aliases
 
-Bash-Prompt offers simple, easy-to-remember aliases for:
+pure-zsh-prompt offers simple, easy-to-remember aliases for:
 
 1. Git
 2. Virtual Environments
-3. General Convenience (ssh, quick-run cpp files, quick-sourcing, etc.)
+3. General Convenience (quick-run cpp files, quick-sourcing, barebones react app, etc.)
 
-all of which are stored in the `.bash_aliases` file.
+all of which are stored in the `.aliases` file.
 
 ## Configuration
 
-The "look" of the terminal is set in ~/.minttyrc. Alter font size, padding, and more from there.
-
-256 ANSI Colors: [here](https://unix.stackexchange.com/questions/124407/what-color-codes-can-i-use-in-my-ps1-prompt). Very handy for customization.
-
-Special characters: [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html). If you're someone who likes to see the time in military format, for example, you could append `\A` to your prompt.
-
-Run `pgit`, `pvenv`, `phelp`, or `psymbols` to display more information about the aliases and prompt structure. Change the alias names and corresponding commands to your preference.
-
-For example, running `psymbols` on an active Git-Bash terminal shows you the prompt structure of:
-```
-Prompt Symbols:
-
-   ≠                   No upstream
-   ✗                   No remote
-   ↑                   Commits ahead
-   ↓                   Commits behind
-   ↕                   Diverged
-   +                   Added
-   -                   Deleted
-   ~                   Modified
-   %                   Untracked
-   Ψ                   Unmerged
-
-   Pink: index status.
-   White: working tree status.
-   Blue indicates a problem or something you should update.
-```
+The prompt is mainly determined by the `zshrc` file alone, separating the prompt into functions that concatenate different things to the prompt. Change any colors or formatting you want in this short < 100 line file.
