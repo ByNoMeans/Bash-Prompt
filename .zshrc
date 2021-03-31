@@ -1,9 +1,8 @@
 
 function _set_directory() {
 	directory="$(pwd)"
-    storeCommand="\$(if [ "${directory:0:18}" == "/mnt/c/Users/barre" ]; then echo '#'${directory:18}; else echo "%~"; fi)"
-	PS1+="%F{087}$storeCommand "
-	unset directory storeCommand
+	PS1+="%F{087}%~ "
+	unset directory
 }
 
 function _set_git() {
