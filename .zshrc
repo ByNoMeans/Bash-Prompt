@@ -1,7 +1,5 @@
 function _set_directory() {
-	local dir="$(pwd)"
-    dir="\$(if [ "${dir:0:18}" == "/mnt/c/Users/barre" ]; then echo '#'${dir:18}; else echo "%c"; fi)"
-	PS1="%B$fg[blue]$dir "
+	PS1="%B$fg[blue]%c "
 }
 
 function _set_git() {
