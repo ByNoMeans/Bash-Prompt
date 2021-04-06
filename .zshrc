@@ -1,55 +1,65 @@
-
 function _set_directory() {
-	directory="$(pwd)"
-	PS1+="%F{087}%~ "
-	unset directory
+	local dir="$(pwd)"
+    dir="\$(if [ "${dir:0:18}" == "/mnt/c/Users/barre" ]; then echo '#'${dir:18}; else echo "%c"; fi)"
+	PS1="%B$fg[blue]$dir "
 }
 
 function _set_git() {
     [[ -d .git ]] || return
-	sb=(${(@f)"$(gs -sb)"})
-	(( ${#sb[@]} > 1 )) && dirty="*"
+	local sb=(${(@f)"$(gs -sb)"})
+	(( ${#sb[@]} > 1 )) && local dirty="*"
 	sb="${sb[1]}"
-	branch="%F{209}${${sb##* }%%.*}"
+	local br="%F{209}${${sb%%.*}##* }"
 	if [[ "$sb" == *"..."* ]]; then 
-	  us="${${sb##*.}%% *}"
-	  us="%F{247}→%F{215}${us%%/*}%F{247}/%F{209}${us#*/} "
-	  [[ "$sb" == *"ahead"* ]] && up_down='↑'
+	  local us="${${sb##*.}%% *}"
+	  us="$fg[black]→%F{215}${us%%/*}$fg[black]/%F{209}${us#*/} "
+	  [[ "$sb" == *"ahead"* ]] && local up_down='↑'
 	  [[ "$sb" == *"behind"* ]] && up_down+='↓'
 	  [[ "$#up_down" == "2" ]] && up_down='↕'
-	  [[ "$up_down" ]] && us+="%F{31}$up_down "
+	  [[ "$up_down" ]] && us+="$fg[red]$up_down "
 	else 
-	  branch+=' '
+	  br+=' '
 	fi
-	[[ "$dirty" ]] && branch="%F{247}$dirty$branch"
-	PS1+="$branch$us"
-	unset sb branch us dirty up_down
+	[[ "$dirty" ]] && br="$fg[black]$dirty$br"
+	PS1+="$br$us"
 }
 
 function _set_node() {
-  #local node_symbol="⬢"
   [ -f package.json ] || [ -d node_modules ] || [ -f *.js ] || return;
-  node_version=$(command node -v 2>/dev/null)
-  [[ "$node_version" ]] && node_version="%F{121}${node_version/v} "
-  PS1+="$node_version"
-  unset node_version
+  local node_version="$(node -v)"
+  [[ "$node_version" ]] && versions+="$fg[green]${node_version/v}"
+}
+
+function _set_python() {
+  [ -f *.py ] || return;
+  local python_version="$(python3 --version)"
+  [[ "$python_version" ]] && versions+="$fg[yellow]${python_version##* }"
+}
+
+function _set_java() {
+  [ -f *.java ] || return;
+  local java_version="$(javac --version)"
+  [[ "$java_version" ]] && versions+="%F{95}${java_version##* }"
+}
+
+function _set_versions() {
+  local versions=()
+  _set_node
+  _set_python
+  _set_java
+  [[ "$versions" ]] && PS1+="$fg[black][${versions// /$fg[black],}$fg[black]] "
 }
 
 function _set_venv() {
-  [[ "$VIRTUAL_ENV" ]] && PS1+="%F{247}(%F{95}$(basename $VIRTUAL_ENV)%F{247}) "
-}
-
-function _set_PS1_symbol() {
-    PS1_symbol="\$(if [ \$? = 0 ]; then echo %{%F{206%}❯; else echo %{%F{red%}❯; fi)%F{000} "
-    PS1+="$PS1_symbol"
-    unset PS1_symbol
+  [[ "$VIRTUAL_ENV" ]] && PS1+="$fg[black](%F{215}$(basename $VIRTUAL_ENV)$fg[black]) "
 }
 
 function precmd() {
+  [[ $? -ne 0 ]] && pcolor="$fg[red]" || pcolor="%F{206}"
   unset PS1
   _set_directory
-  _set_node
+  _set_versions
   _set_git
   _set_venv
-  _set_PS1_symbol
+  PS1+="$pcolor❯%b "
 }
