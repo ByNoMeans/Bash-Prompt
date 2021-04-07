@@ -48,7 +48,7 @@ function _set_versions() {
 }
 
 function _set_venv() {
-  [[ "$VIRTUAL_ENV" ]] && PS1+="%F{241}(%F{215}$(basename $VIRTUAL_ENV)%F{241}) "
+  [ "$VIRTUAL_ENV" ] && PS1+="%F{241}(%F{215}$(basename $VIRTUAL_ENV)%F{241}) "
 }
 
 function precmd() {
