@@ -14,3 +14,5 @@ mv ~/pure-zsh-prompt/_git ~/
 
 mv ~/git-completion.bash ~/git-completion.bash.pre-pure-zsh-prompt 2>/dev/null
 mv ~/pure-zsh-prompt/git-completion.bash ~/
+
+rm -rf ~/pure-zsh-prompt
