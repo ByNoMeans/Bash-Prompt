@@ -1,7 +1,12 @@
-alias ls='ls --color=auto'
+alias ls='ls -aG'
 alias ll='ls -alF'
-alias la='ls -A'
 alias l='ls -CF'
+alias la='ls -la'
+
+alias bri='brew install'
+alias bru='brew update'
+alias brls='brew list'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -16,64 +21,23 @@ alias cls='clear'
 function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
 alias cd..='_cd_up'
 
-alias sagi='sudo apt-get install'
-alias sagr='sudo apt-get remove'
-alias sai='sudo apt install'
+declare -A dk_vars
+dk_vars[dk]="docker"; dk_vars[rn]="run"; dk_vars[st]="start"; dk_vars[sp]="stop"; dk_vars[pl]="pull"
+dk_vars[b]="build"; dk_vars[k]="kill"; dk_vars[ex]="exec"; dk_vars[cn]="container"
 
 alias dk='_run_docker'
 function _run_docker() {
-  first=""
-  second=""
-  third=""
-  fourth=""
-  final_comm=""
-  final_comm="docker "
-  [[ -n "$1" ]] || return
-  first="$1"
-  case "$1" in
-	cn)
-	  first="container"
-	  ;;
-	b)
-	  first="build"
-      ;;
-	*)
-	  first="$1"
-	  ;;
-   esac
-   if [ -n "$2" ]; then
-	case "$2" in
-	  st)
-		second="start"
-		;;
-	  sp)
-		second="stop"
-		;;
-	  rn)
-		second="run"
-		;;
-	  wt)
-		second="wait"
-		;;
-	  *)
-		second="$2"
-		;;
-	  esac
-	  if [ -n "$3" ]; then
-	    third="$3"
-		[[ -n "$4" ]] && fourth="$4"
-	  fi
-	fi
-  [[ -n "$first" ]] && final_comm+="$first "
-  [[ -n "$second" ]] && final_comm+="$second "
-  [[ -n "$third" ]] && final_comm+="$third "
-  [[ -n "$fourth" ]] && final_comm+="$fourth " 
-  eval "$final_comm"
+  [ "$1" ] || return
+  [ "$dk_vars[$1]" ] && fst="$dk_vars[$1]" || fst=$1
+  [ "$dk_vars[$2]" ] && scd="$dk_vars[$2]" || scd="$2"
+  [ "$dk_vars[$3]" ] && thd="$dk_vars[$3]" || thd="$3"
+  [ "$dk_vars[$4]" ] && fth="$dk_vars[$4]" || fth="$4"
+  eval "docker $fst $scd $thd $fth"
 }
 
 alias cra='_make_react_app'
 function _make_react_app() {
-  [[ -n "$1" ]] && mkcd "$1" || return
+  [ "$1" ] && mkcd "$1" || return
   npx create-react-app .
   mv ./src/index.js ./src/App.js ./public/index.html ./
   rm -rf ./src ./public .git .gitignore
@@ -98,8 +62,7 @@ alias vrc='vim ~/.zshrc'
 alias mkcd='_mk_cd'
 function _mk_cd() { mkdir "$1"; cd "$1"; }
 
-alias start='explorer.exe'
-alias open='explorer.exe'
+alias start='open'
 alias rmf='rm -rf'
 
 alias ga='git add'
@@ -130,27 +93,43 @@ alias loadreq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
 
 alias mkvenv='_mkvenv'
-function _mkvenv() { [ -n "$1" ] && python3 -m venv "$1" || python3 -m venv venv; }
-
-alias rmvenv='_rmvenv'
-function _rmvenv() {
-	[[ $(type deactivate 2>/dev/null) ]] && deactivate
-	[[ -n "$1" ]] && rm -rf "$1" || rm -rf venv
-}
-
-alias srcvenv='_srcvenv'
-function _srcvenv() { [ -n "$1" ] && . "$1"/bin/activate || . venv/bin/activate; }
-
-alias setvenv='_setvenv'
-function _setvenv() {
-	if [ -n "$1" ]; then
-		_mkvenv "$1" && _srcvenv "$1"
-	else
-		_mkvenv && _srcvenv
-	fi
+function _mkvenv() { 
+  if [ "$1" ]; then 
+    python3 -m venv "$1" 
+  else 
+    python3 -m venv venv
+  fi
 }
 
 alias dvenv='_dvenv'
 function _dvenv() {
   [[ $(type deactivate 2>/dev/null) ]] && deactivate
+}
+
+alias rmvenv='_rmvenv'
+function _rmvenv() {
+	_dvenv
+	if [ "$1" ]; then
+    rm -rf "$1"
+  else 
+    rm -rf venv
+  fi
+}
+
+alias srcvenv='_srcvenv'
+function _srcvenv() { 
+  if [ "$1" ]; then
+    . "$1"/bin/activate
+  else 
+    . venv/bin/activate; 
+  fi 
+}
+
+alias setvenv='_setvenv'
+function _setvenv() {
+	if [ "$1" ]; then
+     _mkvenv "$1" && _srcvenv "$1"
+  else  
+    _mkvenv && _srcvenv
+  fi
 }
