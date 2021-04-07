@@ -1,4 +1,4 @@
-# pure-bash-prompt
+# pure-zsh-prompt
 
 An informative, non-overwhelming, clean, easy-to-change and quick alternative to many overwhelming ZSH prompts.
    
