@@ -1,15 +1,6 @@
 # pure-zsh-prompt
 
 An informative, non-overwhelming, clean, easy-to-change and quick alternative to many overwhelming ZSH prompts.
-   
-## Inspiration
-
-No code was explicitly taken from any of the following repos, but their prompts provided heavy inspiration to `pure-zsh-prompt`'s themeing, symbols, and general format.
-
-1. [Posh-Git](https://github.com/dahlbyk/posh-git/)
-2. [Pure](https://github.com/sindresorhus/pure)
-3. [Seafly](https://github.com/bluz71/bash-seafly-prompt/)
-4. [Spaceship Prompt](https://github.com/denysdovhan/spaceship-prompt)
 
 ## Installation
 
