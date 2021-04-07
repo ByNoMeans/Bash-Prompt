@@ -2,6 +2,8 @@
 
 An informative, non-overwhelming, clean, easy-to-change and quick alternative to many ZSH prompts.
 
+![pure-zsh image](http://https://github.com/barrettruth/pure-zsh-prompt/pure-zsh-graphic.png)
+
 ## Installation
 
 1. Backup your files (installation will do if you don't)
