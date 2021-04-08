@@ -8,17 +8,17 @@ function _set_git() {
 	(( ${#sb[@]} > 1 )) && local dirty="%F{241}*"
 	sb="${sb[1]}"
 	local br="%F{209}${${sb%%.*}##* }"
-	if [[ "$sb" == *"..."* ]]; then 
+  if [[ "$sb" == *"..."* ]]; then 
 	  local us="${${sb##*.}%% *}" up_down
-	  us="%F{241}→%F{215}${us%%/*}%F{241}/%F{209}${us#*/} "
+	  us="%F{241}→%F{215}${us%%/*}%F{241}/%F{209}${us#*/}"
 	  [[ "$sb" == *"ahead"* ]] && up_down='↑'
 	  [[ "$sb" == *"behind"* ]] && up_down+='↓'
 	  [ "$#up_down" == "2" ] && up_down='↕'
 	  [ "$up_down" ] && us+="%F{red}$up_down "
-	else 
-	  br+=' '
+  elif [[ "$sb" == *"HEAD"* ]]; then
+	  local br="%F{209}HEAD"
 	fi
-	PS1+="$dirty$br$us"
+	PS1+="$dirty$br$us "
 }
 
 function _set_node() {
