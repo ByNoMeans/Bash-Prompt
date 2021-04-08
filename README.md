@@ -13,7 +13,7 @@ git clone --depth=1 https://github.com/barrettruth/pure-zsh-prompt.git ~/
 ```
 3. Run the installation script (will delete the cloned directory for you)
 ```
-sh ./pure-zsh-prompt-setup.sh
+sh .~/pure-zsh-prompt/pure-zsh-prompt-setup.sh
 ```
 
 ## Features
