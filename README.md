@@ -7,7 +7,7 @@ An informative, non-overwhelming, clean, easy-to-change and quick alternative to
 ## Installation
 
 1. Backup your files (installation will do if you don't)
-2. Clone the repo to your home directory:
+2. Clone the repo:
 ```
 git clone --depth=1 https://github.com/barrettruth/pure-zsh-prompt.git ~/
 ```
