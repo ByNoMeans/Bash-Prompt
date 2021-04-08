@@ -58,6 +58,6 @@ function precmd() {
   _set_versions
   _set_git
   _set_venv
-  PS1+="$pcolor❯ "
+  PS1+="$pcolor❯%f "
   RPS1="%B%F{243}[%F{white}$(date +%H:%M)%F{243}]"
 }
