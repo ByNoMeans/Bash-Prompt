@@ -1,20 +1,20 @@
 function _set_directory() {
-	PS1="%B%F{blue}%c "
+	PS1="%F{blue}%c "
 }
 
 function _set_git() {
   [ -d .git ] || return
 	local sb=(${(@f)"$(gs -sb)"})
-	(( ${#sb[@]} > 1 )) && local dirty="%F{241}*"
+	(( ${#sb[@]} > 1 )) && local dirty="%F{243}*"
 	sb="${sb[1]}"
 	local br="%F{209}${${sb%%.*}##* }"
   if [[ "$sb" == *"..."* ]]; then 
 	  local us="${${sb##*.}%% *}" up_down
-	  us="%F{241}→%F{215}${us%%/*}%F{241}/%F{209}${us#*/}"
+	  us="%F{243}→%F{215}${us%%/*}%F{243}/%F{209}${us#*/}"
 	  [[ "$sb" == *"ahead"* ]] && up_down='↑'
 	  [[ "$sb" == *"behind"* ]] && up_down+='↓'
 	  [ "$#up_down" == "2" ] && up_down='↕'
-	  [ "$up_down" ] && us+="%F{red}$up_down "
+	  [ "$up_down" ] && us+="%F{red} $up_down"
   elif [[ "$sb" == *"HEAD"* ]]; then
 	  local br="%F{209}HEAD"
 	fi
@@ -44,11 +44,11 @@ function _set_versions() {
   _set_node
   _set_python
   _set_java
-  [ "$versions" ] && PS1+="%F{241}[${versions// /"%F{241},"}%F{241}] "
+  [ "$versions" ] && PS1+="%F{243}[${versions// /"%F{243},"}%F{243}] "
 }
 
 function _set_venv() {
-  [ "$VIRTUAL_ENV" ] && PS1+="%F{241}(%F{215}$(basename $VIRTUAL_ENV)%F{241}) "
+  [ "$VIRTUAL_ENV" ] && PS1+="%F{243}(%F{215}$(basename $VIRTUAL_ENV)%F{243}) "
 }
 
 function precmd() {
@@ -58,6 +58,6 @@ function precmd() {
   _set_versions
   _set_git
   _set_venv
-  PS1+="$pcolor❯%b "
-  RPS1="%B%F{241}[%F{white}$(date +%H:%M)%F{241}]"
+  PS1+="$pcolor❯ "
+  RPS1="%B%F{243}[%F{white}$(date +%H:%M)%F{243}]"
 }
