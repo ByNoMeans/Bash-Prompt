@@ -30,4 +30,4 @@ autoload -U colors && colors
 . $ZSH/oh-my-zsh.sh
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash\
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
