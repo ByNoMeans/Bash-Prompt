@@ -1,34 +1,30 @@
+# ls aliases
 alias ls='ls -aG'
 alias ll='ls -alF'
 alias l='ls -CF'
 alias la='ls -la'
 
+# Brew aliases
 alias bri='brew install'
 alias bru='brew update'
 alias brls='brew list'
 
+# Grep aliases
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias nrs='npm run start'
-alias nrd='npm run dev'
-
-alias restart='exec zsh -l'
-alias rst='exec zsh -l'
-alias cls='clear'
-
-function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
-alias cd..='_cd_up'
-
+# Docker aliases, just say dk <command> <command>.
+# e.g. "dk cn ps" will run "docker container ls"
 declare -A dk_vars
-dk_vars[dk]="docker"; dk_vars[rn]="run"; dk_vars[st]="start"; dk_vars[sp]="stop"; dk_vars[pl]="pull"
+dk_vars[rn]="run"; dk_vars[st]="start"; dk_vars[sp]="stop"; dk_vars[pl]="pull"
 dk_vars[b]="build"; dk_vars[k]="kill"; dk_vars[ex]="exec"; dk_vars[cn]="container"
+dk_vars[nw]="network";
 
 alias dk='_run_docker'
 function _run_docker() {
   [ "$1" ] || return
-  [ "$dk_vars[$1]" ] && fst="$dk_vars[$1]" || fst=$1
+  [ "$dk_vars[$1]" ] && fst="$dk_vars[$1]" || fst="$1"
   [ "$dk_vars[$2]" ] && scd="$dk_vars[$2]" || scd="$2"
   [ "$dk_vars[$3]" ] && thd="$dk_vars[$3]" || thd="$3"
   [ "$dk_vars[$4]" ] && fth="$dk_vars[$4]" || fth="$4"
@@ -37,7 +33,11 @@ function _run_docker() {
 
 alias cra='_make_react_app'
 function _make_react_app() {
-  [ "$1" ] && mkcd "$1" || return
+  if [ "$1" ]; then
+      mkdir "$1" && cd "$1"
+  else 
+    return
+  fi
   npx create-react-app .
   mv ./src/index.js ./src/App.js ./public/index.html ./
   rm -rf ./src ./public .git .gitignore
@@ -50,21 +50,40 @@ function _make_react_app() {
   mv ./index.html ./public
 }
 
-alias src='.'
-alias srcalias='. ~/.aliases'
-alias srcprof='. ~/.zprofile'
-alias srcrc='. ~/.zshrc'
+alias cwa='_create_webpack_app'
+function _create_webpack_app() {
+  if [ "$1" ]; then
+      mkdir "$1" && cd "$1"
+  else 
+    return
+  fi
+  # Note: Does not include auto-reload
+  git clone https://github.com/mpontus/webpack-react.git
+  cd webpack-react
+  mv ./* ../
+  cd ..
+  rmf webpack-react
+}
 
-alias valias='vim ~/.aliases'
-alias vprof='vim ~/.zprofile'
+# Terminal config aliases
+alias src='.'
+alias srcalias='. ~/.zsh_aliases'
+alias srcrc='. ~/.zshrc'
+alias valias='vim ~/.zsh_aliases'
 alias vrc='vim ~/.zshrc'
 
+# Misc aliases
+alias restart='exec zsh -l'
+alias rst='exec zsh -l'
+alias cls='clear'
 alias mkcd='_mk_cd'
 function _mk_cd() { mkdir "$1"; cd "$1"; }
-
 alias start='open'
 alias rmf='rm -rf'
+function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
+alias cd..='_cd_up'
 
+# Git aliases
 alias ga='git add'
 alias gb='git branch'
 alias gch='git checkout'
@@ -90,6 +109,7 @@ alias gst='git stash'
 alias gt='git tag'
 
 alias loadreq='pip3 install -r requirements.txt'
+alias ireq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
 
 alias mkvenv='_mkvenv'
@@ -133,3 +153,11 @@ function _setvenv() {
     _mkvenv && _srcvenv
   fi
 }
+
+# Random node aliases
+alias nrs='npm run start'
+alias nrd='npm run dev'
+alias naf='npm audit fix'
+alias naff='npm audit fix force'
+alias ni='npm install'
+alias nis='npm install --save-dev'
