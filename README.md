@@ -9,11 +9,11 @@ An informative, non-overwhelming, clean, easy-to-change and quick alternative to
 1. Backup your files (installation will do if you don't)
 2. Clone the repo:
 ```
-git clone --depth=1 https://github.com/barrettruth/pure-zsh-prompt.git ~/
+git clone --depth=1 https://github.com/barrettruth/pure-zsh-prompt/.git ~/
 ```
-3. Run the installation script (will delete the cloned directory for you)
+3. Move the appropriate files you want to home
 ```
-sh .~/pure-zsh-prompt/pure-zsh-prompt-setup.sh
+cp ~/pure-zsh-prompt/_git ~/pure-zsh-prompt/git-completion.bash ~/pure-zsh-prompt/.zshrc ~/pure-zsh-prompt/.zsh_aliases ~/
 ```
 
 ## Features
