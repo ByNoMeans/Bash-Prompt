@@ -88,6 +88,6 @@ function precmd() {
   PS1+=$'\n'
   _set_venv
   _set_python
-  PS1+="$pcolor❯%f%b "
+  PS1+="$pcolor❯%f "
   RPS1="%B%F{243}[%F{white}$(date +%H:%M)%F{243}]"
 }
