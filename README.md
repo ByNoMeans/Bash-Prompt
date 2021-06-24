@@ -2,7 +2,7 @@
 
 An informative, non-overwhelming, clean, easy-to-change and quick alternative to many ZSH prompts.
 
-![pure-zsh image](https://github.com/barrettruth/pure-zsh-prompt/blob/master/pure-zsh-graphic.png)
+![pure-zsh-image](https://github.com/barrettruth/pure-zsh-prompt/blob/main/pure-zsh-graphic.png)
 
 ## Installation
 
