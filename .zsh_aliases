@@ -4,18 +4,31 @@ alias ll='ls -alF'
 alias l='ls -CF'
 alias la='ls -la'
 
-# Brew aliases
+# brew aliases
 alias bri='brew install'
 alias bru='brew update'
 alias brls='brew list'
+alias brd='brew doctor'
 
-# Grep aliases
+# grep aliases
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Docker aliases, just say dk <command> <command>.
-# e.g. "dk cn ps" will run "docker container ls"
+# Misc aliases
+alias restart='exec zsh -l'
+alias rst='exec zsh -l'
+alias cls='clear'
+alias start='open'
+alias rmf='rm -rf'
+
+# cd up any amount of directories: cd.. <numDirs>
+function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
+alias cd..='_cd_up'
+
+# Run misc docker commands: dk <first=""> <second=""> ...
+#  e.g. dk cn ls --> docker container ls
+
 declare -A dk_vars
 dk_vars[rn]="run"; dk_vars[st]="start"; dk_vars[sp]="stop"; dk_vars[pl]="pull"
 dk_vars[b]="build"; dk_vars[k]="kill"; dk_vars[ex]="exec"; dk_vars[cn]="container"
@@ -31,59 +44,20 @@ function _run_docker() {
   eval "docker $fst $scd $thd $fth"
 }
 
-alias cra='_make_react_app'
-function _make_react_app() {
-  if [ "$1" ]; then
-      mkdir "$1" && cd "$1"
-  else 
-    return
-  fi
-  npx create-react-app .
-  mv ./src/index.js ./src/App.js ./public/index.html ./
-  rm -rf ./src ./public .git .gitignore
-  mkdir {src,public}
-  sed -i '3d;5d;13,17d' ./index.js
-  sed -i '1,3d;7,20d;' ./App.js
-  sed -i s/' className=\"App\"'//g ./App.js
-  sed -i '5,26d;30d;32,41d;' ./index.html
-  mv ./index.js ./App.js ./src
-  mv ./index.html ./public
-}
-
-alias cwa='_create_webpack_app'
-function _create_webpack_app() {
-  if [ "$1" ]; then
-      mkdir "$1" && cd "$1"
-  else 
-    return
-  fi
-  # Note: Does not include auto-reload
-  git clone https://github.com/mpontus/webpack-react.git
-  cd webpack-react
-  mv ./* ../
-  cd ..
-  rmf webpack-react
-}
-
-# Terminal config aliases
+# Sourcing
 alias src='.'
 alias srcalias='. ~/.zsh_aliases'
 alias srcrc='. ~/.zshrc'
+
+# Edit configuration
 alias valias='vim ~/.zsh_aliases'
 alias vrc='vim ~/.zshrc'
 
-# Misc aliases
-alias restart='exec zsh -l'
-alias rst='exec zsh -l'
-alias cls='clear'
+# Make and cd into directory: mkcd <name>
 alias mkcd='_mk_cd'
 function _mk_cd() { mkdir "$1"; cd "$1"; }
-alias start='open'
-alias rmf='rm -rf'
-function _cd_up() { cd $(printf "%0.s../" $(seq 1 $1 )); }
-alias cd..='_cd_up'
 
-# Git aliases
+# Git aliases (completion-enabled)
 alias ga='git add'
 alias gb='git branch'
 alias gch='git checkout'
@@ -108,10 +82,14 @@ alias gs='git status'
 alias gst='git stash'
 alias gt='git tag'
 
+# python install aliases
 alias loadreq='pip3 install -r requirements.txt'
 alias ireq='pip3 install -r requirements.txt'
 alias setreq='pip3 freeze > requirements.txt'
 
+# virtualenv aliases
+
+# Create a virtualenv: mkvenv <name="venv">
 alias mkvenv='_mkvenv'
 function _mkvenv() { 
   if [ "$1" ]; then 
@@ -121,11 +99,13 @@ function _mkvenv() {
   fi
 }
 
+# Deactive a virtualenv: dvenv
 alias dvenv='_dvenv'
 function _dvenv() {
   [[ $(type deactivate 2>/dev/null) ]] && deactivate
 }
 
+# Remove a virtualenv: rmvenv <name="venv">
 alias rmvenv='_rmvenv'
 function _rmvenv() {
 	_dvenv
@@ -136,6 +116,8 @@ function _rmvenv() {
   fi
 }
 
+# Source a virtualenv: srcvenv <name="venv">
+
 alias srcvenv='_srcvenv'
 function _srcvenv() { 
   if [ "$1" ]; then
@@ -145,6 +127,7 @@ function _srcvenv() {
   fi 
 }
 
+# Create and source a virtualenv: setvenv <name="venv">
 alias setvenv='_setvenv'
 function _setvenv() {
 	if [ "$1" ]; then
@@ -154,10 +137,31 @@ function _setvenv() {
   fi
 }
 
-# Random node aliases
+# npm aliases
 alias nrs='npm run start'
 alias nrd='npm run dev'
-alias naf='npm audit fix'
-alias naff='npm audit fix force'
+
 alias ni='npm install'
-alias nis='npm install --save-dev'
+alias nis='npm install -D'
+
+alias naf='npm audit fix'
+alias naff='npm audit fix --force'
+
+# yarn aliases
+alias y='yarn'
+alias yrs='yarn run start'
+alias ys='yarn start'
+alias yrd='yarn run dev'
+alias yb='yarn build && cd build && npx serve && cd ..'
+
+alias ya='yarn add'
+alias yad='yarn add -D'
+alias yaf='yarn audit fix'
+alias yaff='yarn audit fix --force'
+
+alias yi='yarn install'
+
+alias yg='yarn global'
+alias yga='yarn global add'
+alias ygr='yarn global remove'
+
